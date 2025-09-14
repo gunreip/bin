@@ -1,0 +1,19 @@
+[Unit]
+Description=Laravel Queue Worker (%QUEUE_NAME%) for %PROJECT_PATH%
+After=network.target
+
+[Service]
+Type=simple
+User=%USER%
+Group=www-data
+WorkingDirectory=%PROJECT_PATH%
+ExecStart=%PHP_BIN% %PROJECT_PATH%/artisan queue:work --queue=%QUEUE_NAME% --sleep=3 --tries=3 --max-time=3600 --timeout=120
+Restart=always
+RestartSec=5
+KillMode=process
+StandardOutput=journal
+StandardError=journal
+Environment=APP_ENV=production
+
+[Install]
+WantedBy=multi-user.target

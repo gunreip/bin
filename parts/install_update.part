@@ -1,0 +1,80 @@
+# =============================================================================
+# install_update.part — getrennte Install/Update-Logs auf Basis von log_core
+# Version: v0.2.0  (Minor: klare Trennung + Integration LOG-Ausgabe)
+# =============================================================================
+
+IU_PART_VERSION="0.2.0"
+
+# log_core laden (falls nicht bereits vorhanden)
+if ! command -v lc_start_run >/dev/null 2>&1; then
+  if [[ -f "$HOME/bin/parts/log_core.part" ]]; then
+    # shellcheck disable=SC1090
+    source "$HOME/bin/parts/log_core.part"
+  else
+    echo "install_update.part: log_core.part nicht gefunden unter \$HOME/bin/parts" >&2
+  fi
+fi
+
+# -------------- allgemeine Hilfen ---------------
+iu_humanize_bytes(){
+  local b="${1:-0}"; awk -v b="$b" 'function f(x){s="B KMGTPEZY";i=0;while (x>=1024 && i<8){x/=1024;i++} printf("%.1f %s", x, substr(s, i*2+1, 1))} BEGIN{f(b)}'
+}
+
+iu_script_name(){ printf "%s" "${LC_SCRIPT_NAME:-$(basename "$0")}"; }
+iu_script_version(){ printf "%s" "${LC_SCRIPT_VERSION:-0.0.0}"; }
+iu_script_opts(){ printf "%s" "${LC_SCRIPT_OPTS:-keine}"; }
+
+iu_result_emoji(){ [[ "${1:-ok}" == "ok" ]] && echo "✅" || echo "❌"; }
+
+# Stellt sicher, dass eine Run-Gruppe existiert
+iu_ensure_run(){
+  if [[ -z "${LC_RUN_ID:-}" || -z "${LC_LOGFILE:-}" ]]; then
+    lc_start_run "$(lc_find_proj_root)" "$(lc_run_id)"
+  fi
+}
+
+# -------------- Hauptfunktionen ----------------
+# iu_log_install fpath size_bytes dur_ms [reason] [tags_csv] [log_out_paths...]
+iu_log_install(){
+  local fpath="${1:-}" sizeb="${2:-0}" dur="${3:-0}" reason="${4:-install}" tags="${5:-bin,install}"
+  shift $(( $#>=5 ? 5 : $# ))  # rest = log_out_paths...
+  local out_cell=""; out_cell="$(lc_fmt_paths_md "$@" )"
+  iu_ensure_run
+  local zeit; zeit="$(date +%T)"
+  local script; script="$(iu_script_name)"
+  local ver; ver="$(iu_script_version)"
+  local opts; opts="$(iu_script_opts)"
+  local sizeh; sizeh="$(iu_humanize_bytes "$sizeb")"
+  local notiz="Neuinstallation"
+  local msg="Datei=${fpath}; Größe=${sizeh} (${sizeb} Bytes)"
+  lc_log_row_v2 "$zeit" "$script" "$ver" "\`$opts\`" "install" "install" "$reason" "$tags" \
+                "$(iu_result_emoji ok)" "$dur" "0" "$(id -un)" "$notiz" "$msg" "$out_cell"
+}
+
+# iu_log_update fpath old_bytes new_bytes dur_ms [reason] [old_v] [new_v] [tags_csv] [log_out_paths...]
+iu_log_update(){
+  local fpath="${1:-}" oldb="${2:-0}" newb="${3:-0}" dur="${4:-0}" reason="${5:-update}"
+  local old_v="${6:-}" new_v="${7:-}" tags="${8:-bin,install,update}"
+  shift $(( $#>=8 ? 8 : $# ))  # rest = log_out_paths...
+  local out_cell=""; out_cell="$(lc_fmt_paths_md "$@" )"
+  iu_ensure_run
+  local zeit; zeit="$(date +%T)"
+  local script; script="$(iu_script_name)"
+  local ver; ver="$(iu_script_version)"
+  local opts; opts="$(iu_script_opts)"
+  local oldh newh; oldh="$(iu_humanize_bytes "$oldb")"; newh="$(iu_humanize_bytes "$newb")"
+  local notiz; [[ -n "$old_v$new_v" ]] && notiz="Version: ${old_v} → ${new_v}" || notiz="Update"
+  local msg="Datei=${fpath}; Größe: ${oldh} → ${newh} (Bytes: ${oldb} → ${newb})"
+  lc_log_row_v2 "$zeit" "$script" "$ver" "\`$opts\`" "install" "update" "$reason" "$tags" \
+                "$(iu_result_emoji ok)" "$dur" "0" "$(id -un)" "$notiz" "$msg" "$out_cell"
+}
+
+# Convenience: Version-Bump (delegiert auf Update)
+# iu_log_version_bump old_v new_v fpath old_b new_b dur_ms [reason] [tags_csv] [log_out_paths...]
+iu_log_version_bump(){
+  local old_v="${1:-}" new_v="${2:-}" fpath="${3:-}" oldb="${4:-0}" newb="${5:-0}" dur="${6:-0}" reason="${7:-version-bump}" tags="${8:-bin,install,update}"
+  shift $(( $#>=8 ? 8 : $# ))  # rest = log_out_paths...
+  iu_log_update "$fpath" "$oldb" "$newb" "$dur" "$reason" "$old_v" "$new_v" "$tags" "$@"
+}
+
+# =============================================================================

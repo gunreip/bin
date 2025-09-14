@@ -1,0 +1,39 @@
+gunreip@DESKTOP-I7C75P2:~/bin$ git_repo_setup_bin --no-dry-run --init=auto --first-commit --push --steps=1 --remote=git@github.com:gunreip/bin.git --user-name="Gunter Reinhard" --user-email="gunreip@web.de"
+▶ Starte Setup (dry-run=no, steps=1)
+▶ Initialisiere Repository (main)
+Initialized empty Git repository in /home/gunreip/bin/.git/
+✅ Repo initialisiert (oder vorhanden)
+▶ Schreibe .gitignore
+▶ Schreibe .gitattributes
+▶ Schreibe .editorconfig
+▶ Setze lokale Git-Identität
+▶ Setze Remote origin
+▶ Erster Commit
+warning: in the working copy of 'trash/bin_old_20250908_144523/shellcheck.net/shellcheck.net.json', CRLF will be replaced by LF the next time Git touches it
+[main (root-commit) 83a634c] feat(repo): init bin scripts
+ 394 files changed, 128495730 insertions(+)
+ create mode 100644 .editorconfig
+ create mode 100644 .gitattributes
+ create mode 100644 .gitignore
+ create mode 100644 .shellscripts_checklist.md
+ create mode 120000 _backup_shell_script
+ create mode 12
+ ...
+ create mode 100644 trash/trace_20250911_203600.txt
+ create mode 100644 trash/trace_20250911_214155.txt
+ create mode 120000 wsl_dev_tweaks
+▶ Push main
+Enumerating objects: 326, done.
+Counting objects: 100% (326/326), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (318/318), done.
+Writing objects: 100% (326/326), 615.72 KiB | 1.68 MiB/s, done.
+Total 326 (delta 42), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (42/42), done.
+remote: error: Trace: 4210f965ef2115bb693db4c4e28e5be897cc431c7410494dab0924b501af9443
+remote: error: See https://gh.io/lfs for more information.
+remote: error: File temp/chlog_mid_6z5j8f.md is 104.83 MB; this exceeds GitHub's file size limit of 100.00 MB
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+To github.com:gunreip/bin.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'github.com:gunreip/bin.git'

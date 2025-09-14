@@ -1,0 +1,37 @@
+/* @dest: .wiki/logs/.shell_script_styles.logs.css */
+/* @dest: ~/.wiki/css/shell_script_styles.logs.css */
+
+body {
+font-size: 0.9em;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+padding: 12px;
+min-width: 120%;
+}
+div.overflowx { overflow-x:auto; }
+li { color: #F4511E; font-family: monospace; font-size: 1.034rem; }
+td { vertical-align: top; }
+table { position: relative; border-collapse: separate; width: 150% !important; padding-bottom: 0.55rem; }
+thead th { position: sticky; top: 0; font-size: 1.075rem; text-align: center !important; background: #131417; color: #E0E0E0; padding:.15rem .15rem .35rem .15rem; }
+td em { color: #006064; font-style: normal; font-weight: bold; }
+tr:nth-child(even) { background-color: #E1F5FE; }
+td:nth-child(1) { width: 4rem; }    /* Zeit */
+td:nth-child(2) { width: 17rem; }   /* Script */
+td:nth-child(2) > code { color: #01579B !important; font-size: 1.034rem !important; font-weight: bold !important; } /* Typewriter */
+td:nth-child(3) { width: 4.5rem; }  /* Version */
+td:nth-child(4) { width: 25rem; }   /* Optionen */
+td:nth-child(4) > code { color: #01579B !important; font-size: 1.034rem !important; font-weight: bold !important; } /* Typewriter */
+td:nth-child(5) { width: 5rem; }    /* Sektion */
+td:nth-child(6) { width: 5rem; }    /* Action */
+td:nth-child(7) { width: 20rem; }   /* Grund */
+td:nth-child(7) > code { color: #01579B !important; font-size: 1.034rem !important; font-weight: bold !important; } /* Typewriter */
+td:nth-child(8) { width: 15rem; }   /* tags */
+td:nth-child(9) { width: 5rem; }    /* Ergebnis */
+td:nth-child(10) { width: 5rem; }   /* Dauer (ms) */
+td:nth-child(11) { width: 3rem; }   /* Exit */
+td:nth-child(12) { width: 10rem; }  /* User */
+td:nth-child(13) { width: 25rem; }  /* Notiz */
+td:nth-child(13) > code { color: #01579B !important; font-size: 1.034rem !important; font-weight: bold !important; } /* Typewriter */
+td:nth-child(14) { width: 35rem; }  /* Skript-Meldungen */
+td:nth-child(14) > code { color: #B71C1C !important; font-size: 1.034rem !important; font-weight: bold !important; } /* Typewriter */
+td:nth-child(15) > code { color: #8BC34A !important; font-size: 1.034rem !important; } /* Typewriter */
+.test { color: magenta; }

@@ -1,0 +1,236 @@
+#!/usr/bin/env bash
+# wiki_sync_css.sh — verteilt CSS aus ~/bin/css-origin an @dest-Ziele, loggt optional
+# Version: 0.12.5
+#
+# shellcheck disable=
+
+if [ -z "${BASH_VERSION-}" ]; then exec bash "$0" "$@"; fi
+set -Euo pipefail
+IFS=$'\n\t'
+
+SCRIPT_NAME="wiki_sync_css.sh"
+SCRIPT_VERSION="0.12.5"
+RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)-$$"
+ORIG_ARGS=("$@")
+
+# Defaults
+SRC_DIR="${HOME}/bin/css-origin"
+ALLOW_CREATE=0; PRUNE=0; DRY=0
+DEBUG="OFF"      # OFF|ON|TRACE
+DO_LOG_RENDER="ON"; RENDER_DELAY=1
+
+usage(){ cat <<'HLP'
+wiki_sync_css.sh — verteilt CSS-Quellen an @dest-Ziele (Gatekeeper: im Projekt-Root mit .env starten)
+
+OPTIONEN
+  --src-dir=PATH          Quell-Ordner (~/bin/css-origin)
+  --allow-create          Fehlende Ziele anlegen
+  --prune                 Verwaiste .css in @dest nach .trash verschieben
+  --dry-run               Nur anzeigen, nichts schreiben
+  --do-log-render=ON|OFF  Nachlaufend log_render_html (ON)
+  --render-delay=SEC      Verzögerung vor Render (1)
+  --debug=LEVEL           OFF | ON | TRACE (OFF)
+  --version               Skriptversion
+  --help                  Hilfe
+HLP
+}
+
+# Args
+while (($#)); do
+  case "$1" in
+    --src-dir=*) SRC_DIR="${1#*=}"; [[ "${SRC_DIR:0:2}" == "~/" ]] && SRC_DIR="${HOME}/${SRC_DIR:2}"; shift;;
+    --allow-create) ALLOW_CREATE=1; shift;;
+    --prune) PRUNE=1; shift;;
+    --dry-run) DRY=1; shift;;
+    --do-log-render=*) DO_LOG_RENDER="${1#*=}"; DO_LOG_RENDER="${DO_LOG_RENDER^^}"; shift;;
+    --render-delay=*) RENDER_DELAY="${1#*=}"; shift;;
+    --debug=*) DEBUG="${1#*=}"; DEBUG="${DEBUG^^}"; shift;;
+    --version) echo "${SCRIPT_NAME} ${SCRIPT_VERSION}"; exit 0;;
+    --help|-h) usage; exit 0;;
+    *) echo "Unbekannte Option: $1" >&2; usage; exit 64;;
+  esac
+done
+
+# Debug
+DEBUG_DIR="${HOME}/bin/debug"; mkdir -p "${DEBUG_DIR}"
+DBG_TXT="${DEBUG_DIR}/wiki_sync_css.debug.log"; : > "${DBG_TXT}"
+if [ "${DEBUG}" = "TRACE" ]; then
+  exec 19>>"${DEBUG_DIR}/wiki_sync_css.xtrace.log"
+  export BASH_XTRACEFD=19; export PS4='+ wiki_sync_css.sh:${LINENO}:${FUNCNAME[0]-main} '; set -x
+fi
+dbg(){ [ "${DEBUG}" != "OFF" ] && printf '[%s] %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" >> "${DBG_TXT}"; }
+
+# Gatekeeper (Projekt-Root)
+if [ ! -f ".env" ]; then
+  echo '❌ Gatekeeper: .env nicht gefunden (im Projekt-Root starten).' >&2
+  exit 2
+fi
+PROJECT_PATH="$(pwd)"; PROJECT_NAME="$(basename "$(pwd)")"
+
+# log_core.part (optional)
+LC_OK=0
+if [ -r "${HOME}/bin/parts/log_core.part" ]; then
+  # shellcheck disable=SC1090
+  . "${HOME}/bin/parts/log_core.part" || true
+  if command -v lc_start_run >/dev/null 2>&1 && command -v lc_log_row_v2 >/dev/null 2>&1; then
+    LC_OK=1; lc_start_run
+  fi
+fi
+
+# Optionen-Cell (HTML)
+nbhy(){ printf '%s' "${1//-/$'\u2011'}"; }
+OPT_CELL="keine"
+if ((${#ORIG_ARGS[@]}>0)); then
+  OPT_CELL=""
+  for a in "${ORIG_ARGS[@]}"; do a="$(nbhy "$a")"; OPT_CELL="${OPT_CELL:+${OPT_CELL}<br />}<code>${a}</code>"; done
+fi
+
+# Helpers
+trim_spaces(){ sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//'; }
+strip_cr(){ tr -d '\r'; }  # Windows-CR entfernen
+
+# Pfadauflösung (robust für "~" / "~/…")
+resolve_path(){
+  local p; p="$(printf '%s' "$1" | strip_cr | trim_spaces)"
+  case "$p" in
+    "~")   printf '%s\n' "$HOME";;
+    "~/"*) printf '%s\n' "$HOME/${p#~/}";;
+    /*)    printf '%s\n' "$p";;
+    *)     printf '%s\n' "$PROJECT_PATH/$p";;
+  esac
+}
+
+# Datei vs. Ordner? (robust)
+looks_like_file(){ case "$1" in *.css) return 0;; *) return 1;; esac; }
+
+# Extrahiere @dest aus CSS-Kommentaren
+extract_dests(){
+  sed -nE '
+    s#^[[:space:]]*/\*[[:space:]]*@dest:[[:space:]]*([^*]+)\*/[[:space:]]*$#\1#p;
+    s#^[[:space:]]*\*[[:space:]]*@dest:[[:space:]]*(.+)$#\1#p;
+    s#^[[:space:]]*//[[:space:]]*@dest:[[:space:]]*(.+)$#\1#p
+  ' | strip_cr | trim_spaces
+}
+
+# Zielname aus Source (.origin/.orgin → Dotfile)
+dest_basename_from_source(){
+  local n="${1##*/}"
+  n="${n//.origin./.}"; n="${n%.origin}"
+  n="${n//.orgin./.}";  n="${n%.orgin}"
+  printf '.%s\n' "$n"
+}
+
+is_dangerous_dest(){ local p="$1"; [[ -z "$p" || "$p" = "/" || "$p" = "$HOME" || "$p" = "." ]]; }
+run(){ if [ "${DRY}" -eq 1 ]; then echo "[DRY] $*"; else eval "$@"; fi; }
+
+# Quelle prüfen
+if [ ! -d "${SRC_DIR}" ]; then echo "⚠️ Quelle fehlt: ${SRC_DIR}"; exit 0; fi
+mapfile -t SOURCES < <(find "${SRC_DIR}" -maxdepth 1 -type f -name '*.css' -printf '%f\n' | LC_ALL=C sort || true)
+((${#SOURCES[@]}==0)) && { echo "⚠️ Keine CSS-Quellen in ${SRC_DIR}"; exit 0; }
+
+created=0; updated=0; identical=0; nodest=0; errors=0; pruned=0
+declare -A EXPECTED_NAMES=(); declare -A DEST_DIRS_SEEN=()
+
+for base in "${SOURCES[@]}"; do
+  src="${SRC_DIR}/${base}"
+  dest_base="$(dest_basename_from_source "$base")"
+  EXPECTED_NAMES["${dest_base}"]=1
+
+  mapfile -t dests_raw < <(extract_dests < "${src}")
+  if ((${#dests_raw[@]}==0)); then echo "⚠️ ${base}: keine @dest-Zeilen"; ((nodest++)); continue; fi
+
+  resolved_files=()
+  for d in "${dests_raw[@]}"; do
+    d="$(printf '%s' "$d" | strip_cr | trim_spaces)"
+    [[ -z "$d" ]] && continue
+    abs="$(resolve_path "$d")"
+    [[ "${DEBUG}" = "TRACE" && "$d" == "~"* ]] && printf '[TRACE] ~ → %s → %s\n' "$d" "$abs" >> "${DBG_TXT}"
+
+    if looks_like_file "$abs"; then
+      dest="$abs"
+    else
+      dest_dir="${abs%/}"
+      dest="${dest_dir}/${dest_base}"
+    fi
+    resolved_files+=("$dest"); DEST_DIRS_SEEN["$(dirname -- "$dest")"]=1
+  done
+  ((${#resolved_files[@]}==0)) && { echo "⚠️ ${base}: keine verwertbaren Ziele"; ((nodest++)); continue; }
+
+  this_created=0; this_updated=0; this_ident=0
+  for dest in "${resolved_files[@]}"; do
+    ddir="$(dirname -- "$dest")"
+    if is_dangerous_dest "$ddir"; then echo "⚠️ dangerous dest blocked: ${dest}"; ((nodest++)); continue; fi
+    if [ ! -e "$dest" ]; then
+      if (( ALLOW_CREATE==1 )); then
+        run "mkdir -p -- \"${ddir}\""; run "cp -- \"${src}\" \"${dest}\"" || { ((errors++)); continue; }
+        echo "→ CREATE      ${dest}"; ((created++)); ((this_created++))
+      else
+        echo "→ SKIP(CREATE) ${dest} (use --allow-create)"
+      fi
+      continue
+    fi
+    if cmp -s -- "${src}" "${dest}"; then
+      echo "→ SKIP        ${dest} (identical)"; ((identical++)); ((this_ident++))
+    else
+      if [ "${DRY}" -eq 1 ]; then
+        echo "→ UPDATE(DRY) ${dest}"
+      else
+        run "cp -- \"${src}\" \"${dest}\"" || { ((errors++)); continue; }
+        echo "→ UPDATE      ${dest}"
+      fi
+      ((updated++)); ((this_updated++))
+    fi
+  done
+
+  # LOG: pro Quelle (optional)
+  if (( LC_OK==1 )); then
+    NOW_HMS="$(date +%T)"
+    if command -v lc_fmt_paths_md >/dev/null 2>&1; then
+      LOG_OUT="$(lc_fmt_paths_md "${resolved_files[@]}")"
+    else
+      LOG_OUT=""; for p in "${resolved_files[@]}"; do LOG_OUT="${LOG_OUT:+${LOG_OUT}<br />}"'<code>'"${p}"'</code>'; done
+    fi
+    lc_log_row_v2 "$NOW_HMS" "${SCRIPT_NAME}" "${SCRIPT_VERSION}" "${OPT_CELL}" \
+      "css" "sync" "copy" "css, wiki, sync" "✅" "0" "0" "$(id -un)" \
+      "Source=${base}" "created=${this_created}; updated=${this_updated}; identical=${this_ident}" "${LOG_OUT}"
+  fi
+done
+
+# PRUNE
+if (( PRUNE==1 )); then
+  ts="$(date -u +%Y%m%dT%H%M%SZ)"
+  for ddir in "${!DEST_DIRS_SEEN[@]}"; do
+    while IFS= read -r -d '' f; do
+      bname="$(basename -- "$f")"
+      if [[ -z "${EXPECTED_NAMES[$bname]+x}" ]]; then
+        trash_dir="${ddir}/.trash"; run "mkdir -p -- \"${trash_dir}\""
+        new="${trash_dir}/${bname}__${ts}__${RUN_ID}.css"
+        if [ "${DRY}" -eq 1 ]; then echo "→ TRASH(DRY)  ${f}  →  ${new}"
+        else if run "mv -- \"${f}\" \"${new}\""; then echo "→ TRASH       ${f}  →  ${new}"; fi; fi
+        ((pruned++))
+      fi
+    done < <(find "$ddir" -maxdepth 1 -type f -name '.*.css' -print0 2>/dev/null)
+  done
+fi
+
+# Summary-LOG (optional)
+if (( LC_OK==1 )); then
+  NOW_HMS="$(date +%T)"
+  lc_log_row_v2 "$NOW_HMS" "${SCRIPT_NAME}" "${SCRIPT_VERSION}" "${OPT_CELL}" \
+    "css" "sync" "summary" "css, wiki, sync" "✅" "0" "${errors}" "$(id -un)" \
+    "Source=${SRC_DIR}" "created=${created}; updated=${updated}; identical=${identical}; pruned=${pruned}; nodest=${nodest}; errors=${errors}" "—"
+fi
+
+echo "OK: created ${created}, updated ${updated}, identical ${identical}, pruned ${pruned}, nodest ${nodest}, errors ${errors}"
+
+# Render LOG HTML (optional)
+if [[ "${DO_LOG_RENDER}" == "ON" ]]; then
+  sleep "${RENDER_DELAY}" || true
+  if command -v lc_render_html >/dev/null 2>&1; then
+    lc_render_html
+  elif command -v log_render_html >/dev/null 2>&1; then
+    log_render_html
+  fi
+fi
+
+exit 0

@@ -1,0 +1,228 @@
+++ date +%Y-%m-%dT%H:%M:%S%z
++ timestamp=2025-09-11T21:41:55+0200
+++ date '+%Y-%m-%d %H:%M:%S %Z'
++ stamp_human='2025-09-11 21:41:55 CEST'
++ s_main '[1/4] Metriken sammeln …'
++ ((  QUIET==0 && STEPS>=1  ))
++ echo '[1/4] Metriken sammeln …'
++ return 0
++ s_sub 'Shellscripts zählen …'
++ ((  QUIET==0 && STEPS>=2  ))
++ return 0
++ scripts_total=0
++ [[ -d /home/gunreip/bin/shellscripts ]]
+++ safe_count /home/gunreip/bin/shellscripts -type f -name '*.sh'
+++ local dir=/home/gunreip/bin/shellscripts
+++ shift
+++ [[ -z /home/gunreip/bin/shellscripts ]]
+++ local out
++++ find /home/gunreip/bin/shellscripts -type f -name '*.sh' -printf .
++++ wc -c
++++ awk '{print $1}'
+++ out=100
+++ [[ -z 100 ]]
+++ printf %s 100
++ scripts_total=100
++ s_sub 'Top-Level-Symlinks zählen …'
++ ((  QUIET==0 && STEPS>=2  ))
++ return 0
+++ safe_count /home/gunreip/bin -maxdepth 1 -mindepth 1 -type l
+++ local dir=/home/gunreip/bin
+++ shift
+++ [[ -z /home/gunreip/bin ]]
+++ local out
++++ find /home/gunreip/bin -maxdepth 1 -mindepth 1 -type l -printf .
++++ wc -c
++++ awk '{print $1}'
+++ out=98
+++ [[ -z 98 ]]
+++ printf %s 98
++ symlinks_top=98
++ s_sub 'Broken Symlinks einsammeln …'
++ ((  QUIET==0 && STEPS>=2  ))
++ return 0
++ BROKEN=()
++ mapfile -d '' BROKEN
+++ find /home/gunreip/bin -type l '!' -exec test -e '{}' ';' -print0
++ broken_count=0
++ pruned=0
++ ((  PRUNE_TRASH == 1  ))
++ s_main '[2/4] Baum vorbereiten …'
++ ((  QUIET==0 && STEPS>=1  ))
++ echo '[2/4] Baum vorbereiten …'
++ return 0
++ command -v tree
++ TREE_ARGS=("-L" "$MAX_DEPTH" "-F")
++ ((  SHOW_FILES==0  ))
++ TREE_ARGS+=("-d")
++ [[ -n '' ]]
++ s_sub 'Datei-Counts vorbereiten …'
++ ((  QUIET==0 && STEPS>=2  ))
++ return 0
+++ mktemp
++ COUNTS_MAP=/tmp/tmp.92RJvMo53F
++ find /home/gunreip/bin -type f -printf '%h\n'
++ sort
++ uniq -c
++ awk '{c=$1; $1=""; sub(/^ /,""); printf "%s\t%s\n",$0,c}'
++ s_main '[3/4] Reports bauen …'
++ ((  QUIET==0 && STEPS>=1  ))
++ echo '[3/4] Reports bauen …'
++ return 0
++ MD_TMP=/tmp/.bin_audit.md
++ JSON_TMP=/tmp/.bin_audit.json
++ ((  SELFCHECK  ))
+++ join_args -L 3 -F -d
+++ local out=
+++ local x
+++ for x in "$@"
+++ out+='-L '
+++ for x in "$@"
+++ out+='3 '
+++ for x in "$@"
+++ out+='-F '
+++ for x in "$@"
+++ out+='-d '
+++ printf %s '-L 3 -F -d'
+++ sp /home/gunreip/bin
+++ local p=/home/gunreip/bin
+++ [[ -z /home/gunreip/bin ]]
+++ case "$p" in
+++ printf '~%s' /bin
++ s_sub 'tree -L 3 -F -d ~/bin'
++ ((  QUIET==0 && STEPS>=2  ))
++ return 0
+++ tree -L 3 -F -d /home/gunreip/bin
++ TREE_RAW='/home/gunreip/bin
+|-- backups
+|   |-- _installer_backups
+|   |-- _reports_core
+|   |-- _shellscripts_migrate_layout.sh
+|   |-- bin_audit
+|   |-- checklist
+|   |-- css_migration
+|   |   |-- 20250908_124708
+|   |   |-- 20250908_125714
+|   |   `-- 20250908_130538
+|   |-- css_migration_installers
+|   |-- full
+|   |-- install_update
+|   |-- laravel_workspace_scan
+|   |-- log_core
+|   |-- pg_quickcheck
+|   |-- script_state
+|   |-- shellscripts_checklist
+|   |-- shellscripts_checklist_summary
+|   |-- uncategorized
+|   `-- wiki_sync_css
+|-- debug
+|   |-- _config
+|   |-- backups_migrate
+|   |-- backups_migrate_layout
+|   |-- bin_audits
+|   |-- shellscripts_checklist
+|   `-- shellscripts_checklist_summary
+|-- legacy
+|   `-- css-origin
+|-- parts
+|-- reports
+|   |-- bin_audit
+|   |-- sandbox_demo
+|   |-- shellscripts_checklist
+|   `-- shellscripts_checklist_summary
+|-- shellscripts
+|   |-- install
+|   |-- maintenance
+|   |   |-- internal
+|   |   `-- uncategorized
+|   |-- ops
+|   |   |-- backup
+|   |   |-- ci
+|   |   |-- git
+|   |   |-- laravel
+|   |   |-- nginx
+|   |   |-- postgres
+|   |   |-- project
+|   |   |-- systemd
+|   |   `-- wsl
+|   |-- patch
+|   |-- reports
+|   `-- scans
+`-- trash
+    |-- audits
+    |-- bin_old_20250908_144523
+    |   `-- shellcheck.net
+    |-- bin_old_20250908_144625
+    |-- bin_old_20250908_145142
+    |-- bin_old_20250908_150404
+    |-- checklist
+    |-- checklist_rename_20250908_182849
+    |-- debug
+    |   |-- shellscripts_checklist_20250908_203554
+    |   |-- shellscripts_checklist_20250908_203555
+    |   |-- shellscripts_checklist_20250908_203657
+    |   |-- shellscripts_checklist_20250908_203807
+    |   |-- shellscripts_checklist_20250909_061415
+    |   |-- shellscripts_checklist_summary_20250908_203555
+    |   `-- shellscripts_checklist_summary_20250908_203807
+    |-- internal_rename_20250908_183808
+    `-- orphans_20250908_173233
+
+74 directories'
++ [[ yes == \y\e\s ]]
++ dirs_only=1
+++ awk -v $'icon=\360\237\223\201' -v dirs_only=1 -v mapfile=/tmp/tmp.92RJvMo53F -v root=/home/gunreip/bin '
+      BEGIN{
+        FS="\t";
+        while ((getline < mapfile) > 0) { counts[$1]=$2 }
+        close(mapfile)
+        # Root-Basename
+        n=split(root, a, "/"); rootbase=a[n]
+        # Root-Count
+        rootc = (root in counts) ? counts[root] : 0
+        # path stack
+        path[0]=root
+      }
+      function is_summary(line){ return line ~ /^[[:space:]]*[0-9]+/ && (line ~ /director/ || line ~ /file/) }
+      function unicode_lines(ind,    out){
+        out=ind
+        gsub(/\\-- /, "└── ", out)   # Backslash
+        gsub(/`-- /,  "└── ", out)   # Backtick
+        gsub(/\|-- /, "├── ", out)
+        gsub(/\|/,     "│",   out)
+        gsub(/-/,      "─",   out)
+        return out
+      }
+      {
+        line=$0
+        if (NR==1){ print icon " " rootbase " *(files: " rootc ")*"; next }
+        if (is_summary(line)) { print line; next }
+        # führenden Indent/Connector-Block ermitteln
+        match(line, /^[| \\`-]+/)
+        ind  = substr(line, 1, RLENGTH)
+        rest = substr(line, RLENGTH+1)
+        # Tiefe bestimmen: Position des Connectors, davor Blöcke á 4 Zeichen
+        cpos = match(ind, /(\|-- |`-- |\\-- )/)
+        pre  = (cpos ? substr(ind, 1, cpos-1) : ind)
+        depth = int(length(pre)/4) + 1  # 1..N unter Root
+        # Dir-/File-Erkennung
+        is_dir = 0
+        if (rest ~ /\/[[:space:]]*$/) { is_dir=1; sub(/\/[[:space:]]*$/, "", rest) }
+        # Pfadstack aktualisieren (für Verzeichnisse)
+        if (is_dir) {
+          parent = path[depth-1]
+          cur = (depth==1 ? root "/" rest : parent "/" rest)
+          path[depth]=cur
+        }
+        # Unicode-Linien anwenden
+        indU = unicode_lines(ind)
+
+        if (dirs_only || is_dir) {
+          c = 0
+          if (is_dir)      c = (cur in counts) ? counts[cur] : 0
+          else             c = 0
+          print indU icon " " rest " *(files: " c ")*"
+        } else {
+          print indU rest
+        }
+      }'

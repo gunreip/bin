@@ -1,0 +1,602 @@
+++ date +%Y-%m-%dT%H:%M:%S%z
++ timestamp=2025-09-11T20:35:48+0200
+++ date '+%Y-%m-%d %H:%M:%S %Z'
++ stamp_human='2025-09-11 20:35:48 CEST'
++ s_main '[1/4] Metriken sammeln …'
++ ((  QUIET==0 && STEPS>=1  ))
++ echo '[1/4] Metriken sammeln …'
++ s_sub 'Shellscripts zählen …'
++ ((  QUIET==0 && STEPS>=2  ))
++ echo '  - Shellscripts zählen …'
++ scripts_total=0
++ [[ -d /home/gunreip/bin/shellscripts ]]
+++ safe_count /home/gunreip/bin/shellscripts -type f -name '*.sh'
+++ local dir=/home/gunreip/bin/shellscripts
+++ shift
+++ [[ -z /home/gunreip/bin/shellscripts ]]
+++ local out
++++ find /home/gunreip/bin/shellscripts -type f -name '*.sh' -printf .
++++ wc -c
++++ awk '{print $1}'
+++ out=100
+++ [[ -z 100 ]]
+++ printf %s 100
++ scripts_total=100
++ s_sub 'Top-Level-Symlinks zählen …'
++ ((  QUIET==0 && STEPS>=2  ))
++ echo '  - Top-Level-Symlinks zählen …'
+++ safe_count /home/gunreip/bin -maxdepth 1 -mindepth 1 -type l
+++ local dir=/home/gunreip/bin
+++ shift
+++ [[ -z /home/gunreip/bin ]]
+++ local out
++++ find /home/gunreip/bin -maxdepth 1 -mindepth 1 -type l -printf .
++++ wc -c
++++ awk '{print $1}'
+++ out=98
+++ [[ -z 98 ]]
+++ printf %s 98
++ symlinks_top=98
++ s_sub 'Broken Symlinks einsammeln …'
++ ((  QUIET==0 && STEPS>=2  ))
++ echo '  - Broken Symlinks einsammeln …'
++ BROKEN=()
++ mapfile -d '' BROKEN
+++ find /home/gunreip/bin -type l '!' -exec test -e '{}' ';' -print0
++ broken_count=0
++ pruned=0
++ ((  PRUNE_TRASH == 1  ))
++ s_main '[2/4] Baum vorbereiten …'
++ ((  QUIET==0 && STEPS>=1  ))
++ echo '[2/4] Baum vorbereiten …'
++ command -v tree
++ TREE_ARGS=("-L" "$MAX_DEPTH")
++ ((  SHOW_FILES==0  ))
++ [[ -n reports,debug,backups ]]
++ IFS=,
++ read -r -a _ex
++ pat=
++ for x in "${_ex[@]}"
++ [[ -z reports ]]
++ pat=reports
++ for x in "${_ex[@]}"
++ [[ -z debug ]]
++ pat='reports|debug'
++ for x in "${_ex[@]}"
++ [[ -z backups ]]
++ pat='reports|debug|backups'
++ [[ -n reports|debug|backups ]]
++ TREE_ARGS+=("-I" "$pat")
++ s_main '[3/4] Reports bauen …'
++ ((  QUIET==0 && STEPS>=1  ))
++ echo '[3/4] Reports bauen …'
++ MD_TMP=/tmp/.bin_audit.md
++ JSON_TMP=/tmp/.bin_audit.json
++ ((  SELFCHECK  ))
+++ sp /home/gunreip/bin
+++ local p=/home/gunreip/bin
+++ [[ -z /home/gunreip/bin ]]
+++ case "$p" in
+++ printf '~%s' /bin
++ s_sub 'tree -L
+3
+-I
+reports|debug|backups ~/bin'
++ ((  QUIET==0 && STEPS>=2  ))
++ echo '  - tree -L
+3
+-I
+reports|debug|backups ~/bin'
+++ tree -L 3 -I 'reports|debug|backups' /home/gunreip/bin
++ TREE_OUT='/home/gunreip/bin
+|-- _backup_shell_script -> shellscripts/maintenance/internal/_backup_shell_script.sh
+|-- _bin_install_shell_script -> shellscripts/maintenance/internal/_bin_install_shell_script.sh
+|-- _bin_symlinks_refresh -> shellscripts/maintenance/internal/_bin_symlinks_refresh.sh
+|-- _bin_zip_all -> shellscripts/maintenance/internal/_bin_zip_all.sh
+|-- _bin_zip_individual -> shellscripts/maintenance/internal/_bin_zip_individual.sh
+|-- _create_symlink_all -> shellscripts/maintenance/internal/_create_symlink_all.sh
+|-- _dev_aliases -> shellscripts/maintenance/internal/_dev_aliases.sh
+|-- artisanx -> /home/gunreip/bin/shellscripts/ops/laravel/artisanx.sh
+|-- backup_db_hourly -> /home/gunreip/bin/shellscripts/ops/backup/backup_db_hourly.sh
+|-- backup_full_daily -> /home/gunreip/bin/shellscripts/ops/backup/backup_full_daily.sh
+|-- backup_prune_weekly -> /home/gunreip/bin/shellscripts/ops/backup/backup_prune_weekly.sh
+|-- backup_publish_latest -> /home/gunreip/bin/shellscripts/ops/backup/backup_publish_latest.sh
+|-- backup_restore_drill -> /home/gunreip/bin/shellscripts/ops/backup/backup_restore_drill.sh
+|-- backup_shell_script -> /home/gunreip/bin/shellscripts/maintenance/internal/_backup_shell_script.sh
+|-- backups_migrate_layout -> /home/gunreip/bin/shellscripts/maintenance/internal/_backups_migrate_layout.sh
+|-- bin_audit -> /home/gunreip/bin/shellscripts/scans/_bin_audit.sh
+|-- bin_install_shell_script -> /home/gunreip/bin/shellscripts/maintenance/internal/_bin_install_shell_script.sh
+|-- bin_symlinks_refresh -> /home/gunreip/bin/shellscripts/maintenance/internal/_bin_symlinks_refresh.sh
+|-- bin_zip_all -> /home/gunreip/bin/shellscripts/maintenance/internal/_bin_zip_all.sh
+|-- bin_zip_individual -> /home/gunreip/bin/shellscripts/maintenance/internal/_bin_zip_individual.sh
+|-- ci_bp_apply -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_apply.sh
+|-- ci_bp_preset_flip -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_preset_flip.sh
+|-- ci_bp_preset_soft -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_preset_soft.sh
+|-- ci_bp_preset_strict -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_preset_strict.sh
+|-- ci_bp_remove -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_remove.sh
+|-- ci_bp_status -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_status.sh
+|-- ci_bp_tune -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_tune.sh
+|-- ci_workflow_update -> /home/gunreip/bin/shellscripts/ops/ci/ci_workflow_update.sh
+|-- create_symlink_all -> /home/gunreip/bin/shellscripts/maintenance/internal/_create_symlink_all.sh
+|-- dbg_switch -> /home/gunreip/bin/shellscripts/scans/_dbg_switch.sh
+|-- dev_aliases -> /home/gunreip/bin/shellscripts/maintenance/internal/_dev_aliases.sh
+|-- git_commit_push -> /home/gunreip/bin/shellscripts/ops/git/git_commit_push.sh
+|-- git_diff_report -> /home/gunreip/bin/shellscripts/scans/git_diff_report.sh
+|-- git_repo_clean_old_remote -> /home/gunreip/bin/shellscripts/ops/git/git_repo_clean_old_remote.sh
+|-- git_repo_setup -> /home/gunreip/bin/shellscripts/ops/git/git_repo_setup.sh
+|-- git_status_short -> /home/gunreip/bin/shellscripts/ops/git/git_status_short.sh
+|-- git_sync_rebase -> /home/gunreip/bin/shellscripts/ops/git/git_sync_rebase.sh
+|-- health_check_basic -> /home/gunreip/bin/shellscripts/scans/health_check_basic.sh
+|-- healthz_install -> /home/gunreip/bin/shellscripts/install/healthz_install.sh
+|-- healthz_uninstall -> /home/gunreip/bin/shellscripts/install/healthz_uninstall.sh
+|-- install_log_css_migration -> /home/gunreip/bin/shellscripts/install/install_log_css_migration.sh
+|-- install_zip_patch -> /home/gunreip/bin/shellscripts/install/install_zip_patch.sh
+|-- laravel_backup_timers_install -> /home/gunreip/bin/shellscripts/install/laravel_backup_timers_install.sh
+|-- laravel_backup_timers_uninstall -> /home/gunreip/bin/shellscripts/install/laravel_backup_timers_uninstall.sh
+|-- laravel_db -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_db.sh
+|-- laravel_deploy -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_deploy.sh
+|-- laravel_dev_env_info -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_dev_env_info.sh
+|-- laravel_dev_tools_setup -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_dev_tools_setup.sh
+|-- laravel_env -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_env.sh
+|-- laravel_new -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_new.sh
+|-- laravel_optimize -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_optimize.sh
+|-- laravel_permissions -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_permissions.sh
+|-- laravel_spatie_backup_setup -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_spatie_backup_setup.sh
+|-- laravel_ui_dev_tools_setup -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_ui_dev_tools_setup.sh
+|-- laravel_ui_scaffold -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_ui_scaffold.sh
+|-- laravel_vite_optimization -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_vite_optimization.sh
+|-- laravel_workspace_scan -> /home/gunreip/bin/shellscripts/scans/laravel_workspace_scan.sh
+|-- legacy
+|   |-- css-origin
+|   |   |-- markdownpdf-content.origin.logs.cssx
+|   |   |-- markdownpdf-content_script.origin.logs.cssx
+|   |   |-- markdownpdf-markdown-pdf.origin.logs.cssx
+|   |   |-- markdownpdf-markdown.origin.logs.cssx
+|   |   |-- markdownpdf-tomorrow.origin.logs.cssx
+|   |   `-- shell_script_styles.origin.logs.css
+|   `-- wiki_sync_css.sh.deprecated
+|-- log_render_html -> /home/gunreip/bin/shellscripts/reports/log_render_html.sh
+|-- log_test -> /home/gunreip/bin/shellscripts/reports/log_test.sh
+|-- logger_demo -> /home/gunreip/bin/shellscripts/reports/logger_demo.sh
+|-- logrotate_install -> /home/gunreip/bin/shellscripts/install/logrotate_install.sh
+|-- logrotate_uninstall -> /home/gunreip/bin/shellscripts/install/logrotate_uninstall.sh
+|-- nginx_hosts_add -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_hosts_add.sh
+|-- nginx_https_cert_migrate -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_cert_migrate.sh
+|-- nginx_https_env_inspect -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_env_inspect.sh
+|-- nginx_https_env_patch -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_env_patch.sh
+|-- nginx_https_header_toggle -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_header_toggle.sh
+|-- nginx_https_project_check -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_project_check.sh
+|-- nginx_https_setup -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_setup.sh
+|-- nginx_tls_check -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_tls_check.sh
+|-- nginx_tls_cleanup -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_tls_cleanup.sh
+|-- nginx_tls_setup -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_tls_setup.sh
+|-- parts
+|   |-- install_update.part
+|   `-- log_core.part
+|-- patch_bin_json_naming -> /home/gunreip/bin/shellscripts/patch/patch_bin_json_naming.sh
+|-- patch_systemd_timer_status -> /home/gunreip/bin/shellscripts/patch/patch_systemd_timer_status.sh
+|-- pg17_config_one_shot -> /home/gunreip/bin/shellscripts/ops/postgres/pg17_config_one_shot.sh
+|-- pg_create-testing-database -> /home/gunreip/bin/shellscripts/ops/postgres/pg_create-testing-database.sh
+|-- pg_quickcheck -> /home/gunreip/bin/shellscripts/scans/pg_quickcheck.sh
+|-- pg_upgrade_pg16_to_pg17 -> /home/gunreip/bin/shellscripts/ops/postgres/pg_upgrade_pg16_to_pg17.sh
+|-- postgresql_16_reset -> /home/gunreip/bin/shellscripts/ops/postgres/postgresql_16_reset.sh
+|-- postgresql_configure -> /home/gunreip/bin/shellscripts/ops/postgres/postgresql_configure.sh
+|-- precommit_install -> /home/gunreip/bin/shellscripts/install/precommit_install.sh
+|-- precommit_uninstall -> /home/gunreip/bin/shellscripts/install/precommit_uninstall.sh
+|-- prepush_install -> /home/gunreip/bin/shellscripts/install/prepush_install.sh
+|-- prepush_uninstall -> /home/gunreip/bin/shellscripts/install/prepush_uninstall.sh
+|-- project_env_mask_dump -> /home/gunreip/bin/shellscripts/ops/project/project_env_mask_dump.sh
+|-- project_logger -> /home/gunreip/bin/shellscripts/ops/project/project_logger.sh
+|-- queue_worker_install -> /home/gunreip/bin/shellscripts/install/queue_worker_install.sh
+|-- queue_worker_uninstall -> /home/gunreip/bin/shellscripts/install/queue_worker_uninstall.sh
+|-- restore_promote_selective -> /home/gunreip/bin/shellscripts/ops/backup/restore_promote_selective.sh
+|-- schedule_install -> /home/gunreip/bin/shellscripts/install/schedule_install.sh
+|-- schedule_uninstall -> /home/gunreip/bin/shellscripts/install/schedule_uninstall.sh
+|-- shellscript_state_fit -> /home/gunreip/bin/shellscripts/maintenance/internal/_shellscript_state_fit.sh
+|-- shellscript_state_unfit -> /home/gunreip/bin/shellscripts/maintenance/internal/_shellscript_state_unfit.sh
+|-- shellscripts
+|   |-- install
+|   |   |-- _dbg_switch.sh
+|   |   |-- healthz_install.sh
+|   |   |-- healthz_uninstall.sh
+|   |   |-- install_log_css_migration.sh
+|   |   |-- install_zip_patch -> install_zip_patch.sh
+|   |   |-- install_zip_patch.sh
+|   |   |-- laravel_backup_timers_install.sh
+|   |   |-- laravel_backup_timers_uninstall.sh
+|   |   |-- logrotate_install.sh
+|   |   |-- logrotate_uninstall.sh
+|   |   |-- precommit_install.sh
+|   |   |-- precommit_uninstall.sh
+|   |   |-- prepush_install.sh
+|   |   |-- prepush_uninstall.sh
+|   |   |-- queue_worker_install.sh
+|   |   |-- queue_worker_uninstall.sh
+|   |   |-- schedule_install.sh
+|   |   `-- schedule_uninstall.sh
+|   |-- maintenance
+|   |   |-- _dbg_switch.sh
+|   |   |-- internal
+|   |   `-- uncategorized
+|   |-- ops
+|   |   |-- _dbg_switch.sh
+|   |   |-- backup
+|   |   |-- ci
+|   |   |-- git
+|   |   |-- laravel
+|   |   |-- nginx
+|   |   |-- postgres
+|   |   |-- project
+|   |   |-- systemd
+|   |   `-- wsl
+|   |-- patch
+|   |   |-- patch_bin_json_naming.sh
+|   |   `-- patch_systemd_timer_status.sh
+|   `-- scans
+|       |-- _bin_audit.sh
+|       |-- _dbg_switch.sh
+|       |-- git_diff_report.sh
+|       |-- health_check_basic.sh
+|       |-- laravel_workspace_scan.sh
+|       `-- pg_quickcheck.sh
+|-- shellscripts_checklist -> /home/gunreip/bin/shellscripts/reports/shellscripts_checklist.sh
+|-- shellscripts_checklist_summary -> /home/gunreip/bin/shellscripts/reports/shellscripts_checklist_summary.sh
+|-- shellscripts_migrate_layout -> /home/gunreip/bin/shellscripts/maintenance/internal/_shellscripts_migrate_layout.sh
+|-- systemd_timer_status -> /home/gunreip/bin/shellscripts/ops/systemd/systemd_timer_status.sh
+|-- trash
+|   |-- audits
+|   |   |-- audit_20250908_133521.txt
+|   |   |-- audit_20250908_135626.txt
+|   |   |-- audit_20250908_141007.txt
+|   |   |-- audit_20250908_141231.txt
+|   |   |-- audit_20250908_141755.txt
+|   |   |-- audit_20250908_142936.txt
+|   |   |-- audit_20250908_143759.txt
+|   |   |-- audit_20250908_145735.txt
+|   |   |-- audit_20250908_145742.txt
+|   |   |-- audit_20250908_145910.txt
+|   |   |-- audit_20250908_150404.txt
+|   |   |-- audit_20250908_151002.txt
+|   |   |-- audit_20250908_151704.txt
+|   |   |-- audit_20250908_151805.txt
+|   |   |-- audit_20250908_155220.txt
+|   |   |-- audit_20250908_155315.txt
+|   |   |-- audit_20250908_160800.txt
+|   |   |-- audit_20250908_162739.txt
+|   |   |-- audit_20250908_164547.txt
+|   |   |-- audit_20250908_165857.txt
+|   |   |-- audit_20250908_172644.txt
+|   |   |-- audit_20250908_173233.txt
+|   |   |-- audit_20250908_173837.txt
+|   |   |-- audit_20250908_182849.txt
+|   |   |-- audit_20250908_183808.txt
+|   |   |-- audit_20250908_184011.txt
+|   |   |-- audit_20250909_200256.txt
+|   |   |-- audit_20250909_223434.txt
+|   |   |-- audit_20250909_231200.txt
+|   |   |-- audit_20250909_231727.txt
+|   |   `-- audit_20250909_231759.txt
+|   |-- bin_old_20250908_144523
+|   |   `-- shellcheck.net
+|   |-- bin_old_20250908_144625
+|   |-- bin_old_20250908_145142
+|   |-- bin_old_20250908_150404
+|   |   |-- bin_shellcommands.backup.zip
+|   |   |-- bin_shellcommands.git.zip
+|   |   |-- bin_shellcommands.zip
+|   |   `-- wiki_sync_css.sh.bak.20250901182931
+|   |-- checklist
+|   |-- checklist_rename_20250908_182849
+|   |-- internal_rename_20250908_183808
+|   |-- orphans_20250908_173233
+|   |-- trace_20250911_173246.txt
+|   |-- trace_20250911_180237.txt
+|   |-- trace_20250911_180504.txt
+|   |-- trace_20250911_181131.txt
+|   `-- trace_20250911_182419.txt
+`-- wsl_dev_tweaks -> /home/gunreip/bin/shellscripts/ops/wsl/wsl_dev_tweaks.sh
+
+32 directories, 175 files'
++ echo '# bin_audit Summary'
++ echo
++ echo '- Zeitpunkt: 2025-09-11 20:35:48 CEST'
+++ sp /home/gunreip/bin/shellscripts
+++ local p=/home/gunreip/bin/shellscripts
+++ [[ -z /home/gunreip/bin/shellscripts ]]
+++ case "$p" in
+++ printf '~%s' /bin/shellscripts
++ echo '- Root Shellscripts: `~/bin/shellscripts`'
++ echo
++ echo '| Metric | Value |'
++ echo '|---|---:|'
++ echo '| Scripts total | 100 |'
++ echo '| Symlinks top | 98 |'
++ echo '| Broken links | 0 |'
++ ((  PRUNE_TRASH == 1  ))
++ echo
++ echo '## Verzeichnisüberblick (tree)'
++ echo
++ echo '```'
++ printf '%s\n' '/home/gunreip/bin
+|-- _backup_shell_script -> shellscripts/maintenance/internal/_backup_shell_script.sh
+|-- _bin_install_shell_script -> shellscripts/maintenance/internal/_bin_install_shell_script.sh
+|-- _bin_symlinks_refresh -> shellscripts/maintenance/internal/_bin_symlinks_refresh.sh
+|-- _bin_zip_all -> shellscripts/maintenance/internal/_bin_zip_all.sh
+|-- _bin_zip_individual -> shellscripts/maintenance/internal/_bin_zip_individual.sh
+|-- _create_symlink_all -> shellscripts/maintenance/internal/_create_symlink_all.sh
+|-- _dev_aliases -> shellscripts/maintenance/internal/_dev_aliases.sh
+|-- artisanx -> /home/gunreip/bin/shellscripts/ops/laravel/artisanx.sh
+|-- backup_db_hourly -> /home/gunreip/bin/shellscripts/ops/backup/backup_db_hourly.sh
+|-- backup_full_daily -> /home/gunreip/bin/shellscripts/ops/backup/backup_full_daily.sh
+|-- backup_prune_weekly -> /home/gunreip/bin/shellscripts/ops/backup/backup_prune_weekly.sh
+|-- backup_publish_latest -> /home/gunreip/bin/shellscripts/ops/backup/backup_publish_latest.sh
+|-- backup_restore_drill -> /home/gunreip/bin/shellscripts/ops/backup/backup_restore_drill.sh
+|-- backup_shell_script -> /home/gunreip/bin/shellscripts/maintenance/internal/_backup_shell_script.sh
+|-- backups_migrate_layout -> /home/gunreip/bin/shellscripts/maintenance/internal/_backups_migrate_layout.sh
+|-- bin_audit -> /home/gunreip/bin/shellscripts/scans/_bin_audit.sh
+|-- bin_install_shell_script -> /home/gunreip/bin/shellscripts/maintenance/internal/_bin_install_shell_script.sh
+|-- bin_symlinks_refresh -> /home/gunreip/bin/shellscripts/maintenance/internal/_bin_symlinks_refresh.sh
+|-- bin_zip_all -> /home/gunreip/bin/shellscripts/maintenance/internal/_bin_zip_all.sh
+|-- bin_zip_individual -> /home/gunreip/bin/shellscripts/maintenance/internal/_bin_zip_individual.sh
+|-- ci_bp_apply -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_apply.sh
+|-- ci_bp_preset_flip -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_preset_flip.sh
+|-- ci_bp_preset_soft -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_preset_soft.sh
+|-- ci_bp_preset_strict -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_preset_strict.sh
+|-- ci_bp_remove -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_remove.sh
+|-- ci_bp_status -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_status.sh
+|-- ci_bp_tune -> /home/gunreip/bin/shellscripts/ops/ci/ci_bp_tune.sh
+|-- ci_workflow_update -> /home/gunreip/bin/shellscripts/ops/ci/ci_workflow_update.sh
+|-- create_symlink_all -> /home/gunreip/bin/shellscripts/maintenance/internal/_create_symlink_all.sh
+|-- dbg_switch -> /home/gunreip/bin/shellscripts/scans/_dbg_switch.sh
+|-- dev_aliases -> /home/gunreip/bin/shellscripts/maintenance/internal/_dev_aliases.sh
+|-- git_commit_push -> /home/gunreip/bin/shellscripts/ops/git/git_commit_push.sh
+|-- git_diff_report -> /home/gunreip/bin/shellscripts/scans/git_diff_report.sh
+|-- git_repo_clean_old_remote -> /home/gunreip/bin/shellscripts/ops/git/git_repo_clean_old_remote.sh
+|-- git_repo_setup -> /home/gunreip/bin/shellscripts/ops/git/git_repo_setup.sh
+|-- git_status_short -> /home/gunreip/bin/shellscripts/ops/git/git_status_short.sh
+|-- git_sync_rebase -> /home/gunreip/bin/shellscripts/ops/git/git_sync_rebase.sh
+|-- health_check_basic -> /home/gunreip/bin/shellscripts/scans/health_check_basic.sh
+|-- healthz_install -> /home/gunreip/bin/shellscripts/install/healthz_install.sh
+|-- healthz_uninstall -> /home/gunreip/bin/shellscripts/install/healthz_uninstall.sh
+|-- install_log_css_migration -> /home/gunreip/bin/shellscripts/install/install_log_css_migration.sh
+|-- install_zip_patch -> /home/gunreip/bin/shellscripts/install/install_zip_patch.sh
+|-- laravel_backup_timers_install -> /home/gunreip/bin/shellscripts/install/laravel_backup_timers_install.sh
+|-- laravel_backup_timers_uninstall -> /home/gunreip/bin/shellscripts/install/laravel_backup_timers_uninstall.sh
+|-- laravel_db -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_db.sh
+|-- laravel_deploy -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_deploy.sh
+|-- laravel_dev_env_info -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_dev_env_info.sh
+|-- laravel_dev_tools_setup -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_dev_tools_setup.sh
+|-- laravel_env -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_env.sh
+|-- laravel_new -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_new.sh
+|-- laravel_optimize -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_optimize.sh
+|-- laravel_permissions -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_permissions.sh
+|-- laravel_spatie_backup_setup -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_spatie_backup_setup.sh
+|-- laravel_ui_dev_tools_setup -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_ui_dev_tools_setup.sh
+|-- laravel_ui_scaffold -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_ui_scaffold.sh
+|-- laravel_vite_optimization -> /home/gunreip/bin/shellscripts/ops/laravel/laravel_vite_optimization.sh
+|-- laravel_workspace_scan -> /home/gunreip/bin/shellscripts/scans/laravel_workspace_scan.sh
+|-- legacy
+|   |-- css-origin
+|   |   |-- markdownpdf-content.origin.logs.cssx
+|   |   |-- markdownpdf-content_script.origin.logs.cssx
+|   |   |-- markdownpdf-markdown-pdf.origin.logs.cssx
+|   |   |-- markdownpdf-markdown.origin.logs.cssx
+|   |   |-- markdownpdf-tomorrow.origin.logs.cssx
+|   |   `-- shell_script_styles.origin.logs.css
+|   `-- wiki_sync_css.sh.deprecated
+|-- log_render_html -> /home/gunreip/bin/shellscripts/reports/log_render_html.sh
+|-- log_test -> /home/gunreip/bin/shellscripts/reports/log_test.sh
+|-- logger_demo -> /home/gunreip/bin/shellscripts/reports/logger_demo.sh
+|-- logrotate_install -> /home/gunreip/bin/shellscripts/install/logrotate_install.sh
+|-- logrotate_uninstall -> /home/gunreip/bin/shellscripts/install/logrotate_uninstall.sh
+|-- nginx_hosts_add -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_hosts_add.sh
+|-- nginx_https_cert_migrate -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_cert_migrate.sh
+|-- nginx_https_env_inspect -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_env_inspect.sh
+|-- nginx_https_env_patch -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_env_patch.sh
+|-- nginx_https_header_toggle -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_header_toggle.sh
+|-- nginx_https_project_check -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_project_check.sh
+|-- nginx_https_setup -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_https_setup.sh
+|-- nginx_tls_check -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_tls_check.sh
+|-- nginx_tls_cleanup -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_tls_cleanup.sh
+|-- nginx_tls_setup -> /home/gunreip/bin/shellscripts/ops/nginx/nginx_tls_setup.sh
+|-- parts
+|   |-- install_update.part
+|   `-- log_core.part
+|-- patch_bin_json_naming -> /home/gunreip/bin/shellscripts/patch/patch_bin_json_naming.sh
+|-- patch_systemd_timer_status -> /home/gunreip/bin/shellscripts/patch/patch_systemd_timer_status.sh
+|-- pg17_config_one_shot -> /home/gunreip/bin/shellscripts/ops/postgres/pg17_config_one_shot.sh
+|-- pg_create-testing-database -> /home/gunreip/bin/shellscripts/ops/postgres/pg_create-testing-database.sh
+|-- pg_quickcheck -> /home/gunreip/bin/shellscripts/scans/pg_quickcheck.sh
+|-- pg_upgrade_pg16_to_pg17 -> /home/gunreip/bin/shellscripts/ops/postgres/pg_upgrade_pg16_to_pg17.sh
+|-- postgresql_16_reset -> /home/gunreip/bin/shellscripts/ops/postgres/postgresql_16_reset.sh
+|-- postgresql_configure -> /home/gunreip/bin/shellscripts/ops/postgres/postgresql_configure.sh
+|-- precommit_install -> /home/gunreip/bin/shellscripts/install/precommit_install.sh
+|-- precommit_uninstall -> /home/gunreip/bin/shellscripts/install/precommit_uninstall.sh
+|-- prepush_install -> /home/gunreip/bin/shellscripts/install/prepush_install.sh
+|-- prepush_uninstall -> /home/gunreip/bin/shellscripts/install/prepush_uninstall.sh
+|-- project_env_mask_dump -> /home/gunreip/bin/shellscripts/ops/project/project_env_mask_dump.sh
+|-- project_logger -> /home/gunreip/bin/shellscripts/ops/project/project_logger.sh
+|-- queue_worker_install -> /home/gunreip/bin/shellscripts/install/queue_worker_install.sh
+|-- queue_worker_uninstall -> /home/gunreip/bin/shellscripts/install/queue_worker_uninstall.sh
+|-- restore_promote_selective -> /home/gunreip/bin/shellscripts/ops/backup/restore_promote_selective.sh
+|-- schedule_install -> /home/gunreip/bin/shellscripts/install/schedule_install.sh
+|-- schedule_uninstall -> /home/gunreip/bin/shellscripts/install/schedule_uninstall.sh
+|-- shellscript_state_fit -> /home/gunreip/bin/shellscripts/maintenance/internal/_shellscript_state_fit.sh
+|-- shellscript_state_unfit -> /home/gunreip/bin/shellscripts/maintenance/internal/_shellscript_state_unfit.sh
+|-- shellscripts
+|   |-- install
+|   |   |-- _dbg_switch.sh
+|   |   |-- healthz_install.sh
+|   |   |-- healthz_uninstall.sh
+|   |   |-- install_log_css_migration.sh
+|   |   |-- install_zip_patch -> install_zip_patch.sh
+|   |   |-- install_zip_patch.sh
+|   |   |-- laravel_backup_timers_install.sh
+|   |   |-- laravel_backup_timers_uninstall.sh
+|   |   |-- logrotate_install.sh
+|   |   |-- logrotate_uninstall.sh
+|   |   |-- precommit_install.sh
+|   |   |-- precommit_uninstall.sh
+|   |   |-- prepush_install.sh
+|   |   |-- prepush_uninstall.sh
+|   |   |-- queue_worker_install.sh
+|   |   |-- queue_worker_uninstall.sh
+|   |   |-- schedule_install.sh
+|   |   `-- schedule_uninstall.sh
+|   |-- maintenance
+|   |   |-- _dbg_switch.sh
+|   |   |-- internal
+|   |   `-- uncategorized
+|   |-- ops
+|   |   |-- _dbg_switch.sh
+|   |   |-- backup
+|   |   |-- ci
+|   |   |-- git
+|   |   |-- laravel
+|   |   |-- nginx
+|   |   |-- postgres
+|   |   |-- project
+|   |   |-- systemd
+|   |   `-- wsl
+|   |-- patch
+|   |   |-- patch_bin_json_naming.sh
+|   |   `-- patch_systemd_timer_status.sh
+|   `-- scans
+|       |-- _bin_audit.sh
+|       |-- _dbg_switch.sh
+|       |-- git_diff_report.sh
+|       |-- health_check_basic.sh
+|       |-- laravel_workspace_scan.sh
+|       `-- pg_quickcheck.sh
+|-- shellscripts_checklist -> /home/gunreip/bin/shellscripts/reports/shellscripts_checklist.sh
+|-- shellscripts_checklist_summary -> /home/gunreip/bin/shellscripts/reports/shellscripts_checklist_summary.sh
+|-- shellscripts_migrate_layout -> /home/gunreip/bin/shellscripts/maintenance/internal/_shellscripts_migrate_layout.sh
+|-- systemd_timer_status -> /home/gunreip/bin/shellscripts/ops/systemd/systemd_timer_status.sh
+|-- trash
+|   |-- audits
+|   |   |-- audit_20250908_133521.txt
+|   |   |-- audit_20250908_135626.txt
+|   |   |-- audit_20250908_141007.txt
+|   |   |-- audit_20250908_141231.txt
+|   |   |-- audit_20250908_141755.txt
+|   |   |-- audit_20250908_142936.txt
+|   |   |-- audit_20250908_143759.txt
+|   |   |-- audit_20250908_145735.txt
+|   |   |-- audit_20250908_145742.txt
+|   |   |-- audit_20250908_145910.txt
+|   |   |-- audit_20250908_150404.txt
+|   |   |-- audit_20250908_151002.txt
+|   |   |-- audit_20250908_151704.txt
+|   |   |-- audit_20250908_151805.txt
+|   |   |-- audit_20250908_155220.txt
+|   |   |-- audit_20250908_155315.txt
+|   |   |-- audit_20250908_160800.txt
+|   |   |-- audit_20250908_162739.txt
+|   |   |-- audit_20250908_164547.txt
+|   |   |-- audit_20250908_165857.txt
+|   |   |-- audit_20250908_172644.txt
+|   |   |-- audit_20250908_173233.txt
+|   |   |-- audit_20250908_173837.txt
+|   |   |-- audit_20250908_182849.txt
+|   |   |-- audit_20250908_183808.txt
+|   |   |-- audit_20250908_184011.txt
+|   |   |-- audit_20250909_200256.txt
+|   |   |-- audit_20250909_223434.txt
+|   |   |-- audit_20250909_231200.txt
+|   |   |-- audit_20250909_231727.txt
+|   |   `-- audit_20250909_231759.txt
+|   |-- bin_old_20250908_144523
+|   |   `-- shellcheck.net
+|   |-- bin_old_20250908_144625
+|   |-- bin_old_20250908_145142
+|   |-- bin_old_20250908_150404
+|   |   |-- bin_shellcommands.backup.zip
+|   |   |-- bin_shellcommands.git.zip
+|   |   |-- bin_shellcommands.zip
+|   |   `-- wiki_sync_css.sh.bak.20250901182931
+|   |-- checklist
+|   |-- checklist_rename_20250908_182849
+|   |-- internal_rename_20250908_183808
+|   |-- orphans_20250908_173233
+|   |-- trace_20250911_173246.txt
+|   |-- trace_20250911_180237.txt
+|   |-- trace_20250911_180504.txt
+|   |-- trace_20250911_181131.txt
+|   `-- trace_20250911_182419.txt
+`-- wsl_dev_tweaks -> /home/gunreip/bin/shellscripts/ops/wsl/wsl_dev_tweaks.sh
+
+32 directories, 175 files'
++ echo '```'
++ printf '{\n'
++ printf '  "timestamp": "%s",\n' 2025-09-11T20:35:48+0200
+++ sp /home/gunreip/bin/shellscripts
+++ local p=/home/gunreip/bin/shellscripts
+++ [[ -z /home/gunreip/bin/shellscripts ]]
+++ case "$p" in
+++ printf '~%s' /bin/shellscripts
++ printf '  "root_shellscripts": %s,\n' '"~/bin/shellscripts"'
++ printf '  "metrics": {"scripts_total": %s, "symlinks_top": %s, "broken_links": %s' 100 98 0
++ ((  PRUNE_TRASH == 1  ))
++ printf '}\n'
++ printf '}\n'
++ s_main '[4/4] Reports schreiben …'
++ ((  QUIET==0 && STEPS>=1  ))
++ echo '[4/4] Reports schreiben …'
++ REPORT_DIR=/home/gunreip/bin/reports/bin_audit
++ mkdir -p /home/gunreip/bin/reports/bin_audit
++ used_core=0
++ ((  NO_CORE==0  ))
++ [[ -f /home/gunreip/bin/shellscripts/maintenance/internal/_reports_core.sh ]]
++ write_with_core_subshell /tmp/.bin_audit.md /tmp/.bin_audit.json
++ local md_file=/tmp/.bin_audit.md json_file=/tmp/.bin_audit.json
++ bash -c '
+    set -euo pipefail
+    source "$HOME/bin/shellscripts/maintenance/internal/_reports_core.sh"
+    reports_init "bin_audit" "$HOME/bin/reports" 5
+    reports_write_md   "$(cat "$1")"
+    reports_write_json "$(cat "$2")"
+    reports_rotate
+  ' _ /tmp/.bin_audit.md /tmp/.bin_audit.json
++ used_core=1
++ ((  used_core==0  ))
++ for ext in md json
++ f=/home/gunreip/bin/reports/bin_audit/latest.md
++ [[ -L /home/gunreip/bin/reports/bin_audit/latest.md ]]
+++ readlink -f -- /home/gunreip/bin/reports/bin_audit/latest.md
++ t=/home/gunreip/bin/reports/bin_audit/bin_audit_20250911_203548.md
++ [[ -n /home/gunreip/bin/reports/bin_audit/bin_audit_20250911_203548.md ]]
++ [[ -f /home/gunreip/bin/reports/bin_audit/bin_audit_20250911_203548.md ]]
++ tmp=/home/gunreip/bin/reports/bin_audit/latest.md.tmp.326867
++ cp -f -- /home/gunreip/bin/reports/bin_audit/bin_audit_20250911_203548.md /home/gunreip/bin/reports/bin_audit/latest.md.tmp.326867
++ mv -f -- /home/gunreip/bin/reports/bin_audit/latest.md.tmp.326867 /home/gunreip/bin/reports/bin_audit/latest.md
++ for ext in md json
++ f=/home/gunreip/bin/reports/bin_audit/latest.json
++ [[ -L /home/gunreip/bin/reports/bin_audit/latest.json ]]
+++ readlink -f -- /home/gunreip/bin/reports/bin_audit/latest.json
++ t=/home/gunreip/bin/reports/bin_audit/bin_audit_20250911_203548.json
++ [[ -n /home/gunreip/bin/reports/bin_audit/bin_audit_20250911_203548.json ]]
++ [[ -f /home/gunreip/bin/reports/bin_audit/bin_audit_20250911_203548.json ]]
++ tmp=/home/gunreip/bin/reports/bin_audit/latest.json.tmp.326867
++ cp -f -- /home/gunreip/bin/reports/bin_audit/bin_audit_20250911_203548.json /home/gunreip/bin/reports/bin_audit/latest.json.tmp.326867
++ mv -f -- /home/gunreip/bin/reports/bin_audit/latest.json.tmp.326867 /home/gunreip/bin/reports/bin_audit/latest.json
++ TRASH_DIR=/home/gunreip/bin/trash
++ mkdir -p /home/gunreip/bin/trash
++ find /home/gunreip/bin/debug/bin_audits -maxdepth 1 -type f -name 'trace_*.txt' -mmin +120 -print0
++ xargs -0 -r '-I{}' mv -f -- '{}' /home/gunreip/bin/trash/
++ ((  QUIET == 0  ))
++ OK=$'\342\234\205'
++ TRACE_LABEL=$'\360\237\223\235'
++ [[ yes == \n\o ]]
+++ [[ 0 == 1 ]]
++ echo '✅ bin_audit fertig: Scripts=100  SymlinksTop=98  Broken=0  '
++ command -v reports_paths_echo
++ echo '📝 MD:  /home/gunreip/bin/reports/bin_audit/latest.md'
++ echo '🧾 JSON: /home/gunreip/bin/reports/bin_audit/latest.json'
++ ((  DEBUG  ))
+++ sp /home/gunreip/bin/debug/bin_audits/trace_20250911_203548.txt
+++ local p=/home/gunreip/bin/debug/bin_audits/trace_20250911_203548.txt
+++ [[ -z /home/gunreip/bin/debug/bin_audits/trace_20250911_203548.txt ]]
+++ case "$p" in
+++ printf '~%s' /bin/debug/bin_audits/trace_20250911_203548.txt
++ echo '📝 Trace: ~/bin/debug/bin_audits/trace_20250911_203548.txt'
++ exit 0

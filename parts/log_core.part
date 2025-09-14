@@ -1,0 +1,125 @@
+# =============================================================================
+# log_core.part  — zentrale Logging-Funktionen für <project>/.wiki/logs/YYYY/
+# Version: v0.3.0  (Minor: komplette Konsolidierung + LOG-Ausgabe-Spalte)
+# =============================================================================
+
+# ------------------------------- Version ------------------------------------
+LC_PART_VERSION="0.3.0"
+
+# ---------------------------- Hilfsfunktionen -------------------------------
+lc_md_escape(){ sed 's/\\/\\\\/g; s/`/\\`/g; s/|/\\|/g'; }
+lc_json_escape(){ sed -e ':a;N;$!ba' -e 's/\\/\\\\/g; s/"/\\"/g; s/\t/\\t/g; s/\r/\\r/g; s/\n/\\n/g'; }
+
+# Pfade als Markdown-Backticks + <br/>
+# usage: lc_fmt_paths_md /path/a /path/b ...
+lc_fmt_paths_md(){
+  local out="" p
+  for p in "$@"; do
+    [[ -n "$p" ]] || continue
+    out="${out:+${out}<br/>}\`$p\`"
+  done
+  printf "%s" "$out"
+}
+
+# Projektroot finden (.env oder .wiki in der Ahnenkette), sonst $PWD
+lc_find_proj_root(){
+  local d="$PWD"
+  while [[ "$d" != "/" ]]; do
+    [[ -f "$d/.env" || -d "$d/.wiki" ]] && { echo "$d"; return; }
+    d="$(dirname "$d")"
+  done
+  echo "$PWD"
+}
+
+# Run-ID wie besprochen: YYYYMMDDThhmmssZ-<5digits>
+lc_run_id(){ date -u +%Y%m%dT%H%M%SZ-$((RANDOM%90000+10000)); }
+
+# ----------------------------- Header & Setup -------------------------------
+# Tabellen-Header (v2) inkl. LOG-Ausgabe
+lc_table_header_md_v2(){
+  local f="$1"
+  {
+    echo "| Zeit | Script | Version | Optionen | Sektion | Action | Grund | tags | Ergebnis | Dauer (ms) | Exit | User | Notiz | Skript-Meldungen | LOG-Ausgabe |"
+    echo "| --- | --- | ---: | --- | --- | --- | --- | --- | :---: | ---: | :---: | --- | --- | --- | --- |"
+  } >>"$f"
+}
+
+# Backward-Compat: v1-Header alias auf v2 (gleiche Tabelle)
+lc_table_header_md(){ lc_table_header_md_v2 "$1"; }
+
+# Day-Log-Datei sicherstellen; Kopfzeilen nur beim ersten Anlegen
+lc_ensure_daylog_file(){
+  local proj_root="$1"
+  local year="$(date +%Y)"
+  local logdir="${proj_root}/.wiki/logs/${year}"
+  local logfile="${logdir}/LOG-$(date +%Y%m%d).md"
+  mkdir -p "$logdir"
+  if [[ ! -s "$logfile" ]]; then
+    {
+      echo "# Log - $(basename "$proj_root") -  $(date +%d.%m.%Y)"
+      echo ""
+      echo "- Pfad: \`${proj_root}\`"
+      echo "- Host: \`${HOSTNAME:-$(hostname)}\`"
+      local tz; tz="$(timedatectl 2>/dev/null | awk -F': ' '/Time zone/ {print $2}' | cut -d' ' -f1)"
+      echo "- Zeitzone: \`${tz:-Europe/Berlin}\`"
+      if git -C "$proj_root" rev-parse --short HEAD >/dev/null 2>&1; then
+        echo "- Git: \`$(git -C "$proj_root" rev-parse --short HEAD)\`"
+      fi
+      echo ""
+    } >>"$logfile"
+  fi
+  printf "%s" "$logfile"
+}
+
+# Run-Gruppe beginnen: schreibt "## Run-ID: ..." + Tabellen-Header
+# setzt LC_PROJ_ROOT, LC_RUN_ID, LC_LOGFILE
+lc_start_run(){
+  LC_PROJ_ROOT="${1:-$(lc_find_proj_root)}"
+  LC_RUN_ID="${2:-$(lc_run_id)}"
+  LC_LOGFILE="$(lc_ensure_daylog_file "$LC_PROJ_ROOT")"
+  {
+    echo ""
+    echo "## Run-ID: \`${LC_RUN_ID}\`"
+    echo ""
+  } >>"$LC_LOGFILE"
+  lc_table_header_md_v2 "$LC_LOGFILE"
+  export LC_PROJ_ROOT LC_RUN_ID LC_LOGFILE
+}
+
+# ------------------------------- Row Writer ---------------------------------
+# v2: komplette Spaltenliste inkl. LOG-Ausgabe
+# lc_row_md_v2 LOGFILE zeit script version optionen sektion action grund tags ergebnis dauer exit user notiz meldungen log_out
+lc_row_md_v2(){
+  local f="$1"; shift
+  local zeit="$1" script="$2" version="$3" optionen="$4" sektion="$5" action="$6" grund="$7" tags="$8"
+  local ergebnis="$9" dauer="${10}" exitc="${11}" user="${12}" notiz="${13}" meld="${14}" log_out="${15:-}"
+  local meld_esc notiz_esc
+  meld_esc="$(printf "%s" "$meld" | lc_md_escape)"
+  notiz_esc="$(printf "%s" "$notiz" | lc_md_escape)"
+  printf '| %s | `%s` | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | `%s` | %s |\n' \
+    "$zeit" "$script" "$version" "$optionen" "$sektion" "$action" "$grund" "$tags" "$ergebnis" \
+    "$dauer" "$exitc" "$user" "$notiz_esc" "$meld_esc" "$log_out" >>"$f"
+}
+
+# Komfort: nutzt LC_LOGFILE (vorher lc_start_run aufrufen)
+lc_log_row_v2(){
+  [[ -n "${LC_LOGFILE:-}" ]] || { echo "lc_log_row_v2: LC_LOGFILE leer (erst lc_start_run aufrufen)">&2; return 2; }
+  lc_row_md_v2 "$LC_LOGFILE" "$@"
+}
+
+# Backward-Compat: v1-Row → mapped auf v2 (LOG-Ausgabe leer)
+# lc_row_md LOGFILE zeit script version optionen sektion action grund tags ergebnis dauer exit user notiz meldungen
+lc_row_md(){
+  local f="$1"; shift
+  lc_row_md_v2 "$f" "$@" ""
+}
+
+# ----------------------------- HTML Rendering -------------------------------
+# Rendert gesamte Wiki (best effort), wenn log_render_html verfügbar ist
+lc_render_html(){
+  local r="${1:-$LC_PROJ_ROOT}"
+  if command -v log_render_html >/dev/null 2>&1; then
+    ( cd "$r" && log_render_html )
+  fi
+}
+# =============================================================================

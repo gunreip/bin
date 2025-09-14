@@ -1,0 +1,367 @@
+## AUDIT START 2025-09-08T14:12:31+02:00
+
+## System & Tools
+GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)
+find:   /usr/bin/find
+sed:    /usr/bin/sed
+awk:    /usr/bin/awk
+grep:   /usr/bin/grep
+tee:    /usr/bin/tee
+pandoc: /usr/bin/pandoc
+LANG=C.UTF-8
+LANGUAGE=
+LC_CTYPE="C.UTF-8"
+LC_NUMERIC="C.UTF-8"
+
+## ~/bin -- top-level listing
+total 384
+drwxr-xr-x  16 gunreip gunreip   12288 Sep  8 14:12 .
+drwxr-x---+ 22 gunreip gunreip    4096 Sep  8 12:58 ..
+lrwxrwxrwx   1 gunreip gunreip      38 Sep  8 14:04 .checklist_shellscripts -> maintenance/.checklist_shellscripts.sh
+-rw-r--r--   1 gunreip gunreip    3651 Sep  8 06:25 .checklist_shellscripts.md
+lrwxrwxrwx   1 gunreip gunreip      46 Sep  8 14:04 .checklist_shellscripts_summary -> maintenance/.checklist_shellscripts_summary.sh
+drwxr-xr-x   4 gunreip gunreip    4096 Sep  6 19:29 .docs
+lrwxrwxrwx   1 gunreip gunreip      37 Sep  8 14:04 .scriptstate_fit_unfit -> maintenance/.scriptstate_fit_unfit.sh
+-rw-r--r--   1 gunreip gunreip       0 Sep  8 06:47 .tmp
+drwxr-xr-x   7 gunreip gunreip    4096 Sep  8 12:49 .wiki
+drwxr-xr-x   2 gunreip gunreip    4096 Sep  1 13:10 .xxx
+-rwxr-xr-x   1 gunreip gunreip    8380 Sep  6 12:12 _backup_shell_script.sh
+-rwxr-xr-x   1 gunreip gunreip    4774 Aug 31 20:49 _bin_install_shell_script.sh
+-rwxr-xr-x   1 gunreip gunreip   10769 Aug 29 04:04 _bin_symlinks_refresh.sh
+-rwxr-xr-x   1 gunreip gunreip    4922 Aug 31 20:48 _bin_zip_all.sh
+-rwxr-xr-x   1 gunreip gunreip    5263 Aug 27 13:12 _bin_zip_individual.sh
+-rwxr-xr-x   1 gunreip gunreip    3149 Aug 26 18:41 _create_symlink_all.sh
+-rwxr-xr-x   1 gunreip gunreip    5145 Aug 29 04:26 _dev_aliases.sh
+lrwxrwxrwx   1 gunreip gunreip      23 Sep  8 14:04 artisanx -> ops/laravel/artisanx.sh
+lrwxrwxrwx   1 gunreip gunreip      30 Sep  8 14:04 backup_db_hourly -> ops/backup/backup_db_hourly.sh
+lrwxrwxrwx   1 gunreip gunreip      31 Sep  8 14:04 backup_full_daily -> ops/backup/backup_full_daily.sh
+lrwxrwxrwx   1 gunreip gunreip      33 Sep  8 14:04 backup_prune_weekly -> ops/backup/backup_prune_weekly.sh
+lrwxrwxrwx   1 gunreip gunreip      35 Sep  8 14:04 backup_publish_latest -> ops/backup/backup_publish_latest.sh
+lrwxrwxrwx   1 gunreip gunreip      34 Sep  8 14:04 backup_restore_drill -> ops/backup/backup_restore_drill.sh
+drwxr-xr-x  14 gunreip gunreip    4096 Sep  8 13:59 backups
+lrwxrwxrwx   1 gunreip gunreip      30 Sep  8 14:12 bin_audit -> /home/gunreip/bin/bin_audit.sh
+-rwxr-xr-x   1 gunreip gunreip    6104 Sep  8 13:56 bin_audit.sh
+-rw-------   1 gunreip gunreip   10985 Aug 31 17:20 bin_shellcommands.backup.zip
+-rw-r--r--   1 gunreip gunreip    8099 Sep  4 12:11 bin_shellcommands.git.zip
+-rw-r--r--   1 gunreip gunreip  140451 Sep  4 12:10 bin_shellcommands.zip
+lrwxrwxrwx   1 gunreip gunreip      21 Sep  8 14:04 ci_bp_apply -> ops/ci/ci_bp_apply.sh
+lrwxrwxrwx   1 gunreip gunreip      27 Sep  8 14:04 ci_bp_preset_flip -> ops/ci/ci_bp_preset_flip.sh
+lrwxrwxrwx   1 gunreip gunreip      27 Sep  8 14:04 ci_bp_preset_soft -> ops/ci/ci_bp_preset_soft.sh
+lrwxrwxrwx   1 gunreip gunreip      29 Sep  8 14:04 ci_bp_preset_strict -> ops/ci/ci_bp_preset_strict.sh
+lrwxrwxrwx   1 gunreip gunreip      22 Sep  8 14:04 ci_bp_remove -> ops/ci/ci_bp_remove.sh
+lrwxrwxrwx   1 gunreip gunreip      22 Sep  8 14:04 ci_bp_status -> ops/ci/ci_bp_status.sh
+lrwxrwxrwx   1 gunreip gunreip      20 Sep  8 14:04 ci_bp_tune -> ops/ci/ci_bp_tune.sh
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 ci_workflow_update -> ops/ci/ci_workflow_update.sh
+-rwxr-xr-x+  1 gunreip www-data    196 Jul  4 18:17 create-testing-database.sh
+drwxr-xr-x   3 gunreip gunreip    4096 Sep  8 13:35 debug
+-rwxr-xr-x   1 gunreip gunreip   14153 Aug 29 18:59 dev_env_info.sh
+-rwxr-xr-x   1 gunreip gunreip    1536 Aug 26 17:17 env_mask_dump.sh
+-rwxr-xr-x   1 gunreip gunreip     724 Aug 25 16:35 env_patch_https.sh
+lrwxrwxrwx   1 gunreip gunreip      26 Sep  8 14:04 git_commit_push -> ops/git/git_commit_push.sh
+lrwxrwxrwx   1 gunreip gunreip      24 Sep  8 14:04 git_diff_report -> scans/git_diff_report.sh
+lrwxrwxrwx   1 gunreip gunreip      36 Sep  8 14:04 git_repo_clean_old_remote -> ops/git/git_repo_clean_old_remote.sh
+lrwxrwxrwx   1 gunreip gunreip      25 Sep  8 14:04 git_repo_setup -> ops/git/git_repo_setup.sh
+lrwxrwxrwx   1 gunreip gunreip      27 Sep  8 14:04 git_status_short -> ops/git/git_status_short.sh
+lrwxrwxrwx   1 gunreip gunreip      26 Sep  8 14:04 git_sync_rebase -> ops/git/git_sync_rebase.sh
+lrwxrwxrwx   1 gunreip gunreip      27 Sep  8 14:04 health_check_basic -> scans/health_check_basic.sh
+lrwxrwxrwx   1 gunreip gunreip      26 Sep  8 14:04 healthz_install -> install/healthz_install.sh
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 healthz_uninstall -> install/healthz_uninstall.sh
+-rwxr-xr-x   1 gunreip gunreip    2183 Aug 25 19:59 https_env_inspect.sh
+-rwxr-xr-x   1 gunreip gunreip    1204 Aug 25 15:04 https_project_check.sh
+drwxr-xr-x   2 gunreip gunreip    4096 Sep  8 14:02 install
+lrwxrwxrwx   1 gunreip gunreip      36 Sep  8 14:04 install_log_css_migration -> install/install_log_css_migration.sh
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 install_zip_patch -> install/install_zip_patch.sh
+lrwxrwxrwx   1 gunreip gunreip      40 Sep  8 14:04 laravel_backup_timers_install -> install/laravel_backup_timers_install.sh
+lrwxrwxrwx   1 gunreip gunreip      42 Sep  8 14:04 laravel_backup_timers_uninstall -> install/laravel_backup_timers_uninstall.sh
+lrwxrwxrwx   1 gunreip gunreip      25 Sep  8 14:04 laravel_db -> ops/laravel/laravel_db.sh
+lrwxrwxrwx   1 gunreip gunreip      29 Sep  8 14:04 laravel_deploy -> ops/laravel/laravel_deploy.sh
+lrwxrwxrwx   1 gunreip gunreip      38 Sep  8 14:04 laravel_dev_tools_setup -> ops/laravel/laravel_dev_tools_setup.sh
+lrwxrwxrwx   1 gunreip gunreip      26 Sep  8 14:04 laravel_env -> ops/laravel/laravel_env.sh
+lrwxrwxrwx   1 gunreip gunreip      26 Sep  8 14:04 laravel_new -> ops/laravel/laravel_new.sh
+lrwxrwxrwx   1 gunreip gunreip      31 Sep  8 14:04 laravel_optimize -> ops/laravel/laravel_optimize.sh
+lrwxrwxrwx   1 gunreip gunreip      34 Sep  8 14:04 laravel_permissions -> ops/laravel/laravel_permissions.sh
+lrwxrwxrwx   1 gunreip gunreip      41 Sep  8 14:04 laravel_ui_dev_tools_setup -> ops/laravel/laravel_ui_dev_tools_setup.sh
+lrwxrwxrwx   1 gunreip gunreip      34 Sep  8 14:04 laravel_ui_scaffold -> ops/laravel/laravel_ui_scaffold.sh
+lrwxrwxrwx   1 gunreip gunreip      31 Sep  8 14:04 laravel_workspace_scan -> scans/laravel_workspace_scan.sh
+drwxr-xr-x   3 gunreip gunreip    4096 Sep  8 14:02 legacy
+lrwxrwxrwx   1 gunreip gunreip      26 Sep  8 14:04 log_render_html -> reports/log_render_html.sh
+lrwxrwxrwx   1 gunreip gunreip      19 Sep  8 14:04 log_test -> reports/log_test.sh
+lrwxrwxrwx   1 gunreip gunreip      22 Sep  8 14:04 logger_demo -> reports/logger_demo.sh
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 logrotate_install -> install/logrotate_install.sh
+lrwxrwxrwx   1 gunreip gunreip      30 Sep  8 14:04 logrotate_uninstall -> install/logrotate_uninstall.sh
+drwxr-xr-x   2 gunreip gunreip    4096 Sep  8 14:02 maintenance
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 nginx_hosts_add -> ops/nginx/nginx_hosts_add.sh
+lrwxrwxrwx   1 gunreip gunreip      37 Sep  8 14:04 nginx_https_cert_migrate -> ops/nginx/nginx_https_cert_migrate.sh
+lrwxrwxrwx   1 gunreip gunreip      38 Sep  8 14:04 nginx_https_header_toggle -> ops/nginx/nginx_https_header_toggle.sh
+lrwxrwxrwx   1 gunreip gunreip      30 Sep  8 14:04 nginx_https_setup -> ops/nginx/nginx_https_setup.sh
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 nginx_tls_check -> ops/nginx/nginx_tls_check.sh
+lrwxrwxrwx   1 gunreip gunreip      30 Sep  8 14:04 nginx_tls_cleanup -> ops/nginx/nginx_tls_cleanup.sh
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 nginx_tls_setup -> ops/nginx/nginx_tls_setup.sh
+drwxr-xr-x   9 gunreip gunreip    4096 Sep  8 14:00 ops
+drwx------   2 gunreip gunreip    4096 Aug 31 21:00 parts
+-rwxr-xr-x   1 gunreip gunreip    2138 Sep  6 11:19 patch_bin_json_naming.sh
+-rwxr-xr-x   1 gunreip gunreip    3667 Sep  5 16:07 patch_systemd_timer_status.sh
+lrwxrwxrwx   1 gunreip gunreip      36 Sep  8 14:04 pg17_config_one_shot -> ops/postgres/pg17_config_one_shot.sh
+lrwxrwxrwx   1 gunreip gunreip      22 Sep  8 14:04 pg_quickcheck -> scans/pg_quickcheck.sh
+lrwxrwxrwx   1 gunreip gunreip      39 Sep  8 14:04 pg_upgrade_pg16_to_pg17 -> ops/postgres/pg_upgrade_pg16_to_pg17.sh
+lrwxrwxrwx   1 gunreip gunreip      35 Sep  8 14:04 postgresql_16_reset -> ops/postgres/postgresql_16_reset.sh
+lrwxrwxrwx   1 gunreip gunreip      36 Sep  8 14:04 postgresql_configure -> ops/postgres/postgresql_configure.sh
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 precommit_install -> install/precommit_install.sh
+lrwxrwxrwx   1 gunreip gunreip      30 Sep  8 14:04 precommit_uninstall -> install/precommit_uninstall.sh
+lrwxrwxrwx   1 gunreip gunreip      26 Sep  8 14:04 prepush_install -> install/prepush_install.sh
+lrwxrwxrwx   1 gunreip gunreip      28 Sep  8 14:04 prepush_uninstall -> install/prepush_uninstall.sh
+-rwxr-xr-x   1 gunreip gunreip    4626 Aug 27 12:54 proj_logger.sh
+lrwxrwxrwx   1 gunreip gunreip      31 Sep  8 14:04 queue_worker_install -> install/queue_worker_install.sh
+lrwxrwxrwx   1 gunreip gunreip      33 Sep  8 14:04 queue_worker_uninstall -> install/queue_worker_uninstall.sh
+drwxr-xr-x   2 gunreip gunreip    4096 Sep  8 14:02 reports
+lrwxrwxrwx   1 gunreip gunreip      39 Sep  8 14:04 restore_promote_selective -> ops/backup/restore_promote_selective.sh
+drwxr-xr-x   2 gunreip gunreip    4096 Sep  8 14:02 scans
+lrwxrwxrwx   1 gunreip gunreip      27 Sep  8 14:04 schedule_install -> install/schedule_install.sh
+lrwxrwxrwx   1 gunreip gunreip      29 Sep  8 14:04 schedule_uninstall -> install/schedule_uninstall.sh
+drwxr-xr-x   2 gunreip gunreip    4096 Sep  3 02:56 shellcheck.net
+-rwxr-xr-x   1 gunreip gunreip    6347 Aug 24 20:56 spatie_backup_setup.sh
+lrwxrwxrwx   1 gunreip gunreip      35 Sep  8 14:04 systemd_timer_status -> ops/systemd/systemd_timer_status.sh
+drwxr-xr-x   2 gunreip gunreip    4096 Sep  8 14:00 trash
+-rwxr-xr-x   1 gunreip gunreip    1395 Aug 24 08:01 vite_optimization.sh
+-rwx------   1 gunreip gunreip    9723 Sep  1 17:49 wiki_sync_css.sh.bak.20250901182931
+-rwxr-xr-x   1 gunreip gunreip     752 Aug 26 17:12 wsl_dev_tweaks.sh
+
+## ~/bin -- subfolders (category candidates)
+.docs/
+.wiki/
+.xxx/
+backups/
+debug/
+install/
+legacy/
+maintenance/
+ops/
+parts/
+reports/
+scans/
+shellcheck.net/
+trash/
+
+## ~/bin -- regular scripts (*.sh, top-level)
+-rwxr-xr-x gunreip gunreip        724 2025-08-25 16:35 env_patch_https.sh
+-rwxr-xr-x gunreip gunreip        752 2025-08-26 17:12 wsl_dev_tweaks.sh
+-rwxr-xr-x gunreip gunreip       1204 2025-08-25 15:04 https_project_check.sh
+-rwxr-xr-x gunreip gunreip       1395 2025-08-24 08:01 vite_optimization.sh
+-rwxr-xr-x gunreip gunreip       1536 2025-08-26 17:17 env_mask_dump.sh
+-rwxr-xr-x gunreip gunreip       2138 2025-09-06 11:19 patch_bin_json_naming.sh
+-rwxr-xr-x gunreip gunreip       2183 2025-08-25 19:59 https_env_inspect.sh
+-rwxr-xr-x gunreip gunreip       3149 2025-08-26 18:41 _create_symlink_all.sh
+-rwxr-xr-x gunreip gunreip       3667 2025-09-05 16:07 patch_systemd_timer_status.sh
+-rwxr-xr-x gunreip gunreip       4626 2025-08-27 12:54 proj_logger.sh
+-rwxr-xr-x gunreip gunreip       4774 2025-08-31 20:49 _bin_install_shell_script.sh
+-rwxr-xr-x gunreip gunreip       4922 2025-08-31 20:48 _bin_zip_all.sh
+-rwxr-xr-x gunreip gunreip       5145 2025-08-29 04:26 _dev_aliases.sh
+-rwxr-xr-x gunreip gunreip       5263 2025-08-27 13:12 _bin_zip_individual.sh
+-rwxr-xr-x gunreip gunreip       6104 2025-09-08 13:56 bin_audit.sh
+-rwxr-xr-x gunreip gunreip       6347 2025-08-24 20:56 spatie_backup_setup.sh
+-rwxr-xr-x gunreip gunreip       8380 2025-09-06 12:12 _backup_shell_script.sh
+-rwxr-xr-x gunreip gunreip      10769 2025-08-29 04:04 _bin_symlinks_refresh.sh
+-rwxr-xr-x gunreip gunreip      14153 2025-08-29 18:59 dev_env_info.sh
+-rwxr-xr-x gunreip www-data        196 2025-07-04 18:17 create-testing-database.sh
+
+## ~/bin -- symlinks (top-level)
+.checklist_shellscripts -> maintenance/.checklist_shellscripts.sh
+.checklist_shellscripts_summary -> maintenance/.checklist_shellscripts_summary.sh
+.scriptstate_fit_unfit -> maintenance/.scriptstate_fit_unfit.sh
+artisanx -> ops/laravel/artisanx.sh
+backup_db_hourly -> ops/backup/backup_db_hourly.sh
+backup_full_daily -> ops/backup/backup_full_daily.sh
+backup_prune_weekly -> ops/backup/backup_prune_weekly.sh
+backup_publish_latest -> ops/backup/backup_publish_latest.sh
+backup_restore_drill -> ops/backup/backup_restore_drill.sh
+bin_audit -> /home/gunreip/bin/bin_audit.sh
+ci_bp_apply -> ops/ci/ci_bp_apply.sh
+ci_bp_preset_flip -> ops/ci/ci_bp_preset_flip.sh
+ci_bp_preset_soft -> ops/ci/ci_bp_preset_soft.sh
+ci_bp_preset_strict -> ops/ci/ci_bp_preset_strict.sh
+ci_bp_remove -> ops/ci/ci_bp_remove.sh
+ci_bp_status -> ops/ci/ci_bp_status.sh
+ci_bp_tune -> ops/ci/ci_bp_tune.sh
+ci_workflow_update -> ops/ci/ci_workflow_update.sh
+git_commit_push -> ops/git/git_commit_push.sh
+git_diff_report -> scans/git_diff_report.sh
+git_repo_clean_old_remote -> ops/git/git_repo_clean_old_remote.sh
+git_repo_setup -> ops/git/git_repo_setup.sh
+git_status_short -> ops/git/git_status_short.sh
+git_sync_rebase -> ops/git/git_sync_rebase.sh
+health_check_basic -> scans/health_check_basic.sh
+healthz_install -> install/healthz_install.sh
+healthz_uninstall -> install/healthz_uninstall.sh
+install_log_css_migration -> install/install_log_css_migration.sh
+install_zip_patch -> install/install_zip_patch.sh
+laravel_backup_timers_install -> install/laravel_backup_timers_install.sh
+laravel_backup_timers_uninstall -> install/laravel_backup_timers_uninstall.sh
+laravel_db -> ops/laravel/laravel_db.sh
+laravel_deploy -> ops/laravel/laravel_deploy.sh
+laravel_dev_tools_setup -> ops/laravel/laravel_dev_tools_setup.sh
+laravel_env -> ops/laravel/laravel_env.sh
+laravel_new -> ops/laravel/laravel_new.sh
+laravel_optimize -> ops/laravel/laravel_optimize.sh
+laravel_permissions -> ops/laravel/laravel_permissions.sh
+laravel_ui_dev_tools_setup -> ops/laravel/laravel_ui_dev_tools_setup.sh
+laravel_ui_scaffold -> ops/laravel/laravel_ui_scaffold.sh
+laravel_workspace_scan -> scans/laravel_workspace_scan.sh
+log_render_html -> reports/log_render_html.sh
+log_test -> reports/log_test.sh
+logger_demo -> reports/logger_demo.sh
+logrotate_install -> install/logrotate_install.sh
+logrotate_uninstall -> install/logrotate_uninstall.sh
+nginx_hosts_add -> ops/nginx/nginx_hosts_add.sh
+nginx_https_cert_migrate -> ops/nginx/nginx_https_cert_migrate.sh
+nginx_https_header_toggle -> ops/nginx/nginx_https_header_toggle.sh
+nginx_https_setup -> ops/nginx/nginx_https_setup.sh
+nginx_tls_check -> ops/nginx/nginx_tls_check.sh
+nginx_tls_cleanup -> ops/nginx/nginx_tls_cleanup.sh
+nginx_tls_setup -> ops/nginx/nginx_tls_setup.sh
+pg17_config_one_shot -> ops/postgres/pg17_config_one_shot.sh
+pg_quickcheck -> scans/pg_quickcheck.sh
+pg_upgrade_pg16_to_pg17 -> ops/postgres/pg_upgrade_pg16_to_pg17.sh
+postgresql_16_reset -> ops/postgres/postgresql_16_reset.sh
+postgresql_configure -> ops/postgres/postgresql_configure.sh
+precommit_install -> install/precommit_install.sh
+precommit_uninstall -> install/precommit_uninstall.sh
+prepush_install -> install/prepush_install.sh
+prepush_uninstall -> install/prepush_uninstall.sh
+queue_worker_install -> install/queue_worker_install.sh
+queue_worker_uninstall -> install/queue_worker_uninstall.sh
+restore_promote_selective -> ops/backup/restore_promote_selective.sh
+schedule_install -> install/schedule_install.sh
+schedule_uninstall -> install/schedule_uninstall.sh
+systemd_timer_status -> ops/systemd/systemd_timer_status.sh
+
+## ~/bin -- *.sh without exec bit
+
+## parts/*.part presence
+total 12
+-rw-r--r-- 1 gunreip gunreip 3822 Sep  7 10:31 install_update.part
+-rw-r--r-- 1 gunreip gunreip 4861 Sep  7 10:30 log_core.part
+
+## debug changed in last 3 days
+2025-09-08 12:43 /home/gunreip/bin/debug/wiki_sync_css.debug.log
+2025-09-08 14:01 /home/gunreip/bin/debug/backup_db_hourly.debug.log
+2025-09-06 15:55 /home/gunreip/bin/debug/systemd_timer_status.debug.log
+2025-09-06 16:06 /home/gunreip/bin/debug/git_diff_report.debug.jsonl
+2025-09-06 15:55 /home/gunreip/bin/debug/systemd_timer_status.debug.jsonl
+2025-09-08 14:10 /home/gunreip/bin/debug/audits/audit_20250908_141007.txt
+2025-09-08 14:12 /home/gunreip/bin/debug/audits/audit_20250908_141231.txt
+2025-09-08 13:35 /home/gunreip/bin/debug/audits/audit_20250908_133521.txt
+2025-09-08 13:56 /home/gunreip/bin/debug/audits/audit_20250908_135626.txt
+2025-09-06 16:10 /home/gunreip/bin/debug/git_commit_push.debug.jsonl
+2025-09-08 14:01 /home/gunreip/bin/debug/backup_db_hourly.debug.jsonl
+2025-09-06 07:47 /home/gunreip/bin/debug/log_render_html.xtrace.log
+2025-09-06 16:06 /home/gunreip/bin/debug/git_diff_report.debug.log
+2025-09-07 14:24 /home/gunreip/bin/debug/wiki_sync_css.debug.jsonl
+2025-09-06 15:21 /home/gunreip/bin/debug/systemd_timer_status.xtrace.log
+2025-09-06 16:10 /home/gunreip/bin/debug/git_commit_push.debug.log
+2025-09-08 13:00 /home/gunreip/bin/debug/log_render_html.debug.log
+
+## backups changed in last 7 days
+2025-09-07 15:37 /home/gunreip/bin/backups/.checklist_shellscripts/.checklist_shellscripts.sh.vprev.bak.20250907_153807
+2025-09-07 15:28 /home/gunreip/bin/backups/.checklist_shellscripts/.checklist_shellscripts.sh.vprev.bak.20250907_153745
+2025-09-07 15:48 /home/gunreip/bin/backups/.checklist_shellscripts/.checklist_shellscripts.sh.vprev.bak.20250907_155007
+2025-09-07 16:10 /home/gunreip/bin/backups/.checklist_shellscripts/.checklist_shellscripts.sh.vprev.bak.20250907_161202
+2025-09-07 15:52 /home/gunreip/bin/backups/.checklist_shellscripts/.checklist_shellscripts.sh.vprev.bak.20250907_161001
+2025-09-07 16:13 /home/gunreip/bin/backups/.checklist_shellscripts/.checklist_shellscripts.sh.vprev.bak.20250907_161608
+2025-09-07 15:38 /home/gunreip/bin/backups/.checklist_shellscripts/.checklist_shellscripts.sh.vprev.bak.20250907_154254
+2025-09-07 15:42 /home/gunreip/bin/backups/.checklist_shellscripts/.checklist_shellscripts.sh.vprev.bak.20250907_154531
+2025-09-05 17:44 /home/gunreip/bin/backups/systemd_timer_status.sh.bak.20250905-181050
+2025-09-05 17:19 /home/gunreip/bin/backups/systemd_timer_status.sh.bak.20250905_174436
+2025-09-08 13:59 /home/gunreip/bin/backups/full/bin_full_20250908_135939.tgz
+2025-09-05 15:45 /home/gunreip/bin/backups/systemd_timer_status.sh.bak.20250905_160747
+2025-09-06 15:03 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_151917
+2025-09-05 16:12 /home/gunreip/bin/backups/systemd_timer_status.sh.bak.20250905_162446
+2025-09-05 16:35 /home/gunreip/bin/backups/systemd_timer_status.sh.bak.20250905_171937
+2025-09-06 07:36 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_074542
+2025-09-05 22:21 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906T072214
+2025-09-06 11:21 /home/gunreip/bin/backups/_backup_shell_script.bak-20250906T092435Z
+2025-09-07 12:54 /home/gunreip/bin/backups/laravel_workspace_scan/laravel_workspace_scan.sh.v0.5.4.bak.20250907_130406
+2025-09-07 12:49 /home/gunreip/bin/backups/laravel_workspace_scan/laravel_workspace_scan.sh.v0.5.3.bak.20250907_125409
+2025-09-07 12:37 /home/gunreip/bin/backups/laravel_workspace_scan/laravel_workspace_scan.sh.vunknown.bak.20250907_124950
+2025-09-07 13:04 /home/gunreip/bin/backups/laravel_workspace_scan/laravel_workspace_scan.sh.v0.6.0.bak.20250907_132008
+2025-09-07 13:21 /home/gunreip/bin/backups/laravel_workspace_scan/laravel_workspace_scan.sh.v0.6.2.bak.20250907_133756
+2025-09-07 12:37 /home/gunreip/bin/backups/laravel_workspace_scan/laravel_workspace_scan.sh.vunknown.bak.20250907_124348
+2025-09-07 13:37 /home/gunreip/bin/backups/laravel_workspace_scan/laravel_workspace_scan.sh.bak.20250907_153037
+2025-09-07 12:20 /home/gunreip/bin/backups/laravel_workspace_scan/laravel_workspace_scan.sh.v0.5.0.bak.20250907_123701
+2025-09-05 18:11 /home/gunreip/bin/backups/systemd_timer_status.sh.bak.20250905_192336
+2025-09-06 07:22 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_073630
+2025-09-06 11:21 /home/gunreip/bin/backups/_backup_shell_script.sh.bak.20250906_121217
+2025-09-05 20:46 /home/gunreip/bin/backups/log_render_html.sh.bak.20250905_222144
+2025-09-07 10:44 /home/gunreip/bin/backups/css_migration/20250908_124708/.shell_script_styles.logs.css
+2025-09-05 19:19 /home/gunreip/bin/backups/log_render_html.sh.bak.20250905_191928
+2025-09-05 19:19 /home/gunreip/bin/backups/log_render_html.sh.bak.20250905_192822
+2025-09-05 19:28 /home/gunreip/bin/backups/log_render_html.sh.bak.20250905_193618
+2025-09-06 12:12 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_150342
+2025-09-06 15:22 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_152906
+2025-09-05 20:31 /home/gunreip/bin/backups/log_render_html.sh.bak.20250905T204645
+2025-09-06 11:08 /home/gunreip/bin/backups/_backup_shell_script.bak-20250906T091248Z
+2025-09-05 19:36 /home/gunreip/bin/backups/log_render_html.sh.bak.20250905_202120
+2025-09-06 15:50 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_155441
+2025-09-05 16:24 /home/gunreip/bin/backups/patch_systemd_timer_status_v2.sh
+2025-09-05 16:24 /home/gunreip/bin/backups/.systemd_timer_status.sh.bak.20250905163533
+2025-09-06 15:22 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_155053
+2025-09-05 18:10 /home/gunreip/bin/backups/systemd_timer_status.sh.bak.20250905-181131
+2025-09-06 11:08 /home/gunreip/bin/backups/_backup_shell_script.sh.20250906T112113.bak
+2025-09-06 07:45 /home/gunreip/bin/backups/log_render_html.sh.rollback.20250906_075459
+2025-09-06 15:19 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_152243
+2025-09-07 10:22 /home/gunreip/bin/backups/install_update/install_update.part.vbak.20250907_103100
+2025-09-08 12:57 /home/gunreip/bin/backups/css_migration_installers/install_log_css_migration.sh.bak.20250908_130538
+2025-09-06 11:21 /home/gunreip/bin/backups/log_render_html.sh.bak.20250906_121217
+
+## central CSS exists?
+-rw-r--r-- 1 gunreip gunreip 2296 Sep  8 12:03 /home/gunreip/.wiki/css/shell_script_styles.logs.css
+
+## project overrides (depth 3) under /home/gunreip/code
+
+## legacy dotfile CSS copies ('.shell_script_styles.logs.css')
+/home/gunreip/bin/backups/css_migration/20250908_124708/.shell_script_styles.logs.css
+
+## log_render_html -- wrapper/original
+lrwxrwxrwx 1 gunreip gunreip 26 Sep  8 14:04 /home/gunreip/bin/log_render_html -> reports/log_render_html.sh
+(no *.orig.* backups)
+
+## CRLF detection in *.sh
+(no CRLF files detected)
+
+## shebang check (first line of each *.sh)
+_backup_shell_script.sh                       : #!/usr/bin/env bash
+_bin_install_shell_script.sh                  : #!/usr/bin/env bash
+_bin_symlinks_refresh.sh                      : #!/usr/bin/env bash
+_bin_zip_all.sh                               : #!/usr/bin/env bash
+_bin_zip_individual.sh                        : #!/usr/bin/env bash
+_create_symlink_all.sh                        : #!/usr/bin/env bash
+_dev_aliases.sh                               : #!/usr/bin/env bash
+bin_audit.sh                                  : #!/usr/bin/env bash
+create-testing-database.sh                    : #!/usr/bin/env bash
+dev_env_info.sh                               : #!/usr/bin/env bash
+env_mask_dump.sh                              : #!/usr/bin/env bash
+env_patch_https.sh                            : #!/usr/bin/env bash
+https_env_inspect.sh                          : #!/usr/bin/env bash
+https_project_check.sh                        : #!/usr/bin/env bash
+patch_bin_json_naming.sh                      : #!/usr/bin/env bash
+patch_systemd_timer_status.sh                 : #!/usr/bin/env bash
+proj_logger.sh                                : # proj_logger.sh — einfache Logger-Library für Projekt-Skripte
+spatie_backup_setup.sh                        : #!/usr/bin/env bash
+vite_optimization.sh                          : #!/bin/bash
+wsl_dev_tweaks.sh                             : #!/usr/bin/env bash
+
+## here-doc markers in *.sh (visual grep)
+
+## install_log_css_migration.sh -- lines 1..80 and 200..260 (if present)
+(file missing)
+
+## css-origin status (inventory)
+(no css-origin/ dir)
+
+## projects with .wiki under /home/gunreip/code (depth 2..3)
+/home/gunreip/code/tafel_wesseling/.wiki
+
+## sizes of debug/ and backups/
+4.6M	/home/gunreip/bin/debug
+2.0M	/home/gunreip/bin/backups
+
+## AUDIT END 2025-09-08T14:12:31+02:00

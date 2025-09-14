@@ -1,0 +1,19 @@
+# --- GENERATED/volatile ---
+reports/
+debug/
+backups/
+.wiki/
+
+# changelogs: Hauptdatei versionieren, Snapshots ignorieren
+!changelogs/
+changelogs/**/CHANGELOG-*.md.*.md
+
+# System/Editor
+.DS_Store
+Thumbs.db
+
+# Node/npm caches (falls vorhanden)
+node_modules/
+
+# temp (ignored)
+temp/

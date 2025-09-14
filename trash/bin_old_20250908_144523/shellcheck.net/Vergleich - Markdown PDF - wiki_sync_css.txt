@@ -1,0 +1,356 @@
+/* ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- */
+/* gerendert mit "Martkdown PDF" */
+/* ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- */
+
+...
+</table>
+<h2 id="run-id-20250902t162226z-675586">Run-ID: <code>20250902T162226Z-675586</code></h2>
+<table>
+<thead>
+<tr>
+<th>Zeit</th>
+<th>Script</th>
+<th style="text-align:right">Version</th>
+<th>Optionen</th>
+<th>Sektion</th>
+<th>Action</th>
+<th>Grund</th>
+<th>tags</th>
+<th style="text-align:center">Ergebnis</th>
+<th style="text-align:right">Dauer (ms)</th>
+<th style="text-align:center">Exit</th>
+<th>User</th>
+<th>Notiz</th>
+<th>Skript-Meldungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18:22:26</td>
+<td></td>
+<td style="text-align:right"></td>
+<td>keine</td>
+<td>render</td>
+<td>html</td>
+<td><code>LOG‍-‍20250902.md</code></td>
+<td>render, html, pandoc</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">153</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Root: <code>/home/gunreip/code/tafel_wesseling</code></td>
+<td>1: <code>.shell_script_styles.logs.css</code></td>
+</tr>
+<tr>
+<td>18:22:26</td>
+<td></td>
+<td style="text-align:right"></td>
+<td>keine</td>
+<td>render</td>
+<td>html</td>
+<td><code>LOG‍-‍20250902.md</code></td>
+<td>render, html, pandoc</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">123</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Root: <code>/home/gunreip/bin</code></td>
+<td>1: <code>.shell_script_styles.logs.css</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="run-id-20250902t162432z-677190">Run-ID: <code>20250902T162432Z-677190</code></h2>
+<table>
+<thead>
+<tr>
+<th>Zeit</th>
+<th>Script</th>
+<th style="text-align:right">Version</th>
+<th>Optionen</th>
+<th>Sektion</th>
+<th>Action</th>
+<th>Grund</th>
+<th>tags</th>
+<th style="text-align:center">Ergebnis</th>
+<th style="text-align:right">Dauer (ms)</th>
+<th style="text-align:center">Exit</th>
+<th>User</th>
+<th>Notiz</th>
+<th>Skript-Meldungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18:24:32</td>
+<td></td>
+<td style="text-align:right"></td>
+<td>keine</td>
+<td>render</td>
+<td>html</td>
+<td><code>LOG‍-‍20250902.md</code></td>
+<td>render, html, pandoc</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">122</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Root: <code>/home/gunreip/code/tafel_wesseling</code></td>
+<td>1: <code>.shell_script_styles.logs.css</code></td>
+</tr>
+<tr>
+<td>18:24:32</td>
+<td></td>
+<td style="text-align:right"></td>
+<td>keine</td>
+<td>render</td>
+<td>html</td>
+<td><code>LOG‍-‍20250902.md</code></td>
+<td>render, html, pandoc</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">112</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Root: <code>/home/gunreip/bin</code></td>
+<td>1: <code>.shell_script_styles.logs.css</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="run-id-20250902t164058z-683700">Run-ID: <code>20250902T164058Z-683700</code></h2>
+<table>
+<thead>
+<tr>
+<th>Zeit</th>
+<th>Script</th>
+<th style="text-align:right">Version</th>
+<th>Optionen</th>
+<th>Sektion</th>
+<th>Action</th>
+<th>Grund</th>
+<th>tags</th>
+<th style="text-align:center">Ergebnis</th>
+<th style="text-align:right">Dauer (ms)</th>
+<th style="text-align:center">Exit</th>
+<th>User</th>
+<th>Notiz</th>
+<th>Skript-Meldungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18:40:58</td>
+<td><code>wiki_sync_css.sh</code></td>
+<td style="text-align:right">0.10.4</td>
+<td>keine</td>
+<td>scan</td>
+<td>collect</td>
+<td>source</td>
+<td>wiki, sync, shell‍-‍script, begin, trace, no‍-‍create</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">0</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Sources: 6</td>
+<td>Source: <code>/home/gunreip/bin/css</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="run-id-20250902t164735z-686613">Run-ID: <code>20250902T164735Z-686613</code></h2>
+<table>
+<thead>
+<tr>
+<th>Zeit</th>
+<th>Script</th>
+<th style="text-align:right">Version</th>
+<th>Optionen</th>
+<th>Sektion</th>
+<th>Action</th>
+<th>Grund</th>
+<th>tags</th>
+<th style="text-align:center">Ergebnis</th>
+<th style="text-align:right">Dauer (ms)</th>
+<th style="text-align:center">Exit</th>
+<th>User</th>
+<th>Notiz</th>
+<th>Skript-Meldungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18:47:35</td>
+<td><code>wiki_sync_css.sh</code></td>
+<td style="text-align:right">0.10.4</td>
+<td>keine</td>
+<td>scan</td>
+<td>collect</td>
+<td>source</td>
+<td>wiki, sync, shell‍-‍script, begin, trace, no‍-‍create</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">0</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Sources: 6</td>
+<td>Source: <code>/home/gunreip/bin/css</code></td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
+
+/* ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- */
+/* gerendert mit `gunreip@DESKTOP-I7C75P2:~/code/tafel_wesseling$ wiki_sync_css.sh --render-html --debug=trace`
+/* ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- */
+
+...
+<table>
+<h2 id="run-id-20250902t162226z-675586">Run-ID: <code>20250902T162226Z-675586</code></h2>
+<table>
+<thead>
+<tr>
+<th>Zeit</th>
+<th>Script</th>
+<th style="text-align:right">Version</th>
+<th>Optionen</th>
+<th>Sektion</th>
+<th>Action</th>
+<th>Grund</th>
+<th>tags</th>
+<th style="text-align:center">Ergebnis</th>
+<th style="text-align:right">Dauer (ms)</th>
+<th style="text-align:center">Exit</th>
+<th>User</th>
+<th>Notiz</th>
+<th>Skript-Meldungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18:22:26</td>
+<td></td>
+<td style="text-align:right"></td>
+<td>keine</td>
+<td>render</td>
+<td>html</td>
+<td><code>LOG‍-‍20250902.md</code></td>
+<td>render, html, pandoc</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">153</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Root: <code>/home/gunreip/code/tafel_wesseling</code></td>
+<td>1: <code>.shell_script_styles.logs.css</code></td>
+</tr>
+<tr>
+<td>18:22:26</td>
+<td></td>
+<td style="text-align:right"></td>
+<td>keine</td>
+<td>render</td>
+<td>html</td>
+<td><code>LOG‍-‍20250902.md</code></td>
+<td>render, html, pandoc</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">123</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Root: <code>/home/gunreip/bin</code></td>
+<td>1: <code>.shell_script_styles.logs.css</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="run-id-20250902t162432z-677190">Run-ID: <code>20250902T162432Z-677190</code></h2>
+<table>
+<thead>
+<tr>
+<th>Zeit</th>
+<th>Script</th>
+<th style="text-align:right">Version</th>
+<th>Optionen</th>
+<th>Sektion</th>
+<th>Action</th>
+<th>Grund</th>
+<th>tags</th>
+<th style="text-align:center">Ergebnis</th>
+<th style="text-align:right">Dauer (ms)</th>
+<th style="text-align:center">Exit</th>
+<th>User</th>
+<th>Notiz</th>
+<th>Skript-Meldungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18:24:32</td>
+<td></td>
+<td style="text-align:right"></td>
+<td>keine</td>
+<td>render</td>
+<td>html</td>
+<td><code>LOG‍-‍20250902.md</code></td>
+<td>render, html, pandoc</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">122</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Root: <code>/home/gunreip/code/tafel_wesseling</code></td>
+<td>1: <code>.shell_script_styles.logs.css</code></td>
+</tr>
+<tr>
+<td>18:24:32</td>
+<td></td>
+<td style="text-align:right"></td>
+<td>keine</td>
+<td>render</td>
+<td>html</td>
+<td><code>LOG‍-‍20250902.md</code></td>
+<td>render, html, pandoc</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">112</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Root: <code>/home/gunreip/bin</code></td>
+<td>1: <code>.shell_script_styles.logs.css</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="run-id-20250902t164058z-683700">Run-ID: <code>20250902T164058Z-683700</code></h2>
+<table>
+<thead>
+<tr>
+<th>Zeit</th>
+<th>Script</th>
+<th style="text-align:right">Version</th>
+<th>Optionen</th>
+<th>Sektion</th>
+<th>Action</th>
+<th>Grund</th>
+<th>tags</th>
+<th style="text-align:center">Ergebnis</th>
+<th style="text-align:right">Dauer (ms)</th>
+<th style="text-align:center">Exit</th>
+<th>User</th>
+<th>Notiz</th>
+<th>Skript-Meldungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18:40:58</td>
+<td><code>wiki_sync_css.sh</code></td>
+<td style="text-align:right">0.10.4</td>
+<td>keine</td>
+<td>scan</td>
+<td>collect</td>
+<td>source</td>
+<td>wiki, sync, shell‍-‍script, begin, trace, no‍-‍create</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:right">0</td>
+<td style="text-align:center">0</td>
+<td>gunreip</td>
+<td>Sources: 6</td>
+<td>Source: <code>/home/gunreip/bin/css</code></td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

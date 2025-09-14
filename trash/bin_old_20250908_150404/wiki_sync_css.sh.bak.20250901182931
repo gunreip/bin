@@ -1,0 +1,317 @@
+#!/usr/bin/env bash
+# wiki_sync_css(.sh) — verteilt CSS-Dateien anhand von @dest-Zeilen an mehrere Ziele
+# Version: v0.6.2
+# Änderungen:
+# - 0.6.2: --debug case-insensitive, PS4 robust gegen set -u (kein unbound FUNCNAME/BASH_SOURCE/EPOCHREALTIME),
+#          auto-reexec in bash bei Bedarf, sichereres Sourcing von log_core.part.
+# - 0.6.1: Fix Exit-1 unter set -e (Post- → Pre-Increment), robustere @dest-Säuberung,
+#          sauberes ~-Handling, ShellCheck-Bereinigungen, stabilere Exit-Codes.
+# - 0.6.0: Multi-@dest, Debug-Logs (xtrace/jsonl), Gatekeeper, Dry-Run, Dedupe.
+
+# Falls nicht unter bash gestartet (z. B. via /bin/sh), re-exec in bash:
+if [ -z "${BASH_VERSION-}" ]; then exec bash "$0" "$@"; fi
+
+set -Eeuo pipefail
+shopt -s nullglob
+IFS=$'\n\t'
+
+SCRIPT_BASENAME="${0##*/}"
+# Akzeptiere sowohl wiki_sync_css als auch wiki_sync_css.sh
+SCRIPT_NAME="wiki_sync_css.sh"
+[ "${SCRIPT_BASENAME}" = "wiki_sync_css" ] && SCRIPT_NAME="wiki_sync_css"
+
+VERSION="0.6.2"
+
+# -------------------------------------------------------------------
+# Optionen / Defaults
+# -------------------------------------------------------------------
+DRY_RUN=0
+DEBUG="OFF"     # OFF | ON | TRACE
+SRC_DIR="${HOME}/bin/css"
+SRC_GLOB="shell_script_styles.*.css"   # Standardquelle(n)
+RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)-$$"
+
+# Zähler
+declare -i created=0 updated=0 identical=0 nodest=0 errors=0 processed=0
+
+# Debug-Dateien
+DEBUG_DIR="${HOME}/bin/debug"
+mkdir -p "${DEBUG_DIR}"
+LOG_TXT="${DEBUG_DIR}/wiki_sync_css.debug.log"
+LOG_JSON="${DEBUG_DIR}/wiki_sync_css.debug.jsonl"
+XTRACE_LOG="${DEBUG_DIR}/wiki_sync_css.xtrace.log"
+
+# -------------------------------------------------------------------
+# Logging/Debug-Helfer
+# -------------------------------------------------------------------
+ts_utc() { date -u +%Y-%m-%dT%H:%M:%SZ; }
+
+dbg_line() {
+  # $* -> Nachricht in Textlog
+  if [[ "${DEBUG}" != "OFF" ]]; then
+    printf '[%s] %s\n' "$(ts_utc)" "$*" >> "${LOG_TXT}"
+  fi
+}
+dbg_json() {
+  # key=val Paare als JSON; Nutzung: dbg_json event start key1 val1 key2 val2 ...
+  local event="${1-}"; shift || true
+  local kv=()
+  while (( "$#" > 1 )); do
+    kv+=( "\"$1\":\"${2//\"/\\\"}\"" )
+    shift 2 || true
+  done
+  printf '{"ts":"%s","event":"%s"%s}\n' \
+    "$(ts_utc)" \
+    "${event}" \
+    "$( ((${#kv[@]})) && printf ",%s" "$(IFS=,; echo "${kv[*]}")" )" \
+    >> "${LOG_JSON}"
+}
+
+start_xtrace_if_needed() {
+  if [[ "${DEBUG}" == "TRACE" ]]; then
+    {
+      echo
+      echo "===== XTRACE ${SCRIPT_NAME} ${VERSION} run_id=${RUN_ID} $(ts_utc) ====="
+    } >> "${XTRACE_LOG}"
+    exec 19>>"${XTRACE_LOG}"
+    export BASH_XTRACEFD=19
+    # PS4 robust gegen set -u: fallback-Werte via ${var-default}
+    export PS4='+ ${BASH_SOURCE[0]-'"${SCRIPT_BASENAME}"'}:${LINENO}:${FUNCNAME[0]-main} [${EPOCHREALTIME-0}] '
+    set -x
+  fi
+}
+
+trap_err()  { local ec=$?; dbg_json trap_ERR code "$ec";  dbg_line "ERR $ec"; }
+trap_exit() { local ec=$?; dbg_json trap_EXIT code "$ec"; dbg_line "EXIT $ec"; }
+trap 'trap_err' ERR
+trap 'trap_exit' EXIT
+
+# -------------------------------------------------------------------
+# log_core.part (optional) laden — defensiv gegen set -u
+# -------------------------------------------------------------------
+if [[ -f "${HOME}/bin/parts/log_core.part" ]]; then
+  CTX_SCRIPT="${SCRIPT_NAME}"
+  CTX_VERSION="${VERSION}"
+  CTX_RUN_ID="${RUN_ID}"
+  CTX_NAMES="Zeit|Script|Version|Optionen|Sektion|Action|Grund|tags|Ergebnis|Dauer (ms)|Exit|User|Notiz|Skript-Meldungen"
+  set +u
+  # shellcheck source=/dev/null
+  . "${HOME}/bin/parts/log_core.part" || true
+  set -u
+fi
+
+# -------------------------------------------------------------------
+# CLI
+# -------------------------------------------------------------------
+usage() {
+  cat <<USAGE
+Verwendung:
+  ${SCRIPT_NAME} [--dry-run] [--debug=OFF|ON|TRACE] [--help] [--version]
+
+Beschreibung:
+  Sucht CSS-Quellen unter ~/bin/css/${SRC_GLOB}, liest @dest-Zeilen
+  und kopiert die Quelle an alle Ziele. Relativpfade werden zum Projekt-Root
+  (<project>/.env muss existieren) aufgelöst; "~/" wird zu \$HOME expandiert.
+
+Optionen:
+  --dry-run         Nur anzeigen, was passieren würde (keine Writes)
+  --debug=LEVEL     OFF (Standard), ON (Text/JSON), TRACE (inkl. xtrace)
+  --help            Diese Hilfe
+  --version         Version anzeigen
+USAGE
+}
+
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=1 ;;
+    --debug=*)
+      DEBUG="${arg#*=}"
+      # case-insensitive akzeptieren
+      DEBUG="${DEBUG^^}"  # auf UPPERCASE
+      case "${DEBUG}" in OFF|ON|TRACE) : ;; *) echo "Unbekannte Option: --debug=${DEBUG}" >&2; usage; exit 64 ;; esac
+      ;;
+    --help) usage; exit 0 ;;
+    --version) echo "${SCRIPT_NAME} ${VERSION}"; exit 0 ;;
+    *) echo "Unbekannte Option: $arg" >&2; usage; exit 64 ;;
+  esac
+done
+
+start_xtrace_if_needed
+
+# -------------------------------------------------------------------
+# Gatekeeper (Projekt-Root erforderlich)
+# -------------------------------------------------------------------
+PROJECT_ROOT=""
+if [[ -f ".env" ]]; then
+  PROJECT_ROOT="$(pwd)"
+else
+  echo "❌ Gatekeeper: Dieses Skript muss im Projekt-Root (mit .env) gestartet werden." >&2
+  dbg_line "Gatekeeper: .env fehlt (Exit 2)"
+  dbg_json var name PROJECT_ROOT value ""
+  exit 2
+fi
+
+dbg_line "START ${SCRIPT_NAME} ${VERSION} run_id=${RUN_ID} dry_run=${DRY_RUN} debug=${DEBUG}"
+dbg_json start script "${SCRIPT_NAME}" version "${VERSION}" run_id "${RUN_ID}" cwd "$(pwd)" dry_run "${DRY_RUN}" debug "${DEBUG}"
+dbg_json var name PROJECT_ROOT value "${PROJECT_ROOT}"
+dbg_json var name SRC_DIR value "${SRC_DIR}"
+
+# -------------------------------------------------------------------
+# Hilfsfunktionen
+# -------------------------------------------------------------------
+trim() {
+  local s="${1-}"
+  # shellcheck disable=SC2001
+  s="$(printf '%s' "$s" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')"
+  printf '%s' "$s"
+}
+
+sanitize_dest() {
+  # Entfernt Inline-Kommentare nach dem Pfad:
+  #  - /* ... */ (einfach: ab "/*" alles weg)
+  #  - // ... oder # ...
+  local d="${1-}"
+  d="${d%%/\**}"
+  d="${d%%//*}"
+  d="${d%%#*}"
+  d="$(trim "$d")"
+  printf '%s' "$d"
+}
+
+resolve_dest_abs() {
+  # $1 = roher dest (kann ~/, absolut, relativ sein)
+  local d="${1-}"
+  if [[ "$d" == "~/"* ]]; then
+    printf '%s/%s' "${HOME}" "${d#~/}"
+  elif [[ "$d" == /* ]]; then
+    printf '%s' "$d"
+  else
+    printf '%s/%s' "${PROJECT_ROOT}" "$d"
+  fi
+}
+
+extract_all_dests() {
+  # $1 = Quellpfad (CSS)
+  # Ausgabe: eindeutige, bereinigte DEST-Pfade (roh, noch nicht absolut)
+  local src="$1"
+  local line path key
+  declare -A seen=()
+  while IFS= read -r line; do
+    case "$line" in
+      *"@dest:"*)
+        path="${line#*@dest:}"
+        path="$(sanitize_dest "$path")"
+        [[ -z "$path" ]] && continue
+        key="$path"
+        if [[ -z "${seen[$key]-}" ]]; then
+          seen[$key]=1
+          printf '%s\n' "$path"
+        fi
+        ;;
+      *) : ;;
+    esac
+  done < "$src"
+}
+
+safe_cmp() {
+  # cmp -s mit sauberem Exit (kein Abbruch unter set -e, wenn unterschiedlich)
+  local a="$1" b="$2"
+  if [[ ! -f "$a" || ! -f "$b" ]]; then
+    return 2
+  fi
+  cmp -s -- "$a" "$b"
+}
+
+# -------------------------------------------------------------------
+# Verarbeitung
+# -------------------------------------------------------------------
+sources=( "${SRC_DIR}/${SRC_GLOB}" )
+if (( ${#sources[@]} == 0 )); then
+  echo "⚠️ Keine Quellen unter ${SRC_DIR}/${SRC_GLOB} gefunden."
+  dbg_line "Keine Quellen"
+  exit 0
+fi
+
+for src in "${sources[@]}"; do
+  ((++processed))
+  base="$(basename -- "$src")"
+  dbg_line "PROCESS src=${base}"
+
+  mapfile -t dests < <(extract_all_dests "$src" || true)
+  if (( ${#dests[@]} == 0 )); then
+    echo "⚠️ ${base}: keine @dest-Zeilen gefunden"
+    ((++nodest))
+    continue
+  fi
+  dbg_json dests_found src "${base}" count "${#dests[@]}"
+
+  for dest in "${dests[@]}"; do
+    abs_dest="$(resolve_dest_abs "$dest")"
+    dbg_json dest_resolved src "${base}" dest "${dest}" dest_abs "${abs_dest}"
+
+    dest_dir="$(dirname -- "$abs_dest")"
+    action=""
+    if [[ ! -e "$abs_dest" ]]; then
+      action="create"
+    else
+      if safe_cmp "$src" "$abs_dest"; then
+        action="identical"
+      else
+        action="update"
+      fi
+    fi
+
+    case "$action" in
+      create)
+        echo "→ CREATE  ${abs_dest}"
+        if (( DRY_RUN )); then
+          :
+        else
+          mkdir -p -- "$dest_dir" || { echo "❌ mkdir -p $dest_dir"; ((++errors)); continue; }
+          if cp -p -- "$src" "$abs_dest"; then
+            ((++created))
+          else
+            echo "❌ copy failed: $src → $abs_dest"
+            ((++errors))
+            continue
+          fi
+        fi
+        ;;
+      update)
+        echo "→ UPDATE  ${abs_dest}"
+        if (( DRY_RUN )); then
+          :
+        else
+          if cp -p -- "$src" "$abs_dest"; then
+            ((++updated))
+          else
+            echo "❌ copy failed: $src → $abs_dest"
+            ((++errors))
+            continue
+          fi
+        fi
+        ;;
+      identical)
+        echo "→ SKIP    ${abs_dest} (identisch)"
+        ((++identical))
+        ;;
+      *)
+        echo "❌ unbekannte Aktion für ${abs_dest}"
+        ((++errors))
+        ;;
+    esac
+  done
+done
+
+# -------------------------------------------------------------------
+# Zusammenfassung / Exit
+# -------------------------------------------------------------------
+echo "OK: created ${created}, updated ${updated}, identisch ${identical}, no_dest ${nodest}, errors ${errors}"
+
+exit_code=0
+if (( errors > 0 )); then
+  exit_code=1
+fi
+
+dbg_json summary created "${created}" updated "${updated}" identical "${identical}" no_dest "${nodest}" errors "${errors}" exit_code "${exit_code}"
+exit "${exit_code}"
