@@ -17,3 +17,6 @@ node_modules/
 
 # temp (ignored)
 temp/
+
+# local trash (ignored)
+trash/
