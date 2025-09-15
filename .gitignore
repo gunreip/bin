@@ -20,3 +20,11 @@ temp/
 
 # local trash (ignored)
 trash/
+git_feature_start
+git_feature_finish
+git_sync_bin
+shellcheck_runner
+backups_migrate_layout
+install_log_css_migration
+nginx_https_env_patch
+laravel_db
