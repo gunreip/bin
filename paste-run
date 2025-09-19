@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -u
+tmp="$(mktemp -t paste-run.XXXXXX.sh)"
+cat >"$tmp"
+chmod +x "$tmp"
+echo "→ running: $tmp"
+bash "$tmp"
+rc=$?
+echo "→ exit code: $rc"
+echo "→ kept:      $tmp"
+exit 0
