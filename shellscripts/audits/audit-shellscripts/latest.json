@@ -1,0 +1,38 @@
+{
+  "ts": "2025-09-22 20:55:06 CEST",
+  "root": "/home/gunreip/code/bin/shellscripts",
+  "sort": "modified",
+  "script_path": "/home/gunreip/code/bin/shellscripts/audit-shellscripts.sh",
+  "script_version": "v0.4.1",
+  "categories": [
+    { "name": "_sh", "scripts": [
+      { "script": "_sh-logger-inject", "version": "v0.2.0", "created": "2025-09-20T18:16:39Z", "changed": "2025-09-20T18:27:08Z", "modified": "2025-09-20T18:16:39Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 2142, "size_h": "2.2KB", "link": "\u2705" },
+      { "script": "_sh-chmod", "version": "-", "created": "2025-09-19T10:49:58Z", "changed": "2025-09-19T10:50:34Z", "modified": "2025-09-19T10:49:58Z", "accessed": "2025-09-22T17:52:33Z", "size_bytes": 2048, "size_h": "2.1KB", "link": "\u2705" }
+    ] },
+    { "name": "audit", "scripts": [
+      { "script": "audit-shellscripts", "version": "v0.4.1", "created": "2025-09-21T12:47:08Z", "changed": "2025-09-22T18:53:55Z", "modified": "2025-09-22T18:53:55Z", "accessed": "2025-09-22T18:55:06Z", "size_bytes": 8178, "size_h": "8.2KB", "link": "\u2705" }
+    ] },
+    { "name": "bin", "scripts": [
+      { "script": "bin-tree", "version": "v0.5.0", "created": "2025-09-21T20:13:10Z", "changed": "2025-09-22T18:53:55Z", "modified": "2025-09-22T18:53:55Z", "accessed": "2025-09-22T18:54:11Z", "size_bytes": 6217, "size_h": "6.3KB", "link": "\u2705" }
+    ] },
+    { "name": "git", "scripts": [
+      { "script": "git-feature", "version": "v0.2.9", "created": "2025-09-21T14:53:50Z", "changed": "2025-09-21T19:15:31Z", "modified": "2025-09-21T19:15:31Z", "accessed": "2025-09-21T19:15:31Z", "size_bytes": 8829, "size_h": "8.9KB", "link": "\u2705" },
+      { "script": "git-state", "version": "v0.3.1", "created": "2025-09-19T13:02:01Z", "changed": "2025-09-21T11:04:17Z", "modified": "2025-09-21T11:04:17Z", "accessed": "2025-09-22T17:52:33Z", "size_bytes": 9461, "size_h": "9.5KB", "link": "\u2705" },
+      { "script": "git-init", "version": "v0.3.0", "created": "2025-09-20T04:19:58Z", "changed": "2025-09-21T10:43:50Z", "modified": "2025-09-21T10:43:50Z", "accessed": "2025-09-22T17:52:33Z", "size_bytes": 12200, "size_h": "12.2KB", "link": "\u2705" },
+      { "script": "git-ctx", "version": "v1.2.0", "created": "2025-09-20T04:02:28Z", "changed": "2025-09-21T10:02:13Z", "modified": "2025-09-21T10:02:13Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 4740, "size_h": "4.8KB", "link": "\u2705" },
+      { "script": "git-branch-rm", "version": "v0.4.1", "created": "2025-09-20T04:44:38Z", "changed": "2025-09-21T09:56:08Z", "modified": "2025-09-21T09:56:08Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 20435, "size_h": "20.5KB", "link": "\u2705" },
+      { "script": "git-branch-restore", "version": "v0.2.2", "created": "2025-09-20T04:31:18Z", "changed": "2025-09-21T09:04:38Z", "modified": "2025-09-21T09:04:38Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 11129, "size_h": "11.2KB", "link": "\u2705" },
+      { "script": "git-sync", "version": "v0.2.1", "created": "2025-09-20T04:19:58Z", "changed": "2025-09-21T08:33:20Z", "modified": "2025-09-21T08:33:20Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 10152, "size_h": "10.2KB", "link": "\u2705" },
+      { "script": "git-push", "version": "v0.2.1", "created": "2025-09-20T04:19:58Z", "changed": "2025-09-21T08:20:42Z", "modified": "2025-09-21T08:20:42Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 7246, "size_h": "7.3KB", "link": "\u2705" },
+      { "script": "git-pull", "version": "v0.2.1", "created": "2025-09-20T04:19:58Z", "changed": "2025-09-21T08:16:00Z", "modified": "2025-09-21T08:16:00Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 7262, "size_h": "7.3KB", "link": "\u2705" },
+      { "script": "git-check", "version": "v0.2.1", "created": "2025-09-20T18:23:29Z", "changed": "2025-09-21T05:55:38Z", "modified": "2025-09-21T05:55:38Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 9487, "size_h": "9.5KB", "link": "\u2705" },
+      { "script": "git-audit-read", "version": "v0.1.3", "created": "2025-09-20T07:31:48Z", "changed": "2025-09-20T18:27:08Z", "modified": "2025-09-20T17:42:39Z", "accessed": "2025-09-22T10:25:57Z", "size_bytes": 10192, "size_h": "10.2KB", "link": "\u2705" }
+    ] },
+    { "name": "prompt", "scripts": [
+      { "script": "prompt-starship", "version": "-", "created": "2025-09-19T05:33:26Z", "changed": "2025-09-19T10:50:34Z", "modified": "2025-09-19T05:45:29Z", "accessed": "2025-09-22T17:52:33Z", "size_bytes": 3795, "size_h": "3.8KB", "link": "\u2705" }
+    ] },
+    { "name": "runs", "scripts": [
+      { "script": "runs-prune", "version": "v0.3.0", "created": "2025-09-20T04:54:32Z", "changed": "2025-09-21T11:10:52Z", "modified": "2025-09-21T11:10:52Z", "accessed": "2025-09-22T17:52:33Z", "size_bytes": 10140, "size_h": "10.2KB", "link": "\u2705" }
+    ] }
+  ]
+}

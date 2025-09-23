@@ -1,0 +1,1 @@
+**Hauptordner** für alle Shell-Skripte. Die zugehörigen Symlinks zum Aufruf liegen direkt in `/bin/<root>`.

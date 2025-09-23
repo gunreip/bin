@@ -1,0 +1,426 @@
++ git-audit-read:131:xtrace_on: local before after
+++ git-audit-read:132:xtrace_on: wc -c
++ git-audit-read:132:xtrace_on: before=90
++ git-audit-read:133:xtrace_on: : __xtrace_probe__
+++ git-audit-read:134:xtrace_on: wc -c
++ git-audit-read:134:xtrace_on: after=222
++ git-audit-read:136:xtrace_on: '[' 222 -le 90 ']'
++ git-audit-read:141:xtrace_on: trace_emit dbg xtrace enabled raw=/home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.raw
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=xtrace msg=enabled
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape xtrace
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:86:json_escape: printf %s xtrace
+++ git-audit-read:91:trace_emit: json_escape enabled
+++ git-audit-read:86:json_escape: printf %s enabled
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg xtrace enabled 314788 v0.3.1 git-audit-read
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=raw
++ git-audit-read:94:trace_emit: v=/home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.raw
+++ git-audit-read:95:trace_emit: json_escape raw
+++ git-audit-read:86:json_escape: printf %s raw
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape /home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.raw
+++ git-audit-read:86:json_escape: printf %s /home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.raw
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' raw /home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.raw
++ git-audit-read:97:trace_emit: printf '}\n'
+++ git-audit-read:208:main: mktemp
++ git-audit-read:208:main: files_tmp=/tmp/tmp.NP2kbx9Xdk
++ git-audit-read:208:main: :
++ git-audit-read:209:main: trace_emit dbg collect start
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=collect msg=start
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape collect
+++ git-audit-read:86:json_escape: printf %s collect
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape start
+++ git-audit-read:86:json_escape: printf %s start
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg collect start 314788 v0.3.1 git-audit-read
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:218:main: sort -r
+++ git-audit-read:210:main: tools_list
+++ git-audit-read:189:tools_list: case "$TOOL" in
+++ git-audit-read:191:tools_list: printf '%s\n' git-branch-rm
++ git-audit-read:210:main: for t in $(tools_list)
++ git-audit-read:211:main: '[' bin = all ']'
++ git-audit-read:216:main: month_span_files git-branch-rm bin
++ git-audit-read:196:month_span_files: local t=git-branch-rm r=bin pat dir
++ git-audit-read:197:month_span_files: case "$t" in
++ git-audit-read:198:month_span_files: pat=deletions
++ git-audit-read:202:month_span_files: dir=/home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin
++ git-audit-read:203:month_span_files: '[' -d /home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin ']'
++ git-audit-read:204:month_span_files: find /home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin -maxdepth 1 -type f -name 'deletions.*.jsonl' -print
++ git-audit-read:204:month_span_files: sort
+++ git-audit-read:219:main: wc -l
+++ git-audit-read:219:main: tr -d '[:space:]'
++ git-audit-read:219:main: nfiles=1
++ git-audit-read:220:main: trace_emit dbg files_found collected count=1 listfile=/tmp/tmp.NP2kbx9Xdk
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=files_found msg=collected
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:91:trace_emit: json_escape files_found
+++ git-audit-read:86:json_escape: printf %s files_found
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape collected
+++ git-audit-read:86:json_escape: printf %s collected
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg files_found collected 314788 v0.3.1 git-audit-read
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=count
++ git-audit-read:94:trace_emit: v=1
+++ git-audit-read:95:trace_emit: json_escape count
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:86:json_escape: printf %s count
+++ git-audit-read:95:trace_emit: json_escape 1
+++ git-audit-read:86:json_escape: printf %s 1
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' count 1
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=listfile
++ git-audit-read:94:trace_emit: v=/tmp/tmp.NP2kbx9Xdk
+++ git-audit-read:95:trace_emit: json_escape listfile
+++ git-audit-read:86:json_escape: printf %s listfile
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape /tmp/tmp.NP2kbx9Xdk
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:86:json_escape: printf %s /tmp/tmp.NP2kbx9Xdk
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' listfile /tmp/tmp.NP2kbx9Xdk
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:222:main: '[' no = yes ']'
++ git-audit-read:233:main: '[' 1 -eq 0 ']'
++ git-audit-read:241:main: df_jq=
++ git-audit-read:241:main: '[' -n '' ']'
++ git-audit-read:242:main: '[' -n '' ']'
++ git-audit-read:242:main: df_jq=
++ git-audit-read:244:main: ff_jq=true
++ git-audit-read:245:main: '[' bin '!=' all ']'
++ git-audit-read:245:main: ff_jq='true and ((.repo? // "") == "bin")'
++ git-audit-read:246:main: case "$ACTION" in
++ git-audit-read:250:main: :
++ git-audit-read:252:main: case "$SIDE" in
++ git-audit-read:255:main: :
++ git-audit-read:257:main: '[' -n '' ']'
++ git-audit-read:258:main: '[' -n '' ']'
++ git-audit-read:259:main: '[' -n '' ']'
+++ git-audit-read:261:main: mktemp
++ git-audit-read:261:main: tmp_all=/tmp/tmp.Y3h9IVC61n
++ git-audit-read:261:main: :
++ git-audit-read:262:main: trace_emit dbg read begin
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=read msg=begin
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape read
+++ git-audit-read:86:json_escape: printf %s read
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape begin
+++ git-audit-read:86:json_escape: printf %s begin
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg read begin 314788 v0.3.1 git-audit-read
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:264:main: IFS=
++ git-audit-read:264:main: read -r p
++ git-audit-read:265:main: '[' -n /home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin/deletions.2025-09.jsonl ']'
++ git-audit-read:265:main: '[' -f /home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin/deletions.2025-09.jsonl ']'
++ git-audit-read:266:main: trace_emit dbg read_file open path=/home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin/deletions.2025-09.jsonl
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=read_file msg=open
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape read_file
+++ git-audit-read:86:json_escape: printf %s read_file
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape open
+++ git-audit-read:86:json_escape: printf %s open
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg read_file open 314788 v0.3.1 git-audit-read
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=path
++ git-audit-read:94:trace_emit: v=/home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin/deletions.2025-09.jsonl
+++ git-audit-read:95:trace_emit: json_escape path
+++ git-audit-read:86:json_escape: printf %s path
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape /home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin/deletions.2025-09.jsonl
+++ git-audit-read:86:json_escape: printf %s /home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin/deletions.2025-09.jsonl
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' path /home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin/deletions.2025-09.jsonl
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:267:main: case "$p" in
++ git-audit-read:269:main: IFS=
++ git-audit-read:269:main: read -r line
++ git-audit-read:270:main: '[' -n '{"ts":"2025-09-20T03:49:59Z","repo":"bin","side":"remote","branch":"feat-robust-test","sha":"6514a6253fefa0de3a09fe97a74f0f8316e5e0b6","reason":"Archiv & Aufräumen","backup_tag":"backup/feat-robust-test/20250920-054958","backup_bundle":"/home/gunreip/code/bin/shellscripts/backups/branches/bin/feat-robust-test.20250920-054958.bundle","user":"gunreip","email":"gunreip@web.de","host":"DESKTOP-I7C75P2","rc":0}' ']'
++ git-audit-read:271:main: has_jq
++ git-audit-read:240:has_jq: command -v jq
++ git-audit-read:272:main: echo '{"ts":"2025-09-20T03:49:59Z","repo":"bin","side":"remote","branch":"feat-robust-test","sha":"6514a6253fefa0de3a09fe97a74f0f8316e5e0b6","reason":"Archiv & Aufräumen","backup_tag":"backup/feat-robust-test/20250920-054958","backup_bundle":"/home/gunreip/code/bin/shellscripts/backups/branches/bin/feat-robust-test.20250920-054958.bundle","user":"gunreip","email":"gunreip@web.de","host":"DESKTOP-I7C75P2","rc":0}'
++ git-audit-read:272:main: jq -c 'select(.source? == null) | (if (.action? == null) then .action="delete" else . end)'
++ git-audit-read:269:main: IFS=
++ git-audit-read:269:main: read -r line
++ git-audit-read:270:main: '[' -n '{"ts":"2025-09-20T03:50:01Z","repo":"bin","side":"remote","branch":"feat-robust-test-2","sha":"67d2a00826f96f6c5bdc9e97d17b22596cd8b37b","reason":"Archiv & Aufräumen","backup_tag":"backup/feat-robust-test-2/20250920-054959","backup_bundle":"/home/gunreip/code/bin/shellscripts/backups/branches/bin/feat-robust-test-2.20250920-055000.bundle","user":"gunreip","email":"gunreip@web.de","host":"DESKTOP-I7C75P2","rc":0}' ']'
++ git-audit-read:271:main: has_jq
++ git-audit-read:240:has_jq: command -v jq
++ git-audit-read:272:main: echo '{"ts":"2025-09-20T03:50:01Z","repo":"bin","side":"remote","branch":"feat-robust-test-2","sha":"67d2a00826f96f6c5bdc9e97d17b22596cd8b37b","reason":"Archiv & Aufräumen","backup_tag":"backup/feat-robust-test-2/20250920-054959","backup_bundle":"/home/gunreip/code/bin/shellscripts/backups/branches/bin/feat-robust-test-2.20250920-055000.bundle","user":"gunreip","email":"gunreip@web.de","host":"DESKTOP-I7C75P2","rc":0}'
++ git-audit-read:272:main: jq -c 'select(.source? == null) | (if (.action? == null) then .action="delete" else . end)'
++ git-audit-read:269:main: IFS=
++ git-audit-read:269:main: read -r line
++ git-audit-read:264:main: IFS=
++ git-audit-read:264:main: read -r p
+++ git-audit-read:291:main: wc -l
+++ git-audit-read:291:main: tr -d ' '
++ git-audit-read:291:main: trace_emit dbg read done lines=2
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=read msg=done
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape read
+++ git-audit-read:86:json_escape: printf %s read
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape done
+++ git-audit-read:86:json_escape: printf %s done
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg read done 314788 v0.3.1 git-audit-read
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=lines
++ git-audit-read:94:trace_emit: v=2
+++ git-audit-read:95:trace_emit: json_escape lines
+++ git-audit-read:86:json_escape: printf %s lines
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape 2
+++ git-audit-read:86:json_escape: printf %s 2
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' lines 2
++ git-audit-read:97:trace_emit: printf '}\n'
+++ git-audit-read:293:main: mktemp
++ git-audit-read:293:main: tmp_sel=/tmp/tmp.Llg3gFqsGb
++ git-audit-read:293:main: :
++ git-audit-read:294:main: has_jq
++ git-audit-read:240:has_jq: command -v jq
++ git-audit-read:295:main: jq_filter=.
++ git-audit-read:296:main: '[' -n '' ']'
++ git-audit-read:297:main: '[' -n 'true and ((.repo? // "") == "bin")' ']'
++ git-audit-read:297:main: jq_filter='. | select(true and ((.repo? // "") == "bin"))'
++ git-audit-read:298:main: jq -c '. | select(true and ((.repo? // "") == "bin"))' /tmp/tmp.Y3h9IVC61n
++ git-audit-read:313:main: '[' 5 -gt 0 ']'
++ git-audit-read:314:main: mv -f /tmp/tmp.Llg3gFqsGb /tmp/tmp.Llg3gFqsGb.all
++ git-audit-read:315:main: head -n 5 /tmp/tmp.Llg3gFqsGb.all
+++ git-audit-read:318:main: wc -l
+++ git-audit-read:318:main: tr -d '[:space:]'
++ git-audit-read:318:main: nsel=2
++ git-audit-read:319:main: trace_emit dbg selected 'after filters' count=2 tmp=/tmp/tmp.Llg3gFqsGb
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=selected 'msg=after filters'
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape selected
+++ git-audit-read:86:json_escape: printf %s selected
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape 'after filters'
+++ git-audit-read:86:json_escape: printf %s 'after filters'
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg selected 'after filters' 314788 v0.3.1 git-audit-read
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=count
++ git-audit-read:94:trace_emit: v=2
+++ git-audit-read:95:trace_emit: json_escape count
+++ git-audit-read:86:json_escape: printf %s count
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape 2
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:86:json_escape: printf %s 2
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' count 2
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=tmp
++ git-audit-read:94:trace_emit: v=/tmp/tmp.Llg3gFqsGb
+++ git-audit-read:95:trace_emit: json_escape tmp
+++ git-audit-read:86:json_escape: printf %s tmp
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape /tmp/tmp.Llg3gFqsGb
+++ git-audit-read:86:json_escape: printf %s /tmp/tmp.Llg3gFqsGb
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' tmp /tmp/tmp.Llg3gFqsGb
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:321:main: '[' 2 -eq 0 ']'
++ git-audit-read:362:main: '[' no = yes ']'
++ git-audit-read:383:main: c=0
++ git-audit-read:384:main: IFS=
++ git-audit-read:384:main: read -r _line
+++ git-audit-read:390:main: print_fmt
+++ git-audit-read:328:print_fmt: '[' no = yes ']'
+++ git-audit-read:329:print_fmt: has_jq
+++ git-audit-read:240:has_jq: command -v jq
+++ git-audit-read:330:print_fmt: jq -r '
+      . as $r | if ($r.source? != null) then
+        "\(.ts)  [restore]  repo=\(.repo)  src=\(.source):\(.source_id // "-")  -> branch=\(.target_branch // "-")  rc=\(.rc // -1)"
+      else
+        "\(.ts)  [rm:\(.side // "-"):\(.action // "delete")]  repo=\(.repo)  branch=\(.branch)  sha=\(.sha[0:8])  rc=\(.rc // -1)"
+      end
+    ' /tmp/tmp.Llg3gFqsGb
++ git-audit-read:385:main: printf '%s\n' '2025-09-20T03:49:59Z  [rm:remote:delete]  repo=bin  branch=feat-robust-test  sha=6514a625  rc=0'
++ git-audit-read:386:main: c=1
++ git-audit-read:387:main: '[' 1 -eq 0 ']'
++ git-audit-read:384:main: IFS=
++ git-audit-read:384:main: read -r _line
++ git-audit-read:385:main: printf '%s\n' '2025-09-20T03:50:01Z  [rm:remote:delete]  repo=bin  branch=feat-robust-test-2  sha=67d2a008  rc=0'
++ git-audit-read:386:main: c=2
++ git-audit-read:387:main: '[' 2 -eq 0 ']'
++ git-audit-read:384:main: IFS=
++ git-audit-read:384:main: read -r _line
++ git-audit-read:389:main: trace_emit dbg printed done count=2
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=printed msg=done
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape printed
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:86:json_escape: printf %s printed
+++ git-audit-read:91:trace_emit: json_escape done
+++ git-audit-read:86:json_escape: printf %s done
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg printed done 314788 v0.3.1 git-audit-read
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=count
++ git-audit-read:94:trace_emit: v=2
+++ git-audit-read:95:trace_emit: json_escape count
+++ git-audit-read:86:json_escape: printf %s count
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape 2
+++ git-audit-read:86:json_escape: printf %s 2
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' count 2
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:392:main: trace_emit dbg done ok
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=done msg=ok
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape done
+++ git-audit-read:86:json_escape: printf %s done
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape ok
+++ git-audit-read:86:json_escape: printf %s ok
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg done ok 314788 v0.3.1 git-audit-read
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:1:main: cleanup
++ git-audit-read:102:cleanup: local code=0
++ git-audit-read:103:cleanup: '[' yes = yes ']'
++ git-audit-read:103:cleanup: xtrace_finalize
++ git-audit-read:148:xtrace_finalize: '[' '!' -s /home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.raw ']'
+++ git-audit-read:152:xtrace_finalize: date -u +%Y-%m-%dT%H:%M:%SZ
++ git-audit-read:152:xtrace_finalize: awk -v now=2025-09-20T09:00:19Z '
+    function esc(s){ gsub(/\\/,"\\\\",s); gsub(/"/,"\\\"",s); return s }
+    /^\+ /{
+      # Erwartetes Muster: + file:line:func: cmd...
+      sub(/^\+ /,"")
+      split($0, a, ":")
+      if (length(a) < 4) next
+      file=a[1]
+      line=a[2]
+      func=a[3]
+      # Rest nach den ersten drei ":" zusammensetzen
+      cmd=$0
+      sub(/^[^:]*:[^:]*:[^:]*: /, "", cmd)
+      printf("{\"ts\":\"%s\",\"src\":\"%s\",\"line\":%d,\"func\":\"%s\",\"cmd\":\"%s\"}\n",
+             now, esc(file), (line+0), esc(func), esc(cmd))
+    }
+  ' /home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.raw
++ git-audit-read:168:xtrace_finalize: true
++ git-audit-read:169:xtrace_finalize: trace_emit dbg xtrace jsonl_written json=/home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.jsonl
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=xtrace msg=jsonl_written
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape xtrace
+++ git-audit-read:86:json_escape: printf %s xtrace
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape jsonl_written
+++ git-audit-read:86:json_escape: printf %s jsonl_written
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg xtrace jsonl_written 314788 v0.3.1 git-audit-read
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=json
++ git-audit-read:94:trace_emit: v=/home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.jsonl
+++ git-audit-read:95:trace_emit: json_escape json
+++ git-audit-read:86:json_escape: printf %s json
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape /home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.jsonl
+++ git-audit-read:86:json_escape: printf %s /home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.jsonl
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' json /home/gunreip/code/bin/shellscripts/debugs/git-audit-read/git-audit-read.xtrace.20250920-110019.jsonl
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:104:cleanup: '[' 0 -ne 0 ']'
++ git-audit-read:107:cleanup: trace_emit dbg exit 'normal exit' code=0
++ git-audit-read:88:trace_emit: '[' trace = off ']'
++ git-audit-read:89:trace_emit: local lvl=dbg ev=exit 'msg=normal exit'
++ git-audit-read:89:trace_emit: shift 3
+++ git-audit-read:91:trace_emit: ts_iso
+++ git-audit-read:81:ts_iso: date -u +%Y-%m-%dT%H:%M:%SZ
+++ git-audit-read:91:trace_emit: json_escape dbg
+++ git-audit-read:86:json_escape: printf %s dbg
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape exit
+++ git-audit-read:86:json_escape: printf %s exit
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:91:trace_emit: json_escape 'normal exit'
+++ git-audit-read:86:json_escape: printf %s 'normal exit'
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:91:trace_emit: printf '{"ts":"%s","lvl":"%s","ev":"%s","msg":"%s","pid":%d,"ver":"%s","script":"%s"' 2025-09-20T09:00:19Z dbg exit 'normal exit' 314788 v0.3.1 git-audit-read
++ git-audit-read:93:trace_emit: for kv in "$@"
++ git-audit-read:94:trace_emit: k=code
++ git-audit-read:94:trace_emit: v=0
+++ git-audit-read:95:trace_emit: json_escape code
+++ git-audit-read:86:json_escape: printf %s code
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+++ git-audit-read:95:trace_emit: json_escape 0
+++ git-audit-read:86:json_escape: printf %s 0
+++ git-audit-read:86:json_escape: sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
++ git-audit-read:95:trace_emit: printf ',"%s":"%s"' code 0
++ git-audit-read:97:trace_emit: printf '}\n'
++ git-audit-read:109:cleanup: exit 0

@@ -1,0 +1,6 @@
+# bin repo ignore
+shellscripts/debugs/
+shellscripts/backups/
+*.bak
+*.jsonl
+.DS_Store

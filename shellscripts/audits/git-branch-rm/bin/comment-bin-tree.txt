@@ -1,0 +1,1 @@
+Maschinell lesbare Zwischen-/Ergebnisdateien (z. B. `deletions.YYYY-MM.jsonl`).

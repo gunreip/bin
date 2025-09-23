@@ -1,0 +1,1 @@
+Run-Ergebnis-Snapshots für `git-feature.sh` (z. B. `latest.json`).

@@ -1,0 +1,1 @@
+'.gitignore'-Vorlagen für unterschiedliche Projekt-Typen.

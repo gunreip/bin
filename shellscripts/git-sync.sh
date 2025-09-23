@@ -1,25 +1,52 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
-# git-sync — fetch → ggf. pull (ff-only|rebase, optional autostash) → ggf. push
-# Version: v0.1.5
+# git-sync — fetch → ggf. pull → ggf. push (smart)
+#   - ff-only (Default) oder rebase
+#   - optional Tags
+#   - optional autostash bei schmutzigem WT
+#   - Upstream beim ersten Push automatisch setzen (abschaltbar)
+# Version: v0.2.1
 # -----------------------------------------------------------------------------
 set -euo pipefail
 IFS=$'\n\t'
 
-SCRIPT_ID="git-sync"
-SCRIPT_VERSION="v0.1.5"
-DEBUG_DIR="${HOME}/code/bin/shellscripts/debugs/${SCRIPT_ID}"
+# >>> LOGFX INIT (deferred) >>>
+: "${LOG_LEVEL:=trace}"      # off|dbg|trace|xtrace
+: "${DRY_RUN:=}"             # ""|yes – kann auch per --dry-run gesetzt werden
+# shellcheck source=/dev/null
+. "$HOME/code/bin/shellscripts/lib/logfx.sh"
+# <<< LOGFX INIT <<<
 
-# Defaults (Testphase)
-LOG_LEVEL="trace"       # überschreibbar via --debug=dbg|trace
-DRY_RUN="no"
+SCRIPT_ID="git-sync"
+SCRIPT_VERSION="v0.2.1"
+
+# Defaults / Optionen
 NO_COLOR_FORCE="no"
 REMOTE="origin"
 BRANCH=""
-USE_REBASE="no"
-AUTO_STASH="no"
-DO_PUSH="no"
+STRATEGY="ff-only"     # ff-only|rebase
 WITH_TAGS="no"
+AUTOSTASH="no"
+SET_UPSTREAM="auto"    # auto|yes|no
+
+usage(){
+  cat <<H
+$SCRIPT_ID $SCRIPT_VERSION
+
+Usage:
+  git-sync [--remote=origin] [--branch=<name>]
+           [--ff-only | --rebase]
+           [--with-tags] [--autostash]
+           [--set-upstream|-u | --no-set-upstream]
+           [--dry-run] [--no-color] [--debug=dbg|trace|xtrace]
+           [--help] [--version]
+
+Ablauf:
+  1) fetch <remote> <branch>
+  2) wenn behind>0 → pull (ff-only|rebase)
+  3) wenn ahead>0  → push (Upstream auto bei erstem Push)
+H
+}
 
 # Farben
 BOLD=""; YEL=""; GRN=""; RED=""; BLU=""; RST=""
@@ -31,210 +58,245 @@ color_init() {
   fi
 }
 
-# Logging
-ts() { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
-dbg_path() { printf '%s/%s.%s.%s.jsonl\n' "$DEBUG_DIR" "$SCRIPT_ID" "$LOG_LEVEL" "$(date +%Y%m%d-%H%M%S)"; }
+# Args
+for arg in "$@"; do
+  case "$arg" in
+    --help)    usage; exit 0 ;;
+    --version) echo "$SCRIPT_ID $SCRIPT_VERSION"; exit 0 ;;
+    --dry-run) DRY_RUN="yes" ;;
+    --debug=dbg)    LOG_LEVEL="dbg" ;;
+    --debug=trace)  LOG_LEVEL="trace" ;;
+    --debug=xtrace) LOG_LEVEL="xtrace" ;;
+    --no-color) NO_COLOR_FORCE="yes" ;;
+    --remote=*)  REMOTE="${arg#*=}" ;;
+    --branch=*)  BRANCH="${arg#*=}" ;;
+    --ff-only)   STRATEGY="ff-only" ;;
+    --rebase)    STRATEGY="rebase" ;;
+    --with-tags) WITH_TAGS="yes" ;;
+    --autostash) AUTOSTASH="yes" ;;
+    --set-upstream|-u) SET_UPSTREAM="yes" ;;
+    --no-set-upstream) SET_UPSTREAM="no" ;;
+    --project=*) : ;;  # Altlast
+    *) echo "Unbekannte Option: $arg"; echo "Nutze --help"; exit 3 ;;
+  esac
+done
 
-LOG_PATH=""
-log_init() {
-  mkdir -p "$DEBUG_DIR"
-  LOG_PATH="$(dbg_path)"
-  : > "$LOG_PATH"
-  printf '{"ts":"%s","script":"%s","level":"%s","event":"boot","msg":"start"}\n' "$(ts)" "$SCRIPT_ID" "$LOG_LEVEL" >> "$LOG_PATH"
-  if [ "$DRY_RUN" = "yes" ]; then
-    if [ -n "$BOLD" ]; then printf "%sDEBUG%s %s(dry-run)%s: %s%s%s\n" "$YEL$BOLD" "$RST" "$GRN" "$RST" "$RED" "$LOG_PATH" "$RST"; else echo "DEBUG (dry-run): $LOG_PATH"; fi
-  else
-    if [ -n "$BOLD" ]; then printf "%sDEBUG%s: %s%s%s\n" "$YEL$BOLD" "$RST" "$RED" "$LOG_PATH" "$RST"; else echo "DEBUG: $LOG_PATH"; fi
-  fi
-}
+color_init
+logfx_init "$SCRIPT_ID" "$LOG_LEVEL"
+[ "$LOG_LEVEL" = "xtrace" ] && logfx_xtrace_on || true
 
-# Gemeinsames Arg-Parsing
-parse_args() {
-  for arg in "$@"; do
-    case "$arg" in
-      --help)    echo "$SCRIPT_ID $SCRIPT_VERSION"; exit 0 ;;
-      --version) echo "$SCRIPT_ID $SCRIPT_VERSION"; exit 0 ;;
-      --dry-run) DRY_RUN="yes" ;;
-      --debug=*) LOG_LEVEL="${arg#*=}" ;;       # dbg|trace
-      --no-color) NO_COLOR_FORCE="yes" ;;
-      --remote=*) REMOTE="${arg#*=}" ;;
-      --branch=*) BRANCH="${arg#*=}" ;;
-      --rebase)   USE_REBASE="yes" ;;
-      --autostash) AUTO_STASH="yes" ;;
-      --push)     DO_PUSH="yes" ;;
-      --with-tags) WITH_TAGS="yes" ;;
-      --project=*) : ;;                         # No-Op (Altlast)
-      *) echo "Unbekannte Option: ${arg}"; echo "Nutze --help"; exit 3 ;;
-    esac
-  done
-}
+# ---------- parse-args ----------
+S_args="$(logfx_scope_begin "parse-args")"
+logfx_var "remote" "$REMOTE" "branch_arg" "$BRANCH" "strategy" "$STRATEGY" \
+         "with_tags" "$WITH_TAGS" "autostash" "$AUTOSTASH" \
+         "set_upstream" "$SET_UPSTREAM" "dry_run" "${DRY_RUN:-}" "no_color" "$NO_COLOR_FORCE"
+logfx_scope_end "$S_args" "ok"
 
-# Gatekeeper (Projekt .env ODER Bin-Repo ~/code/bin)
-gatekeeper() {
-  local bin_path="$HOME/code/bin"
-  command -v git >/dev/null 2>&1 || { echo "Fehler: git fehlt"; exit 4; }
+# ---------- Gatekeeper / Kontext ----------
+S_ctx="$(logfx_scope_begin "context-detect")"
+BIN_PATH="$HOME/code/bin"
+PWD_P="$(pwd -P)"
+MODE="unknown"
+REPO_ROOT=""
 
-  local GIT_ROOT
-  GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+command -v git >/dev/null 2>&1 || { echo "Fehler: git fehlt"; logfx_event "dependency" "missing" "git"; exit 4; }
+if command -v git-ctx >/dev/null 2>&1; then git-ctx ${NO_COLOR_FORCE:+--no-color} || true; fi
 
-  if [ -z "$GIT_ROOT" ]; then
-    if [ "$(pwd -P)" = "$bin_path" ]; then
-      if [ ! -d "$bin_path/.git" ]; then
-        local msg="Gatekeeper: ${bin_path} - Ist noch kein Git-Repo (git-init fehlt, oder in <project> ausführen)."
-        if [ "$DRY_RUN" = "yes" ]; then
-          [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
-          exit 0   # Dry-run: freundlich ohne roten Punkt
-        else
-          [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
-          exit 2
-        fi
-      fi
-      GIT_ROOT="$bin_path"
-    else
-      local msg="Gatekeeper: Kein Git-Repo."
-      [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
-      exit 2
-    fi
-  fi
-
-  if [ "$(pwd -P)" != "$GIT_ROOT" ]; then
-    local msg="Gatekeeper: Bitte aus Repo-Wurzel starten: $GIT_ROOT"
-    [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
+# Priorität: /bin → dann allgemeines Git-Repo
+if [ "$PWD_P" = "$BIN_PATH" ]; then
+  MODE="bin"
+  if [ ! -d "$BIN_PATH/.git" ]; then
+    msg="${BIN_PATH} - Ist noch kein Git-Repo (git-init fehlt, oder in <project> ausführen)"
+    [ -n "$BOLD" ] && printf "%sGatekeeper:%s %s%s%s\n" "$YEL$BOLD" "$RST" "$RED" "$msg" "$RST" || echo "Gatekeeper: $msg"
+    logfx_event "gatekeeper" "reason" "bin-no-git" "pwd" "$PWD_P"
     exit 2
   fi
-
-  if [ "$GIT_ROOT" = "$bin_path" ]; then
-    MODE="bin"; PROJ_NAME="bin"
-  else
+  REPO_ROOT="$BIN_PATH"
+else
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     MODE="project"
-    local ENV_FILE="$GIT_ROOT/.env"
-    if [ ! -f "$ENV_FILE" ]; then
-      local msg=".env fehlt"
-      [ -n "$BOLD" ] && printf "%sGatekeeper:%s %s\n" "$YEL$BOLD" "$RST" "$msg" || echo "Gatekeeper: $msg"
-      exit 2
-    fi
-    PROJ_NAME="$(grep -E '^[[:space:]]*PROJ_NAME[[:space:]]*=' "$ENV_FILE" | tail -1 | cut -d'=' -f2- | tr -d '[:space:]' || true)"
-    [ -n "$PROJ_NAME" ] || PROJ_NAME="$(grep -E '^[[:space:]]*PROJ-NAME[[:space:]]*=' "$ENV_FILE" | tail -1 | cut -d'=' -f2- | tr -d '[:space:]' || true)"
-    [ -n "$PROJ_NAME" ] || { [ -n "$BOLD" ] && printf "%sGatekeeper:%s PROJ_NAME fehlt/leer\n" "$YEL$BOLD" "$RST" || echo "Gatekeeper: PROJ_NAME fehlt/leer"; exit 2; }
+    REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+  else
+    [ -n "$BOLD" ] && printf "%sGatekeeper:%s Kein Git-Repo.\n" "$YEL$BOLD" "$RST" || echo "Gatekeeper: Kein Git-Repo."
+    logfx_event "gatekeeper" "reason" "no-repo" "pwd" "$PWD_P"
+    exit 2
   fi
-}
+fi
 
-# ----------------------------- main ------------------------------------------
-parse_args "$@"
-color_init
-log_init            # Debug-Datei garantiert angelegt
-gatekeeper          # prüft Kontext
+# Aus Repo-Wurzel ausführen
+if [ "$PWD_P" != "$REPO_ROOT" ]; then
+  msg="Bitte aus Repo-Wurzel starten: $REPO_ROOT"
+  [ -n "$BOLD" ] && printf "%sGatekeeper:%s %s\n" "$YEL$BOLD" "$RST" "$msg" || echo "Gatekeeper: $msg"
+  logfx_event "gatekeeper" "reason" "not-root" "repo_root" "$REPO_ROOT" "pwd" "$PWD_P"
+  exit 2
+fi
 
-# Branch/Remote bestimmen
-[ -n "$BRANCH" ] || BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
-[ -n "$BRANCH" ] || { echo "Fehler: Branch unbekannt"; exit 5; }
+# Projekt .env nur im project-Modus verlangen
+if [ "$MODE" = "project" ]; then
+  ENV_FILE="$REPO_ROOT/.env"
+  if [ ! -f "$ENV_FILE" ]; then
+    [ -n "$BOLD" ] && printf "%sGatekeeper:%s .env fehlt\n" "$YEL$BOLD" "$RST" || echo "Gatekeeper: .env fehlt"
+    logfx_event "gatekeeper" "reason" "env-missing" "repo_root" "$REPO_ROOT"
+    exit 2
+  fi
+fi
 
+logfx_var "mode" "$MODE" "repo_root" "$REPO_ROOT"
+logfx_scope_end "$S_ctx" "ok"
+
+# ---------- Prechecks ----------
+S_pre="$(logfx_scope_begin "prechecks")"
+
+# Branch bestimmen
+if [ -z "$BRANCH" ]; then
+  logfx_run "branch-name" -- git rev-parse --abbrev-ref HEAD
+  BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
+fi
+[ -n "$BRANCH" ] && [ "$BRANCH" != "HEAD" ] || { echo "Fehler: Branch unbekannt/detached HEAD"; logfx_event "precheck-fail" "reason" "no-branch"; logfx_scope_end "$S_pre" "fail"; exit 5; }
+logfx_var "branch" "$BRANCH"
+
+# Remote prüfen
 if ! git remote get-url "$REMOTE" >/dev/null 2>&1; then
-  if [ "$DRY_RUN" = "yes" ]; then
-    echo "WARN: Remote '$REMOTE' fehlt (dry-run: keine Ausführung)."
+  if [ "${DRY_RUN:-}" = "yes" ]; then
+    echo "WARN: Remote '$REMOTE' fehlt (dry-run)."
+    logfx_event "precheck-warn" "remote" "$REMOTE" "reason" "missing"
+    logfx_scope_end "$S_pre" "warn"
+    # Plan ohne fetch/pull/push
+    echo "PLAN  fetch:skip  pull:skip  push:skip  (remote fehlt)"
     exit 0
   else
-    echo "Fehler: Remote '$REMOTE' existiert nicht."; exit 5
+    echo "Fehler: Remote '$REMOTE' existiert nicht"
+    logfx_scope_end "$S_pre" "fail"
+    exit 5
   fi
 fi
 
-# Clean-Check (wenn kein autostash)
-if [ "$AUTO_STASH" = "no" ]; then
-  if ! git diff --quiet || ! git diff --cached --quiet; then
-    echo "Abbruch: uncommitted Änderungen. Nutze --autostash, wenn gewünscht."; exit 3
+# WT sauber?
+rc1=0 rc2=0
+if [ "$AUTOSTASH" = "no" ]; then
+  logfx_run "diff-unstaged" -- git diff --quiet || rc1=$?
+  logfx_run "diff-staged" -- git diff --cached --quiet || rc2=$?
+  if [ $rc1 -ne 0 ] || [ $rc2 -ne 0 ]; then
+    echo "Abbruch: Arbeitsverzeichnis hat uncommitted Änderungen. Nutze --autostash oder commit/stash."
+    logfx_event "precheck-fail" "reason" "dirty-wt" "rc_unstaged" "$rc1" "rc_staged" "$rc2"
+    logfx_scope_end "$S_pre" "fail"
+    exit 3
   fi
 fi
+logfx_var "autostash" "$AUTOSTASH"
+logfx_scope_end "$S_pre" "ok"
 
-# Dry-run Voransage
-if [ "$DRY_RUN" = "yes" ]; then
-  PULL_MODE="--ff-only"; [ "$USE_REBASE" = "yes" ] && PULL_MODE="--rebase"
-  echo "DRY-RUN: würde ausführen → git fetch; ggf. pull (${PULL_MODE}); ggf. push; with-tags=${WITH_TAGS}; autostash=${AUTO_STASH}"
-fi
+# ---------- Fetch ----------
+S_fetch="$(logfx_scope_begin "fetch")"
+FETCH_ARGS=(git fetch "$REMOTE" "$BRANCH")
+[ "$WITH_TAGS" = "yes" ] && FETCH_ARGS+=(--tags)
 
-# fetch
-FETCH_CMD=(git fetch "$REMOTE" "$BRANCH"); [ "$WITH_TAGS" = "yes" ] && FETCH_CMD+=(--tags)
-if [ "$DRY_RUN" = "yes" ]; then
-  printf "DRY-RUN: "; printf "%q " "${FETCH_CMD[@]}"; echo
+if [ "${DRY_RUN:-}" = "yes" ]; then
+  echo "DRY-RUN: ${FETCH_ARGS[*]}"
+  logfx_event "dry-plan" "fetch_cmd" "${FETCH_ARGS[*]}"
 else
-  set +e; "${FETCH_CMD[@]}"; rc=$?; set -e
-  [ $rc -eq 0 ] || { echo "Fehler: git fetch rc=$rc"; exit 5; }
+  logfx_run "git-fetch" -- "${FETCH_ARGS[@]}" || true
 fi
+logfx_scope_end "$S_fetch" "ok"
 
-# ahead/behind
-UPSTREAM="$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}" 2>/dev/null || true)"
-AHEAD=0; BEHIND=0
-if [ -n "$UPSTREAM" ]; then
-  LR="$(git rev-list --left-right --count "$UPSTREAM...HEAD" 2>/dev/null || true)"
-  if [ -n "$LR" ]; then
-    BEHIND="$(echo "$LR" | awk '{print $1}')"
-    AHEAD="$(echo "$LR" | awk '{print $2}')"
+# ---------- Analyse ahead/behind ----------
+S_an="$(logfx_scope_begin "analyze")"
+REMOTE_REF="refs/remotes/$REMOTE/$BRANCH"
+ahead="n/a"; behind="n/a"
+if git rev-parse --verify --quiet "$REMOTE_REF" >/dev/null 2>&1; then
+  # X (behind) Y (ahead)
+  set +e
+  cts="$(git rev-list --left-right --count "${REMOTE}/${BRANCH}...HEAD" 2>/dev/null)"
+  rc=$?
+  set -e
+  if [ $rc -eq 0 ]; then
+    behind="${cts%%	*}"; behind="${behind%% *}"
+    ahead="${cts##*	}"; ahead="${ahead##* }"
+  fi
+fi
+logfx_var "ahead" "$ahead" "behind" "$behind" "remote_ref" "$REMOTE/$BRANCH"
+logfx_scope_end "$S_an" "ok"
+
+# ---------- Pull (falls nötig) ----------
+S_pull="$(logfx_scope_begin "pull")"
+DID_STASH="no"; STASH_MSG=""
+if [ "$AUTOSTASH" = "yes" ] && [ "${DRY_RUN:-}" != "yes" ]; then
+  # nur wenn wirklich dirty:
+  set +e; git diff --quiet; rcA=$?; git diff --cached --quiet; rcB=$?; set -e
+  if [ $rcA -ne 0 ] || [ $rcB -ne 0 ]; then
+    STASH_MSG="git-sync autostash $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    logfx_run "stash-push" -- git stash push --include-untracked --message "$STASH_MSG"
+    DID_STASH="yes"
   fi
 fi
 
-# pull (falls behind)
-STASH_NAME=""
-if [ -n "$UPSTREAM" ] && [ "${BEHIND:-0}" -gt 0 ]; then
-  if [ "$AUTO_STASH" = "yes" ]; then
-    STASH_NAME="git-sync autostash $(date +%Y%m%d-%H%M%S)"
-    if [ "$DRY_RUN" = "yes" ]; then
-      echo "DRY-RUN: git stash push -u -m \"$STASH_NAME\""
-    else
-      git stash push -u -m "$STASH_NAME" >/dev/null || true
-    fi
-  fi
-
-  PULL_CMD=(git pull "$REMOTE" "$BRANCH"); [ "$USE_REBASE" = "yes" ] && PULL_CMD+=(--rebase) || PULL_CMD+=(--ff-only); [ "$WITH_TAGS" = "yes" ] && PULL_CMD+=(--tags)
-  if [ "$DRY_RUN" = "yes" ]; then
-    printf "DRY-RUN: "; printf "%q " "${PULL_CMD[@]}"; echo
+if [ "$behind" != "n/a" ] && [ "$behind" -gt 0 ]; then
+  PULL_CMD=(git pull "$REMOTE" "$BRANCH")
+  if [ "$STRATEGY" = "rebase" ]; then PULL_CMD+=(--rebase); else PULL_CMD+=(--ff-only); fi
+  if [ "${DRY_RUN:-}" = "yes" ]; then
+    echo "DRY-RUN: ${PULL_CMD[*]}"
+    logfx_event "dry-plan" "pull_cmd" "${PULL_CMD[*]}"
   else
-    set +e; "${PULL_CMD[@]}"; rc=$?; set -e
-    if [ $rc -ne 0 ]; then
+    if logfx_run "git-pull" -- "${PULL_CMD[@]}"; then
+      echo "OK: Pull ($STRATEGY) durchgeführt."
+    else
+      rc=$?
       echo "Fehler: git pull rc=$rc"
-      if [ -n "$STASH_NAME" ] && git stash list | grep -q "$STASH_NAME"; then echo "Hinweis: Änderungen liegen im Stash."; fi
+      logfx_scope_end "$S_pull" "fail" "rc" "$rc"
       exit 5
     fi
   fi
+else
+  echo "INFO: Kein Pull nötig (behind=$behind)."
+fi
+logfx_scope_end "$S_pull" "ok"
 
-  if [ -n "$STASH_NAME" ]; then
-    if [ "$DRY_RUN" = "yes" ]; then
-      echo "DRY-RUN: git stash list | grep \"$STASH_NAME\" && git stash pop --index"
+# ---------- Push (falls nötig) ----------
+S_push="$(logfx_scope_begin "push")"
+# Upstream prüfen
+UPSTREAM_REF="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || true)"
+UPSTREAM_SET="no"; [ -n "$UPSTREAM_REF" ] && UPSTREAM_SET="yes"
+logfx_var "upstream_set" "$UPSTREAM_SET" "upstream_ref" "${UPSTREAM_REF:-}"
+
+if [ "$ahead" != "n/a" ] && [ "$ahead" -gt 0 ]; then
+  PUSH_ARGS=(git push)
+  [ "$WITH_TAGS" = "yes" ] && PUSH_ARGS+=(--tags)
+  if [ "$UPSTREAM_SET" = "no" ]; then
+    case "$SET_UPSTREAM" in
+      yes)   PUSH_ARGS+=(-u "$REMOTE" "$BRANCH") ;;
+      no)    PUSH_ARGS+=("$REMOTE" "$BRANCH") ;;
+      auto)  PUSH_ARGS+=(-u "$REMOTE" "$BRANCH") ;;
+    esac
+  else
+    PUSH_ARGS+=("$REMOTE" "$BRANCH")
+  fi
+
+  if [ "${DRY_RUN:-}" = "yes" ]; then
+    echo "DRY-RUN: ${PUSH_ARGS[*]}"
+    logfx_event "dry-plan" "push_cmd" "${PUSH_ARGS[*]}"
+  else
+    if logfx_run "git-push" -- "${PUSH_ARGS[@]}"; then
+      echo "OK: Push durchgeführt."
     else
-      if git stash list | grep -q "$STASH_NAME"; then git stash pop --index || true; fi
+      rc=$?
+      echo "Fehler: git push rc=$rc"
+      logfx_scope_end "$S_push" "fail" "rc" "$rc"
+      # ggf. Autostash zurückholen bevor wir beenden
+      if [ "$DID_STASH" = "yes" ]; then logfx_run "stash-pop" -- git stash pop --index || true; fi
+      exit 5
     fi
   fi
-fi
-
-# nach Pull neu rechnen
-if [ -n "$UPSTREAM" ]; then
-  LR2="$(git rev-list --left-right --count "$UPSTREAM...HEAD" 2>/dev/null || true)"
-  if [ -n "$LR2" ]; then
-    BEHIND="$(echo "$LR2" | awk '{print $1}')"
-    AHEAD="$(echo "$LR2" | awk '{print $2}')"
-  fi
-fi
-
-# push (optional)
-if [ "$DO_PUSH" = "yes" ] && [ "${AHEAD:-0}" -gt 0 ]; then
-  if ! git diff --quiet || ! git diff --cached --quiet; then
-    echo "Abbruch: Arbeitsverzeichnis nicht clean. Push abgelehnt."; exit 3
-  fi
-  PUSH_CMD=(git push "$REMOTE" "$BRANCH"); [ "$WITH_TAGS" = "yes" ] && PUSH_CMD+=(--tags)
-  if [ "$DRY_RUN" = "yes" ]; then
-    printf "DRY-RUN: "; printf "%q " "${PUSH_CMD[@]}"; echo
-  else
-    set +e; "${PUSH_CMD[@]}"; rc=$?; set -e
-    [ $rc -eq 0 ] || { echo "Fehler: git push rc=$rc"; exit 5; }
-  fi
-fi
-
-# summary
-if [ -n "$BOLD" ]; then
-  printf "%sSYNC%s  %sBranch%s: %s%s%s  %sAhead%s:%s %s  %sBehind%s:%s %s  %sRemote%s: %s%s%s\n" \
-    "$BOLD" "$RST" "$BOLD" "$RST" "$YEL" "$BRANCH" "$RST" \
-    "$BOLD" "$RST" "$GRN" "${AHEAD:-0}" \
-    "$BOLD" "$RST" "$RED"  "${BEHIND:-0}" \
-    "$BOLD" "$RST" "$BLU" "$REMOTE/$BRANCH" "$RST"
 else
-  echo "SYNC  Branch: $BRANCH  Ahead: ${AHEAD:-0}  Behind: ${BEHIND:-0}  Remote: $REMOTE/$BRANCH"
+  echo "INFO: Kein Push nötig (ahead=$ahead)."
 fi
+
+# Autostash zurückholen (best effort)
+if [ "$DID_STASH" = "yes" ] && [ "${DRY_RUN:-}" != "yes" ]; then
+  logfx_run "stash-pop" -- git stash pop --index || true
+fi
+
+logfx_scope_end "$S_push" "ok"
+
+# ---------- Summary ----------
+echo "SYNC  Branch: $BRANCH  Ahead: $ahead  Behind: $behind  Remote: $REMOTE/$BRANCH"
 exit 0

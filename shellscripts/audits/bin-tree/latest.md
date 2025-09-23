@@ -1,0 +1,206 @@
+# Audit `bin-tree` — 2025-09-22 22:54:13 CEST
+## /home/gunreip/code/bin/shellscripts/bin-tree.sh - v0.5.0 {#bin-tree-subheader}
+- **bin/** 📁 *(NEU! Root des bin-Repos mit Symlinks/Tools; Arbeitsbasis für alle Shell-Skripte.)*
+  - *.gitignore*
+  - *_sh-chmod*
+  - … 3 weitere Datei(en)
+  - **docs/** 📁 *(Enthält projektbegleitende Dokumente, die nicht direkt Teil der Shellscripts sind.)*
+    - *Nächste Git-Skripte (Vorschläge).md*
+    - *comment-bin-tree.txt*
+    - … 1 weitere Datei(en)
+    - **charters/** 📁 *(Projekt-Charter und Leitplanken (historisch versioniert).)*
+      - *charter-scripting-2025-09-21.md*
+      - *comment-bin-tree.txt*
+  - **shellscripts/** 📁 *(**Hauptordner** für alle Shell-Skripte. Die zugehörigen Symlinks zum Aufruf liegen direkt in `/bin/<root>`.)*
+    - *_sh-chmod.sh*
+    - *_sh-logger-inject.sh*
+    - … 17 weitere Datei(en)
+    - **audits/** 📁 *(In diesem Ordner ist die Zentrale Ablage aller Audit-Artefakte, die von den Skripten erzeugt werden.)*
+      - *comment-bin-tree.txt*
+      - **audit-shellscripts/** 📁 *(Audit-Artefakte des Skripts audit-shellscripts: listet alle Skripte kategorisiert auf (Ausgaben in `MD`/`HTML`/`JSONL`).)*
+        - *audit-shellscripts.css*
+        - *comment-bin-tree.txt*
+        - … 3 weitere Datei(en)
+      - **bin-tree/** 📁 *(Audit-Artefakte des Skripts: `bin-tree` (`MD`/`HTML`/`JSONL`).)*
+        - *bin-tree.css*
+        - *comment-bin-tree.txt*
+        - … 3 weitere Datei(en)
+      - **git-branch-restore/** 📁 *(Audit-Artefakte von `git-branch-restore` (`MD`/`HTML`/`JSONL`).)*
+        - *comment-bin-tree.txt*
+        - **bin/** 📁 *(Maschinell lesbare Zwischen-/Ergebnisdateien (z. B. Jahresordner).)*
+          - *comment-bin-tree.txt*
+      - **git-branch-rm/** 📁 *(Audit-Artefakte von `git-branch-rm` (`MD`/`HTML`/`JSONL`).)*
+        - *comment-bin-tree.txt*
+        - **bin/** 📁 *(Maschinell lesbare Zwischen-/Ergebnisdateien (z. B. `deletions.YYYY-MM.jsonl`).)*
+          - *comment-bin-tree.txt*
+          - *deletions.2025-09.jsonl*
+      - **git-feature/** 📁 *(Audit-Artefakte von `git-feature` (`MD`/`HTML`/`JSONL`).)*
+        - *comment-bin-tree.txt*
+        - **bin/** 📁 *(Aggregierte, maschinenlesbare Monats-/Jahresdaten.)*
+          - *comment-bin-tree.txt*
+          - **2025/** 📁 *(Monatsübersichten; Jahresweise → z. B. `2025` respektive Monatsweise (z. B. `2025-09.jsonl`).)*
+            - *2025-09.jsonl*
+            - *comment-bin-tree.txt*
+    - **backups/** 📁 *(In diesem Zentralen Verzeichnis Ablage aller automatisch erzeugten Script-Backups: `/backups/<script-id>/<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+      - *comment-bin-tree.txt*
+      - **_sh-chmod/** 📁 *(Backups des Skripts: `_sh-chmod.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+      - **_sh-logger-inject/** 📁 *(Backups des Skripts: `_sh-logger-inject.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-check.sh.20250920-182329.bak*
+      - **audit-shellscripts/** 📁 *(Backups des Skripts: `audit-shellscripts.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *audit-shellscripts-20250921-144024.bak*
+        - *audit-shellscripts-20250922-122527.bak*
+        - … 5 weitere Datei(en)
+      - **bin-tree/** 📁 *(Backups des Skripts: `bin-tree.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *bin-tree-20250921-221741.bak*
+        - *bin-tree-20250921-222208.bak*
+        - … 18 weitere Datei(en)
+      - **branches/** 📁 *(Enthält Bundles gelöschter Git-Branches (Aufbewahrung standardmäßig 120 Tage).)*
+        - *comment-bin-tree.txt*
+        - **bin/** 📁 *(Backups des Skripts: `bin.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+          - *comment-bin-tree.txt*
+          - *feat-robust-test-2.20250920-055000.bundle*
+          - … 1 weitere Datei(en)
+      - **git-audit-read/** 📁 *(Backups des Skripts: `git-audit-read.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-audit-read.20250920-100220.bak*
+        - … 9 weitere Datei(en)
+      - **git-branch-restore/** 📁 *(Backups des Skripts: `git-branch-restore.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-branch-restore.sh.20250921-085333.bak*
+        - … 1 weitere Datei(en)
+      - **git-branch-rm/** 📁 *(Backups des Skripts: `git-branch-rm.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-branch-rm.sh.20250919-154121.bak*
+        - … 12 weitere Datei(en)
+      - **git-check/** 📁 *(Backups des Skripts: `git-check.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-check.sh.20250919-134821.bak*
+        - … 3 weitere Datei(en)
+      - **git-ctx/** 📁 *(Backups des Skripts: `git-ctx.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-ctx.sh.20250920-040802.bak*
+        - … 2 weitere Datei(en)
+      - **git-feature/** 📁 *(Backups des Skripts: `git-feature.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-feature-20250921-181505.bak*
+        - … 10 weitere Datei(en)
+      - **git-init/** 📁 *(Backups des Skripts: `git-init.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-init.sh.20250919-135122.bak*
+        - … 4 weitere Datei(en)
+      - **git-pull/** 📁 *(Backups des Skripts: `git-pull.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-pull-20250917-200540.bak*
+        - … 14 weitere Datei(en)
+      - **git-push/** 📁 *(Backups des Skripts: `git-push.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-push-20250917-193602.bak*
+        - … 16 weitere Datei(en)
+      - **git-state/** 📁 *(Backups des Skripts: `git-state.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-state.sh.20250921-105524.bak*
+        - … 1 weitere Datei(en)
+      - **git-sync/** 📁 *(Backups des Skripts: `git-sync.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *git-sync.sh.20250918-162413.bak*
+        - … 9 weitere Datei(en)
+      - **logfx/** 📁 *(Backups des Skripts: `logfx.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *logfx.sh.20250921-055538.bak*
+      - **prompt-starship/** 📁 *(Backups des Skripts: `prompt-starship.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *prompt-starship.sh.20250919-074529.bak*
+      - **runs-prune/** 📁 *(Backups des Skripts: `runs-prune.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
+        - *comment-bin-tree.txt*
+        - *runs-prune.sh.20250920-072251.bak*
+        - … 1 weitere Datei(en)
+    - **debugs/** 📁 *(Zentrale Ablage für Debug-/Trace-Dateien (`*.dbg.*|*.trace.*|*.xtrace.*`). Struktur angelehnt an `backups/`.)*
+      - *comment-bin-tree.txt*
+      - *shellcheck.jsonl*
+      - **git-audit-read/** 📁 *(Debug/Trace-Logs von `git-audit-read.sh` → `git-audit-read.dbg.<ts>` | `git-audit-read.trace.<ts>` | `git-audit-read.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-audit-read.trace.20250920-131800.jsonl*
+        - … 11 weitere Datei(en)
+      - **git-branch-restore/** 📁 *(Debug/Trace-Logs von `git-branch-restore.sh` → `git-branch-restore.dbg.<ts>` | `git-branch-restore.trace.<ts>` | `git-branch-restore.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-branch-restore.trace.20250921-105354.jsonl*
+        - … 7 weitere Datei(en)
+      - **git-branch-rm/** 📁 *(Debug/Trace-Logs von `git-branch-rm.sh` → `git-branch-rm.dbg.<ts>` | `git-branch-rm.trace.<ts>` | `git-branch-rm.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-branch-rm.trace.20250921-115624.jsonl*
+        - … 2 weitere Datei(en)
+      - **git-check/** 📁 *(Debug/Trace-Logs von `git-check.sh` → `git-check.dbg.<ts>` | `git-check.trace.<ts>` | `git-check.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-check.dbg.20250920-203026.jsonl*
+        - … 12 weitere Datei(en)
+      - **git-ctx/** 📁 *(Debug/Trace-Logs von `git-ctx.sh` → `git-ctx.dbg.<ts>` | `git-ctx.trace.<ts>` | `git-ctx.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-ctx.off.20250921-120321.jsonl*
+        - … 13 weitere Datei(en)
+      - **git-feature/** 📁 *(Debug/Trace-Logs von `git-feature.sh` → `git-feature.dbg.<ts>` | `git-feature.trace.<ts>` | `git-feature.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-feature.dbg.20250921-182049.jsonl*
+        - … 37 weitere Datei(en)
+      - **git-init/** 📁 *(Debug/Trace-Logs von `git-init.sh` → `git-init.dbg.<ts>` | `git-init.trace.<ts>` | `git-init.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-init.trace.20250919-162445.jsonl*
+        - … 1 weitere Datei(en)
+      - **git-pull/** 📁 *(Debug/Trace-Logs von `git-pull.sh` → `git-pull.dbg.<ts>` | `git-pull.trace.<ts>` | `git-pull.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-pull.trace.20250921-080657.jsonl*
+        - … 7 weitere Datei(en)
+        - **git-branch-restore/** 📁 *(Debug/Trace-Logs von `git-branch-restore.sh` → `git-branch-restore.dbg.<ts>` | `git-branch-restore.trace.<ts>` | `git-branch-restore.xtrace.<ts>`.)*
+          - *comment-bin-tree.txt*
+          - *git-branch-restore.trace.20250920-063139.jsonl*
+          - … 1 weitere Datei(en)
+      - **git-push/** 📁 *(Debug/Trace-Logs von `git-push.sh` → `git-push.dbg.<ts>` | `git-push.trace.<ts>` | `git-push.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-push.trace.20250921-102057.jsonl*
+        - … 3 weitere Datei(en)
+      - **git-state/** 📁 *(Debug/Trace-Logs von `git-state.sh` → `git-state.dbg.<ts>` | `git-state.trace.<ts>` | `git-state.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-state.trace.20250921-125540.jsonl*
+        - … 11 weitere Datei(en)
+      - **git-sync/** 📁 *(Debug/Trace-Logs von `git-sync.sh` → `git-sync.dbg.<ts>` | `git-sync.trace.<ts>` | `git-sync.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *git-sync.trace.20250921-103332.jsonl*
+        - … 5 weitere Datei(en)
+      - **runs-prune/** 📁 *(Debug/Trace-Logs von `runs-prune.sh` → `runs-prune.dbg.<ts>` | `runs-prune.trace.<ts>` | `runs-prune.xtrace.<ts>`.)*
+        - *comment-bin-tree.txt*
+        - *runs-prune.trace.20250921-131107.jsonl*
+        - … 3 weitere Datei(en)
+    - **lib/** 📁 *(Geteilte Bibliotheken/Helper (von mehreren Skripten eingebunden).)*
+      - *comment-bin-tree.txt*
+      - *logfx.sh*
+    - **runs/** 📁 *(Laufzeit-Artefakte/Run-Ergebnisse (maschinenlesbar).)*
+      - *comment-bin-tree.txt*
+      - **bin/** 📁 *(Run-Ergebnisse je Tool unterhalb von 'bin/' gruppiert.)*
+        - *comment-bin-tree.txt*
+        - **git-feature/** 📁 *(Run-Ergebnis-Snapshots für `git-feature.sh` (z. B. `latest.json`).)*
+          - *comment-bin-tree.txt*
+          - *latest.json*
+    - **wiki/** 📁 *(Projektinterne Doku/Handbuchseiten (exportfähig).)*
+      - *bin-tree.md*
+      - *comment-bin-tree.txt*
+  - **templates/** 📁 *(Vorlagen und Skelett-Dateien für wiederkehrende Setups.)*
+    - *comment-bin-tree.txt*
+    - **gitignore/** 📁 *('.gitignore'-Vorlagen für unterschiedliche Projekt-Typen.)*
+      - *bin.gitignore*
+      - *comment-bin-tree.txt*
+      - … 1 weitere Datei(en)
+  - **trash/** 📁 *(Quarantäne/temporäre Ablage für gelöschte/abgeräumte Artefakte.)*
+    - *comment-bin-tree.txt*
+    - **debug/** 📁 *(Aus Debug-Rotation ausgelagerte Dateien (Kurzzeit-Aufbewahrung).)*
+      - *comment-bin-tree.txt*
+      - **git-audit-read/** 📁 *(Auslagerungen für git-audit-read (Debug/Trace-Altlasten).)*
+        - *comment-bin-tree.txt*
+        - *git-audit-read.trace.20250920-094018.jsonl*
+        - … 26 weitere Datei(en)
+
+## Summary
+- total_dirs: **59**
+- total_files: **377**
+- total_files_listed: **104**
+- total_files_more: **273**

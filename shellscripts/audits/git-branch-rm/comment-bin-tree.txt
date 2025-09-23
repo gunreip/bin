@@ -1,0 +1,1 @@
+Audit-Artefakte von `git-branch-rm` (`MD`/`HTML`/`JSONL`).

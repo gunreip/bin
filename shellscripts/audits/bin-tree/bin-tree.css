@@ -1,0 +1,89 @@
+/* code/bin/shellscripts/audits/bin-tree/bin-tree.css */
+body {
+    font-family: Figtree,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+    background-color: #030712f2;
+    margin: 2rem;
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+h1 {
+    --tw-text-opacity: 1;
+    border-bottom: 2px rgb(239 68 68 / var(--tw-text-opacity));
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+    padding-left: 3rem;
+}
+h1 code {
+    font-size: 2.08rem;
+}
+h2#bin-tree-subheader {
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+    font-size: 1.0rem;
+    font-style: italic;
+    font-weight: 500;
+}
+h2#summary {
+    border-top: 1px solid gray;
+    padding-top: 1rem;
+}
+h2, h3 , ul {
+    padding-left: 3rem;
+}
+h2#summary + ul li {
+    width: 14rem;
+    display: flex;
+    align-items: baseline;
+    gap: .5rem
+}
+h2#summary + ul li > strong {
+    margin-left: auto;
+    /* schiebt nach rechts */
+    text-align: right;
+    /* Zahl rechtsbündig */
+    font-variant-numeric: tabular-nums;
+    /* saubere Ziffernausrichtung */
+    min-width: 3ch;
+    /* optionale Spaltenbreite für Zahlen */
+}
+ul li:first-child {
+    list-style-type: none;
+}
+
+ul li ul li {
+    list-style-type: none;
+}
+ul li ul li {
+    position: relative;
+    line-height: 2rem;;
+    --tw-text-opacity: 20%;
+}
+ul li ul li::before {
+    position: absolute;
+    left: -30px;
+    top: 0px;
+    border-left: 2px solid #0060df;
+    border-bottom: 2px solid #0060df;
+    content: "";
+    width: 1.2rem;
+    height: 1rem;
+}
+ul li ul li::after {
+    position: absolute;
+    left: -30px;
+    bottom: 0px;
+    border-left: 2px solid #0060df;
+    content: "";
+    width: 1.2rem;
+    height: 100%;
+}
+ul li ul li:last-child::after {
+    display: none;
+}
+span.comment {
+    color: #26C6DA;
+    margin: 3rem;
+}
+em > code {
+    font-size: 1.04rem;
+    color: #AB47BC;
+}

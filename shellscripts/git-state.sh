@@ -1,22 +1,34 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
 # git-state — kompaktes Repo-Status-Overview (read-only)
-# Version: v0.1.0
+# Version: v0.3.1
 # -----------------------------------------------------------------------------
 set -euo pipefail
 IFS=$'\n\t'
 
+: "${LOG_LEVEL:=trace}"      # off|dbg|trace|xtrace
+# shellcheck source=/dev/null
+. "$HOME/code/bin/shellscripts/lib/logfx.sh"
+
 SCRIPT_ID="git-state"
-SCRIPT_VERSION="v0.1.0"
-DEBUG_DIR="${HOME}/code/bin/shellscripts/debugs/${SCRIPT_ID}"
+SCRIPT_VERSION="v0.3.1"
 
-# Defaults (Testphase)
-LOG_LEVEL="trace"       # überschreibbar via --debug=dbg|trace
-DRY_RUN="no"
 NO_COLOR_FORCE="no"
-MODE_OUT="long"         # summary-only | long | porcelain
+MODE_OUT="long"         # summary|long|porcelain|json
+REMOTE_NAME="origin"
+DO_REFRESH="no"
 
-# Farben
+usage(){
+  cat <<H
+$SCRIPT_ID $SCRIPT_VERSION
+
+Usage:
+  git-state [--summary-only | --long | --porcelain | --json]
+            [--remote=<name>] [--refresh] [--no-color]
+            [--debug=dbg|trace|xtrace] [--help] [--version]
+H
+}
+
 BOLD=""; YEL=""; GRN=""; RED=""; BLU=""; RST=""
 color_init() {
   if [ "$NO_COLOR_FORCE" = "yes" ] || [ -n "${NO_COLOR:-}" ] || [ ! -t 1 ]; then
@@ -26,184 +38,185 @@ color_init() {
   fi
 }
 
-# Logging
-ts() { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
-dbg_path() { printf '%s/%s.%s.%s.jsonl\n' "$DEBUG_DIR" "$SCRIPT_ID" "$LOG_LEVEL" "$(date +%Y%m%d-%H%M%S)"; }
-
-LOG_PATH=""
-log_init() {
-  mkdir -p "$DEBUG_DIR"
-  LOG_PATH="$(dbg_path)"
-  : > "$LOG_PATH"
-  printf '{"ts":"%s","script":"%s","level":"%s","event":"boot","msg":"start"}\n' "$(ts)" "$SCRIPT_ID" "$LOG_LEVEL" >> "$LOG_PATH"
-  if [ "$DRY_RUN" = "yes" ]; then
-    if [ -n "$BOLD" ]; then printf "%sDEBUG%s %s(dry-run)%s: %s%s%s\n" "$YEL$BOLD" "$RST" "$GRN" "$RST" "$RED" "$LOG_PATH" "$RST"; else echo "DEBUG (dry-run): $LOG_PATH"; fi
-  else
-    if [ -n "$BOLD" ]; then printf "%sDEBUG%s: %s%s%s\n" "$YEL$BOLD" "$RST" "$RED" "$LOG_PATH" "$RST"; else echo "DEBUG: $LOG_PATH"; fi
-  fi
-}
-
-# Args
 for arg in "$@"; do
   case "$arg" in
-    --help)    echo "$SCRIPT_ID $SCRIPT_VERSION"; exit 0 ;;
+    --help)    usage; exit 0 ;;
     --version) echo "$SCRIPT_ID $SCRIPT_VERSION"; exit 0 ;;
-    --dry-run) DRY_RUN="yes" ;;
-    --debug=*) LOG_LEVEL="${arg#*=}" ;;
     --no-color) NO_COLOR_FORCE="yes" ;;
+    --debug=dbg)    LOG_LEVEL="dbg" ;;
+    --debug=trace)  LOG_LEVEL="trace" ;;
+    --debug=xtrace) LOG_LEVEL="xtrace" ;;
     --summary-only) MODE_OUT="summary" ;;
-    --long) MODE_OUT="long" ;;
-    --porcelain) MODE_OUT="porcelain" ;;
-    --project=*) : ;;  # No-Op (Altlast)
+    --long)         MODE_OUT="long" ;;
+    --porcelain)    MODE_OUT="porcelain" ;;
+    --json)         MODE_OUT="json" ;;
+    --remote=*)     REMOTE_NAME="${arg#*=}" ;;
+    --refresh)      DO_REFRESH="yes" ;;
+    --project=*) : ;; # Altlast
     *) echo "Unbekannte Option: $arg"; echo "Nutze --help"; exit 3 ;;
   esac
 done
 
-color_init; log_init
+color_init
+logfx_init "$SCRIPT_ID" "$LOG_LEVEL"
+[ "$LOG_LEVEL" = "xtrace" ] && logfx_xtrace_on || true
 
-# Gatekeeper (Projekt .env ODER Bin-Repo ~/code/bin)
-gatekeeper() {
-  local bin_path="$HOME/code/bin"
-  command -v git >/dev/null 2>&1 || { echo "Fehler: git fehlt"; exit 4; }
+# ---------- Gatekeeper / Kontext ----------
+S_ctx="$(logfx_scope_begin "context-detect")"
+BIN_PATH="$HOME/code/bin"
+PWD_P="$(pwd -P)"
+MODE="unknown"
+REPO_ROOT=""
 
-  local GIT_ROOT
-  GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+command -v git >/dev/null 2>&1 || { echo "Fehler: git fehlt"; logfx_event "dependency" "missing" "git"; exit 4; }
 
-  if [ -z "$GIT_ROOT" ]; then
-    if [ "$(pwd -P)" = "$bin_path" ]; then
-      if [ ! -d "$bin_path/.git" ]; then
-        local msg="Gatekeeper: ${bin_path} - Ist noch kein Git-Repo (git-init fehlt, oder in <project> ausführen)."
-        if [ "$DRY_RUN" = "yes" ]; then
-          [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
-          exit 0
-        else
-          [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
-          exit 2
-        fi
-      fi
-      GIT_ROOT="$bin_path"
-    else
-      local msg="Gatekeeper: Kein Git-Repo."
-      [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
-      exit 2
-    fi
-  fi
-
-  if [ "$(pwd -P)" != "$GIT_ROOT" ]; then
-    local msg="Gatekeeper: Bitte aus Repo-Wurzel starten: $GIT_ROOT"
-    [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
+if [ "$PWD_P" = "$BIN_PATH" ]; then
+  MODE="bin"
+  if [ ! -d "$BIN_PATH/.git" ]; then
+    msg="${BIN_PATH} - Ist noch kein Git-Repo (git-init fehlt, oder in <project> ausführen)"
+    [ -n "$BOLD" ] && printf "%sGatekeeper:%s %s%s%s\n" "$YEL$BOLD" "$RST" "$RED" "$msg" "$RST" || echo "Gatekeeper: $msg"
+    logfx_event "gatekeeper" "reason" "bin-no-git" "pwd" "$PWD_P"
     exit 2
   fi
-
-  MODE="bin"; PROJ_NAME="bin"; APP_NAME=""
-  if [ "$GIT_ROOT" != "$bin_path" ]; then
+  REPO_ROOT="$BIN_PATH"
+else
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     MODE="project"
-    local ENV_FILE="$GIT_ROOT/.env"
-    if [ ! -f "$ENV_FILE" ]; then
-      local msg="Gatekeeper: .env fehlt"
-      [ -n "$BOLD" ] && printf "%s%s%s\n" "$YEL$BOLD" "$msg" "$RST" || echo "$msg"
-      exit 2
-    fi
-    # PROJ_NAME (Pflicht in Project-Mode)
-    PROJ_NAME="$(grep -E '^[[:space:]]*PROJ_NAME[[:space:]]*=' "$ENV_FILE" | tail -1 | cut -d'=' -f2- | tr -d '[:space:]' | tr -d '"' || true)"
-    [ -n "$PROJ_NAME" ] || PROJ_NAME="$(grep -E '^[[:space:]]*PROJ-NAME[[:space:]]*=' "$ENV_FILE" | tail -1 | cut -d'=' -f2- | tr -d '[:space:]' | tr -d '"' || true)"
-    [ -n "$PROJ_NAME" ] || { [ -n "$BOLD" ] && printf "%sGatekeeper:%s PROJ_NAME fehlt/leer\n" "$YEL$BOLD" "$RST" || echo "Gatekeeper: PROJ_NAME fehlt/leer"; exit 2; }
-    # APP_NAME (optional)
-    APP_NAME="$(grep -E '^[[:space:]]*APP_NAME[[:space:]]*=' "$ENV_FILE" | tail -1 | cut -d'=' -f2- | sed 's/^["'\'']//; s/["'\'']$//' | tr -d '\r' || true)"
-  fi
-
-  REPO_ROOT="$GIT_ROOT"
-}
-
-gatekeeper
-
-# Status sammeln
-BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
-UPSTREAM="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || true)"
-REMOTE="origin"
-REMOTE_URL="$(git remote get-url "$REMOTE" 2>/dev/null || true)"
-
-AHEAD="n/a"; BEHIND="n/a"
-if [ -n "$UPSTREAM" ]; then
-  LR="$(git rev-list --left-right --count "$UPSTREAM...HEAD" 2>/dev/null || true)"
-  if [ -n "$LR" ]; then
-    BEHIND="$(echo "$LR" | awk '{print $1}')"
-    AHEAD="$(echo "$LR" | awk '{print $2}')"
-  fi
-fi
-
-# Porcelain auswerten
-staged=0; unstaged=0; untracked=0; conflicts=0
-while IFS= read -r line; do
-  code="${line:0:2}"
-  x="${code:0:1}"; y="${code:1:1}"
-  if [ "$code" = "??" ]; then
-    untracked=$((untracked+1))
+    REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
   else
-    [ "$x" != " " ] && staged=$((staged+1))
-    [ "$y" != " " ] && unstaged=$((unstaged+1))
-    case "$code" in
-      UU|DD|AA|U?|?U) conflicts=$((conflicts+1)) ;;
-    esac
+    [ -n "$BOLD" ] && printf "%sGatekeeper:%s Kein Git-Repo.\n" "$YEL$BOLD" "$RST" || echo "Gatekeeper: Kein Git-Repo."
+    logfx_event "gatekeeper" "reason" "no-repo" "pwd" "$PWD_P"
+    exit 2
   fi
-done < <(git status --porcelain 2>/dev/null || true)
-
-CLEAN="yes"
-if [ "$staged" -ne 0 ] || [ "$unstaged" -ne 0 ] || [ "$untracked" -ne 0 ] || [ "$conflicts" -ne 0 ]; then
-  CLEAN="no"
 fi
 
-TAGS_TOTAL="$(git tag -l 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)"
+if [ "$PWD_P" != "$REPO_ROOT" ]; then
+  msg="Bitte aus Repo-Wurzel starten: $REPO_ROOT"
+  [ -n "$BOLD" ] && printf "%sGatekeeper:%s %s\n" "$YEL$BOLD" "$RST" "$msg" || echo "Gatekeeper: $msg"
+  logfx_event "gatekeeper" "reason" "not-root" "repo_root" "$REPO_ROOT" "pwd" "$PWD_P"
+  exit 2
+fi
 
-# Ausgabe
+PROJ_NAME=""; APP_NAME=""
+if [ "$MODE" = "project" ]; then
+  ENV_FILE="$REPO_ROOT/.env"
+  if [ ! -f "$ENV_FILE" ]; then
+    [ -n "$BOLD" ] && printf "%sGatekeeper:%s .env fehlt\n" "$YEL$BOLD" "$RST" || echo "Gatekeeper: .env fehlt"
+    logfx_event "gatekeeper" "reason" "env-missing" "repo_root" "$REPO_ROOT"
+    exit 2
+  fi
+  PROJ_NAME="$(grep -E '^[[:space:]]*PROJ_NAME[[:space:]]*=' "$ENV_FILE" | tail -1 | cut -d'=' -f2- | sed 's/^["'\'']//; s/["'\'']$//' | tr -d '\r' || true)"
+  [ -z "$PROJ_NAME" ] && PROJ_NAME="$(grep -E '^[[:space:]]*PROJ-NAME[[:space:]]*=' "$ENV_FILE" | tail -1 | cut -d'=' -f2- | sed 's/^["'\'']//; s/["'\'']$//' | tr -d '\r' || true)"
+  APP_NAME="$(grep -E '^[[:space:]]*APP_NAME[[:space:]]*=' "$ENV_FILE" | tail -1 | cut -d'=' -f2- | sed 's/^["'\'']//; s/["'\'']$//' | tr -d '\r' || true)"
+fi
+
+logfx_var "mode" "$MODE" "repo_root" "$REPO_ROOT"
+logfx_scope_end "$S_ctx" "ok"
+
+# Kopfzeile
+if command -v git-ctx >/dev/null 2>&1; then git-ctx ${NO_COLOR_FORCE:+--no-color} || true; fi
+
+# ---------- Daten einsammeln ----------
+S_collect="$(logfx_scope_begin "collect")"
+
+[ "$DO_REFRESH" = "yes" ] && logfx_run "fetch-prune" -- git fetch "$REMOTE_NAME" --prune --quiet || true
+
+REMOTE_URL="$(git remote get-url "$REMOTE_NAME" 2>/dev/null || echo "-")"
+BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "-")"
+UPSTREAM="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || echo "-")"
+
+ahead="0"; behind="0"
+if [ "$UPSTREAM" != "-" ]; then
+  set +e
+  counts="$(git rev-list --left-right --count "$UPSTREAM...HEAD" 2>/dev/null)"
+  rc=$?; set -e
+  if [ $rc -eq 0 ] && [ -n "${counts:-}" ]; then
+    behind="$(printf "%s\n" "$counts" | awk '{print $1}')"
+    ahead="$( printf "%s\n" "$counts" | awk '{print $2}')"
+  fi
+fi
+
+porc="$(git status --porcelain 2>/dev/null || true)"
+
+# --- robuste Zählungen (kein doppeltes "0") ---
+staged="$(printf "%s\n" "$porc" | grep -E -c '^[AMDR]' || true)"
+unstaged="$(printf "%s\n" "$porc" | grep -E -c '^[ MARC][MD]' || true)"
+untracked="$(printf "%s\n" "$porc" | grep -E -c '^\?\?' || true)"
+conflicts="$(printf "%s\n" "$porc" | grep -E -c '^(UU|AA|DD|U.|.U)' || true)"
+
+# newline/space weg
+staged="$(printf "%s" "$staged" | tr -d '[:space:]')"
+unstaged="$(printf "%s" "$unstaged" | tr -d '[:space:]')"
+untracked="$(printf "%s" "$untracked" | tr -d '[:space:]')"
+conflicts="$(printf "%s" "$conflicts" | tr -d '[:space:]')"
+
+clean="yes"
+if [ "$staged" -ne 0 ] || [ "$unstaged" -ne 0 ] || [ "$untracked" -ne 0 ] || [ "$conflicts" -ne 0 ]; then
+  clean="no"
+fi
+
+tags_total="$(git tag -l 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)"
+
+logfx_var "remote" "$REMOTE_NAME" "remote_url" "$REMOTE_URL" "branch" "$BRANCH" "upstream" "$UPSTREAM" \
+          "ahead" "$ahead" "behind" "$behind" "staged" "$staged" "unstaged" "$unstaged" "untracked" "$untracked" \
+          "conflicts" "$conflicts" "clean" "$clean" "tags_total" "$tags_total" \
+          "proj_name" "${PROJ_NAME:-}" "app_name" "${APP_NAME:-}"
+logfx_scope_end "$S_collect" "ok"
+
 case "$MODE_OUT" in
+  json)
+    printf '{"mode":"%s","repo_root":"%s","remote":"%s","remote_url":"%s","branch":"%s","upstream":"%s","ahead":%s,"behind":%s,"staged":%s,"unstaged":%s,"untracked":%s,"conflicts":%s,"clean":"%s","tags_total":%s,"proj_name":"%s","app_name":"%s"}\n' \
+      "$MODE" "$REPO_ROOT" "$REMOTE_NAME" "$REMOTE_URL" "$BRANCH" "$UPSTREAM" \
+      "$ahead" "$behind" "$staged" "$unstaged" "$untracked" "$conflicts" "$clean" "$tags_total" \
+      "${PROJ_NAME:-}" "${APP_NAME:-}"
+    ;;
   porcelain)
     echo "mode=$MODE"
     echo "repo_root=$REPO_ROOT"
+    echo "remote=$REMOTE_NAME"
+    echo "remote_url=$REMOTE_URL"
     echo "branch=$BRANCH"
     echo "upstream=$UPSTREAM"
-    echo "remote=$REMOTE"
-    echo "remote_url=$REMOTE_URL"
-    echo "ahead=$AHEAD"
-    echo "behind=$BEHIND"
+    echo "ahead=$ahead"
+    echo "behind=$behind"
     echo "staged=$staged"
     echo "unstaged=$unstaged"
     echo "untracked=$untracked"
     echo "conflicts=$conflicts"
-    echo "clean=$CLEAN"
-    echo "tags_total=$TAGS_TOTAL"
-    echo "proj_name=$PROJ_NAME"
-    echo "app_name=$APP_NAME"
+    echo "clean=$clean"
+    echo "tags_total=$tags_total"
+    echo "proj_name=${PROJ_NAME:-}"
+    echo "app_name=${APP_NAME:-}"
     ;;
   summary)
     if [ -n "$BOLD" ]; then
       printf "%sSTATE%s  %sMode%s:%s %s %sBranch%s:%s %s %sUpstream%s:%s %s %sAhead%s:%s %s %sBehind%s:%s %s %sClean%s:%s %s\n" \
         "$BOLD" "$RST" "$BOLD" "$RST" "$BLU" "$MODE" "$RST" \
         "$BOLD" "$RST" "$YEL" "$BRANCH" "$RST" \
-        "$BOLD" "$RST" "$UPSTREAM" \
-        "$BOLD" "$RST" "$GRN" "$AHEAD" \
-        "$BOLD" "$RST" "$RED" "$BEHIND" \
-        "$BOLD" "$RST" "$GRN" "$CLEAN"
+        "$BOLD" "$RST" "$YEL" "$UPSTREAM" "$RST" \
+        "$BOLD" "$RST" "$GRN" "$ahead" \
+        "$BOLD" "$RST" "$RED" "$behind" \
+        "$BOLD" "$RST" "$GRN" "$clean"
     else
-      echo "STATE  Mode:$MODE  Branch:$BRANCH  Upstream:$UPSTREAM  Ahead:$AHEAD  Behind:$BEHIND  Clean:$CLEAN"
+      echo "STATE  Mode:$MODE  Branch:$BRANCH  Upstream:$UPSTREAM  Ahead:$ahead  Behind:$behind  Clean:$clean"
     fi
     ;;
   long|*)
     if [ -n "$BOLD" ]; then
       printf "%sMode%s: %s%s%s   %sRepo%s: %s%s%s\n" "$BOLD" "$RST" "$BLU" "$MODE" "$RST" "$BOLD" "$RST" "$BLU" "$REPO_ROOT" "$RST"
-      [ "$MODE" = "project" ] && printf "%sAPP_NAME%s: %s%s%s   %sPROJ_NAME%s: %s%s%s\n" "$BOLD" "$RST" "$YEL" "${APP_NAME:-}" "$RST" "$BOLD" "$RST" "$YEL" "$PROJ_NAME" "$RST"
+      [ "$MODE" = "project" ] && printf "%sAPP_NAME%s: %s%s%s   %sPROJ_NAME%s: %s%s%s\n" "$BOLD" "$RST" "$YEL" "${APP_NAME:-}" "$RST" "$BOLD" "$RST" "$YEL" "${PROJ_NAME:-}" "$RST"
       printf "%sBranch%s: %s%s%s   %sUpstream%s: %s%s%s\n" "$BOLD" "$RST" "$YEL" "$BRANCH" "$RST" "$BOLD" "$RST" "$YEL" "$UPSTREAM" "$RST"
-      printf "%sRemote%s: %s%s%s   %sURL%s: %s%s%s\n" "$BOLD" "$RST" "$BLU" "$REMOTE" "$RST" "$BOLD" "$RST" "$BLU" "$REMOTE_URL" "$RST"
-      printf "%sAhead%s: %s%s%s   %sBehind%s: %s%s%s   %sClean%s: %s%s%s\n" "$BOLD" "$RST" "$GRN" "$AHEAD" "$RST" "$BOLD" "$RST" "$RED" "$BEHIND" "$RST" "$BOLD" "$RST" "$GRN" "$CLEAN" "$RST"
+      printf "%sRemote%s: %s%s%s   %sURL%s: %s%s%s\n" "$BOLD" "$RST" "$BLU" "$REMOTE_NAME" "$RST" "$BOLD" "$RST" "$BLU" "$REMOTE_URL" "$RST"
+      printf "%sAhead%s: %s%s%s   %sBehind%s: %s%s%s   %sClean%s: %s%s%s\n" "$BOLD" "$RST" "$GRN" "$ahead" "$RST" "$BOLD" "$RST" "$RED" "$behind" "$RST" "$BOLD" "$RST" "$GRN" "$clean" "$RST"
       printf "%sStaged%s: %s%d%s   %sUnstaged%s: %s%d%s   %sUntracked%s: %s%d%s   %sConflicts%s: %s%d%s   %sTags%s: %s%s%s\n" \
-        "$BOLD" "$RST" "$GRN" "$staged" "$RST" "$BOLD" "$RST" "$YEL" "$unstaged" "$RST" "$BOLD" "$RST" "$YEL" "$untracked" "$RST" "$BOLD" "$RST" "$RED" "$conflicts" "$RST" "$BOLD" "$RST" "$YEL" "$TAGS_TOTAL" "$RST"
+        "$BOLD" "$RST" "$GRN" "$staged" "$RST" "$BOLD" "$RST" "$YEL" "$unstaged" "$RST" "$BOLD" "$RST" "$YEL" "$untracked" "$RST" "$BOLD" "$RST" "$RED" "$conflicts" "$RST" "$BOLD" "$RST" "$YEL" "$tags_total" "$RST"
     else
       echo "Mode: $MODE   Repo: $REPO_ROOT"
-      [ "$MODE" = "project" ] && echo "APP_NAME: ${APP_NAME:-}   PROJ_NAME: $PROJ_NAME"
+      [ "$MODE" = "project" ] && echo "APP_NAME: ${APP_NAME:-}   PROJ_NAME: ${PROJ_NAME:-}"
       echo "Branch: $BRANCH   Upstream: $UPSTREAM"
-      echo "Remote: $REMOTE   URL: $REMOTE_URL"
-      echo "Ahead: $AHEAD   Behind: $BEHIND   Clean: $CLEAN"
-      echo "Staged: $staged   Unstaged: $unstaged   Untracked: $untracked   Conflicts: $conflicts   Tags: $TAGS_TOTAL"
+      echo "Remote: $REMOTE_NAME   URL: $REMOTE_URL"
+      echo "Ahead: $ahead   Behind: $behind   Clean: $clean"
+      echo "Staged: $staged   Unstaged: $unstaged   Untracked: $untracked   Conflicts: $conflicts   Tags: $tags_total"
     fi
     ;;
 esac

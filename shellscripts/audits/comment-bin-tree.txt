@@ -1,0 +1,1 @@
+In diesem Ordner ist die Zentrale Ablage aller Audit-Artefakte, die von den Skripten erzeugt werden.

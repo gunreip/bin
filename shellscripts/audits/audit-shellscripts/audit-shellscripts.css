@@ -1,0 +1,86 @@
+body {
+    font-family: Figtree,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+    background-color: #030712f2;
+    margin: 2rem;
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+h1 {
+    --tw-text-opacity: 1;
+    border-bottom: 2px rgb(239 68 68 / var(--tw-text-opacity));
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+    padding-left: 3rem;
+}
+h1 code {
+    font-size: 2.08rem;
+}
+h2#audit-shellscripts-subheader {
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+    font-size: 1.0rem;
+    font-style: italic;
+    font-weight: 500;
+}
+h2, h3 , ul {
+    padding-left: 3rem;
+}
+li {
+    width: 14rem;
+    display: flex;
+    align-items: baseline;
+    gap: .5rem
+}
+li > strong {
+    margin-left: auto;
+    /* schiebt nach rechts */
+    text-align: right;
+    /* Zahl rechtsbündig */
+    font-variant-numeric: tabular-nums;
+    /* saubere Ziffernausrichtung */
+    min-width: 3ch;
+    /* optionale Spaltenbreite für Zahlen */
+}
+th {
+    text-align: center;
+    color: #8b8b9b;
+    background-color: #003eaa;
+    padding: 0.3rem;
+    border-bottom: 1px solid #ddd;
+}
+td {
+    border-bottom: 1px solid #0060df;
+    padding-bottom: .2rem;
+}
+td > em {
+    color: #66BB6A;
+}
+td:nth-child(1) {
+    width: 15rem;
+    color: #0060df;
+    font-weight: bold;
+    font-size: 1.04rem;
+}
+td:nth-child(2) {
+    width: 5rem; 
+    --tw-text-opacity: 1;
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+    math-style: normal;
+    text-align: right;
+}
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6) {
+    width: 12rem;
+    text-align: center;
+}
+td:nth-child(7) {
+    width: 5rem;
+    text-align: right;
+    font-family: monospace;
+    font-size: 1.04rem;
+}
+td:nth-child(8) {
+    width: 3rem;
+    text-align: center;
+}
