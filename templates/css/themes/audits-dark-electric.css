@@ -1,0 +1,61 @@
+/* AD-02: Bootstrap Dark Electric (schlicht + mutiger Akzent) */
+:root[data-bs-theme="dark"]{
+  /* Grundfarben */
+  --bs-body-bg: #0f1115;
+  --bs-body-color: #e9eef5;
+  --bs-heading-color: #ffffff;
+  --bs-secondary-color: #9aa3b2;
+  --bs-border-color: #2a3240;
+
+  /* Akzent & State-Farben */
+  --ad-accent: #4fd7ff;         /* <- zentrale Akzentfarbe */
+  --bs-primary: var(--ad-accent);
+  --bs-link-color: var(--ad-accent);
+  --bs-link-hover-color: #9be9ff;
+
+  --bs-success: #36d39a;
+  --bs-warning: #ffc861;
+  --bs-danger:  #ff6b6b;
+
+  /* Tabellen */
+  --bs-table-bg: transparent;
+  --bs-table-striped-bg: rgba(255,255,255,.04);
+  --bs-table-hover-bg: rgba(255,255,255,.06);
+  --bs-table-striped-color: var(--bs-body-color);
+  --bs-table-border-color: var(--bs-border-color);
+
+  /* Code/Monospace */
+  --bs-code-color: #e9eef5;
+}
+
+/* Container & Typo */
+.container-lg { max-width: 1120px; }
+h1 { letter-spacing:.2px; }
+
+/* Details/Summary – dezenter Rahmen + Chevron */
+details.toc-section>summary,
+details.summary>summary{
+  display:flex; align-items:center; gap:.5rem;
+  padding:.4rem .6rem;
+  border:1px solid var(--bs-border-color);
+  border-left:3px solid var(--ad-accent);
+  border-radius:.5rem; background:#12161c;
+}
+details.toc-section>summary::after{
+  content:"▸"; margin-left:auto; opacity:.8;
+}
+details[open].toc-section>summary::after{ content:"▾"; }
+
+/* Tabellen & Links */
+.table thead th{ background:#151a21; color: #CFD8DC; }
+.go-page{ white-space:nowrap; }
+.go-page .link-icon{ margin-left:.35rem; }
+
+/* Badges für Status */
+.badge-status{ font-weight:600; letter-spacing:.2px; }
+.badge-status.ok    { background:rgba(54,211,154,.15); color:#36d39a; }
+.badge-status.warn  { background:rgba(255,200,97,.15); color:#ffc861; }
+.badge-status.err   { background:rgba(255,107,107,.15); color:#ff6b6b; }
+
+/* „Kein Kommentar“ */
+.no-comment{ opacity:.65; font-style:italic; }

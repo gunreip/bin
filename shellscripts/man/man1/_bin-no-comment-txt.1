@@ -1,0 +1,74 @@
+.TH _BIN-NO-COMMENT-TXT 1 "September 2025" "v0.4.0" "User Commands"
+.SH NAME
+_bin-no-comment-txt \- lege Kommentarplatzhalter in Verzeichnissen an
+.SH SYNOPSIS
+.B _bin-no-comment-txt
+.RI [ --report-only | --dry-run ]
+.RI [ --root= PATH ]
+.RI [ --exclude= GLOB ]...
+.SH DESCRIPTION
+\fB_bin-no-comment-txt\fR traversiert (standardmäßig) den kompletten Baum
+\fI~/code/bin\fR und legt in allen Verzeichnissen, in denen noch keine
+\fIcomment-bin-tree.txt\fR (oder Legacy \fIcomment-bin.tree.txt\fR) existiert,
+eine neue \fIcomment-bin-tree.txt\fR mit folgendem Inhalt an:
+.PP
+.in +2
+.nf
+<span class="no-comment">Noch kein Kommentar!</span>
+.fi
+.in -2
+.PP
+Existiert bereits eine \fIcomment-bin-tree.txt\fR mit EXAKT dem Inhalt
+"Nog kein Kommentar!", wird diese in den obigen HTML\-Platzhalter migriert.
+.PP
+Hinweis: Dieses Skript schreibt \fBkein Audit\fR.
+.SH OPTIONS
+.TP
+.BR --report-only ", " --dry-run
+Nur Bericht ausgeben, keine Änderungen vornehmen.
+.TP
+.BR --root = PATH
+Root-Verzeichnis setzen. PATH muss innerhalb von \fI~/code/bin\fR liegen.
+.TP
+.BR --exclude = GLOB
+Glob\-Pattern zum Überspringen von Pfaden. Mehrfach verwendbar.
+Beispiel: \fI--exclude='*/.git/*'\fR.
+.SH EXIT STATUS
+.TP
+.B 0
+Erfolg (auch bei \fB--report-only\fR).
+.TP
+.B 3
+Ungültiger Root (außerhalb \fI~/code/bin\fR).
+.SH EXAMPLES
+.PP
+Nur Bericht:
+.RS
+.nf
+_bin-no-comment-txt --report-only
+.fi
+.RE
+.PP
+Nur unter \fI.../shellscripts/audits\fR:
+.RS
+.nf
+_bin-no-comment-txt --root="$HOME/code/bin/shellscripts/audits"
+.fi
+.RE
+.PP
+Mit Ausschlüssen:
+.RS
+.nf
+_bin-no-comment-txt --exclude='*/.git/*' --exclude='*/node_modules/*'
+.fi
+.RE
+.SH SEE ALSO
+.BR find (1),
+.BR chmod (1),
+.BR chown (1),
+.BR getfacl (1),
+.BR lsattr (1)
+.SH AUTHOR
+Maintainer: gunreip & Co.
+.SH VERSION
+v0.4.0

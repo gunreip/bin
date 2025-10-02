@@ -1,0 +1,46 @@
+/* code/bin/shellscripts/audits/manpages-install/manpages-install.css */
+body {
+    font-family: Figtree,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+    background-color: #030712f2;
+    margin: 2rem;
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+h1 {
+    --tw-text-opacity: 1;
+    border-bottom: 2px rgb(239 68 68 / var(--tw-text-opacity));
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+    padding-left: 3rem;
+}
+h1 code {
+    font-size: 2.08rem;
+}
+code {
+    font-size: 1.04rem;
+}
+h2#git-tag-subheader {
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+    font-size: 1.0rem;
+    font-style: italic;
+    font-weight: 500;
+}
+h2#summary {
+    border-top: 1px solid gray;
+    padding-top: 1rem;
+}
+h2, h3 , ul, details {
+    padding-left: 3rem;
+}
+/* details */
+
+
+
+
+
+
+
+
+
+
+

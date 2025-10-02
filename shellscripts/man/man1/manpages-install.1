@@ -1,0 +1,34 @@
+# manpages-install (v0.2.6)
+
+Spiegelt Manpages aus `~/code/bin/shellscripts/man` nach `/usr/local/share/man`.
+Unterstützt **Dry-Run**, **Auto-sudo** (nur im Apply-Modus), schreibt bei Apply **immer** einen **Plain-Index** *und* einen **JSON-Index**, aktualisiert optional `mandb` und gibt eine **kompakte, ausgerichtete Summary** aus.
+
+---
+
+## Features
+
+- **Quellbaum**: beliebige `man*`-Sektionen (z. B. `man1/`, `man5/`), Dateien gzipped oder unkomprimiert.
+- **Zielbaum**: `/usr/local/share/man` (Standard).
+- **Konsistentes Spiegeln**:
+  - Unkomprimierte Quellen werden **deterministisch** nach `.gz` gepackt (`gzip -n`).
+  - Vergleiche via `sha256sum` (fehlertolerant).
+  - **Neu**, **aktualisiert**, **identisch**, **obsolet** sauber gezählt.
+- **Sicher**:
+  - **Dry-Run** liest nur; kein Schreiben/`sudo`.
+  - **Apply** hebt sich bei Bedarf automatisch auf `sudo` an und setzt Zielrechte auf `0644`.
+- **Index**:
+  - Plain: `<dst>/.mirror-manpages-install.index` (ein Pfad pro Zeile).
+  - JSON: `<dst>/.mirror-manpages-install.index.json` (mit Metadaten + `files[]` inkl. `hash`, `size`).
+  - **Apply schreibt immer beide**; Dry-Run schreibt nie (Status: `kept`/`none`).
+- **Robust**:
+  - Toleriert nicht lesbare Ziel-Dateien im Dry-Run und weist sie als
+    `existing (am Ziel nicht lesbar)` aus.
+  - Prüft und erklärt fehlende `manN`-Sektionsordner im Ziel (Hinweiszeilen).
+
+---
+
+## Aufruf
+
+```bash
+manpages-install [--dry-run | --apply] [--src=PATH] [--dst=PATH]
+                 [--index=FILENAME] [--mandb=yes|no] [--help|--version]

@@ -1,0 +1,282 @@
+.TH _AUDITS_MAIN 1 "02 Oct 2025" "v0.44.1" "User Commands"
+.nh
+.ad l
+.SH NAME
+_audits-main \- Zentrale TOC\-Seite (Table of Contents) für Audit\-HTMLs
+
+.SH SYNOPSIS
+.B _audits-main
+[\fIOPTIONEN\fR]
+
+.SH BESCHREIBUNG
+\fB_audits-main\fR erzeugt eine zentrale HTML\-Übersichtsseite (TOC) über alle
+vorhandenen \fIlatest.html\fR\-Dateien unter
+\fI~/code/bin/shellscripts/audits/*[/<context>]/latest.html\fR.
+Die Ausgabe gruppiert pro Kategorie (Präfix bis zum ersten Bindestrich im
+Skript\-Namen), listet Links, Kommentare und Status, und schreibt zusätzlich eine
+JSONL\-Metadatei (nur für \fB_audits-main\fR selbst).
+
+.PP
+Standorte / Nebenprodukte:
+.RS
+.IP \(bu 2
+HTML: \fI~/code/bin/shellscripts/audits/audits-main.html\fR
+.IP \(bu 2
+JSONL (nur für dieses Skript): \fI~/code/bin/shellscripts/audits/_audits-main/<context>/latest.jsonl\fR
+.IP \(bu 2
+Debug\-Logs: \fI~/code/bin/shellscripts/debugs/_audits-main/*.log\fR
+.RE
+
+.PP
+Gatekeeper: Das Skript muss aus \fB~/code/bin\fR gestartet werden
+(sonst Abbruch mit Fehlercode 2).
+
+.SH MERKMALE
+.IP \(bu 2
+Kategorisierung: Kategorie = Präfix bis zum ersten Bindestrich (z. B. \fC_audits\-foo\fR \-> Kategorie \fC_audits\fR).
+.IP \(bu 2
+Einbindung externer Assets (CSS/JS) anhand zweier JSON\-Configs inkl. \fBvars\fR\-Platzhalter und
+per\-Skript\-Overrides; Reihenfolge \fBjs\-first\fR oder \fBcss\-first\fR.
+.IP \(bu 2
+Eigenes Tail pro Skript: \fC.../audits/_audits\-main/_audits\-main.css\fR und \fC.../audits/_audits\-main/_audits\-main.js\fR
+werden immer zuletzt verlinkt (falls nicht vorhanden, werden leere Dateien angelegt).
+.IP \(bu 2
+Kommentarquelle je Fund: \fCcomment\-bin\-tree.txt\fR im gleichen Ordner wie \fClatest.html\fR;
+Sonderfall: \fC<span class="no-comment">Noch kein Kommentar!</span>\fR wird als HTML belassen,
+ansonsten wird Text HTML\-escaped; \fC<code>\fR/\fC<tt>\fR/\fC<br/>\fR werden wiederhergestellt.
+.IP \(bu 2
+Debug\-Summary mit vollständigen Dateinamen (mit \fC~\fR statt \fC/home/<user>\fR) und Level\-Badge.
+.IP \(bu 2
+Terminal\-Ausgabe mit farbigen Labels (Material Design Palette) und ausgerichteten Pfeilspalten.
+
+.SH OPTIONEN
+.TP
+\fB\-\-context=\fR\fIbin|<name>\fR
+Kontextname für die JSONL\-Ablage (Pfadkomponente nach \fC.../_audits\-main/\fR). Standard: \fCbin\fR.
+.TP
+\fB\-\-theme=\fR\fIdark|light|none\fR
+Setzt \fC<html data\-bs\-theme>\fR. Bei \fInone\fR wird kein Theme\-Attribut gesetzt.
+.TP
+\fB\-\-asset\-order=\fR\fIjs\-first|css\-first\fR
+Bestimmt die Einbaureihenfolge im \fC<head>\fR. Standard: \fIjs\-first\fR.
+.TP
+\fB\-\-link\-mode=\fR\fIrelative|absolute\fR
+HREFs relativ (Standard) oder absolut schreiben.
+.TP
+\fB\-\-color[\-mode]=\fR\fIauto|always|never\fR
+Steuert Farbigkeit der Terminal\-Logs (beeinflusst nicht die HTML\-Farben).
+.TP
+\fB\-\-with\-noise=\fR\fIyes|no\fR
+Globaler Geräuschpegel (bei \fIno\fR werden weitere \fIwith_*\fR stillgelegt).
+.TP
+\fB\-\-with\-options=\fR\fIyes|no\fR
+Echo der zusammengeführten Optionen/ARGS in den Terminal\-Logs.
+.TP
+\fB\-\-with\-config\-css=\fR\fIyes|no\fR
+Zusätzliche Logausgaben zur CSS\-Konfiguration.
+.TP
+\fB\-\-with\-config\-js=\fR\fIyes|no\fR
+Zusätzliche Logausgaben zur JS\-Konfiguration.
+.TP
+\fB\-\-with\-assets=\fR\fIyes|no\fR
+Logmeldungen bei verlinkten/fehlenden CSS/JS\-Dateien.
+.TP
+\fB\-\-with\-scans=\fR\fIyes|no\fR
+Scan\-Logs (was/wann/wo gefunden).
+.TP
+\fB\-\-with\-pages=\fR\fIyes|no\fR
+Detaillierte HREF\-Logs zu gefundenen \fClatest.html\fR.
+.TP
+\fB\-\-with\-result=\fR\fIyes|no\fR
+Abschlussmeldung inkl. Zielpfad in den Terminal\-Logs.
+.TP
+\fB\-\-debug=\fR\fIdbg|trace|xtrace|all\fR
+Schaltet Debugging. \fIall\fR erzeugt bis zu drei Ausgaben (1 je Typ). \fIxtrace\fR nutzt \fCBASH_XTRACEFD\fR.
+Rotation via \fBdebug_keep\fR/\fBdebug_min_keep\fR (siehe KONFIGURATION).
+.TP
+\fB\-\-version\fR
+Version ausgeben und beenden.
+.TP
+\fB\-\-help\fR
+Kurzhilfe anzeigen.
+
+.PP
+\fBPriorität\fR der Optionen: \fIdefaults\fR (global) \-\> \fIscripts["_audits\-main"].defaults\fR \-\> \fBCLI\fR.
+
+.SH KONFIGURATION
+Die Skript\-Optionen liegen zentral in:
+.RS
+.IP \(bu 2
+\fI~/code/bin/shellscripts/lib/.script\-options.conf.json\fR
+.RE
+Konfigurationsdateien für Assets:
+.RS
+.IP \(bu 2
+CSS: \fI~/code/bin/templates/css/.css.conf.json\fR
+.IP \(bu 2
+JS:  \fI~/code/bin/templates/js/.js.conf.json\fR
+.RE
+
+.SS Optionen\-Config (.script\-options.conf.json)
+JSON mit \fBdefaults\fR und \fBscripts.<script\-id>.defaults\fR. Wichtige Schlüssel:
+.RS
+.IP \(bu 2
+\fCtheme\fR (\fIdark|light|none\fR), \fClink_mode\fR, \fCcolor_mode\fR
+.IP \(bu 2
+\fCwith_noise\fR, \fCwith_options\fR, \fCwith_config_css\fR, \fCwith_config_js\fR, \fCwith_assets\fR, \fCwith_scans\fR, \fCwith_pages\fR, \fCwith_result\fR
+.IP \(bu 2
+\fCdebug\fR (\fIdbg|trace|xtrace|all\fR), \fCdebug_keep\fR (max Anzahl), \fCdebug_min_keep\fR (Minimum)
+.RE
+
+.SS CSS\-Config (.css.conf.json)
+Struktur (Auszug):
+.RS
+.IP \(bu 2
+\fCvars.css_default\fR \- globales CSS (z. B. Bootstrap), wird zusätzlich verlinkt wenn vorhanden.
+.IP \(bu 2
+\fCvars.css_audits_dark|css_audits_light\fR \- Theme\-CSS.
+.IP \(bu 2
+\fCaudits["_audits\-main"].bootstrap\fR \- Skript\-spezifisches Bootstrap (optional).
+.IP \(bu 2
+\fCaudits["_audits\-main"].css_audits_dark|light\fR \- Skript\-spezifische Theme\-Overrides.
+.RE
+Platzhalter \fC${name}\fR werden rekursiv über \fBvars\fR und Umgebungsvariablen expandiert.
+
+.SS JS\-Config (.js.conf.json)
+Struktur (Auszug):
+.RS
+.IP \(bu 2
+\fCvars.js_default\fR \- globales Basis\-JS (optional).
+.IP \(bu 2
+\fCaudits["_audits\-main"].files[]\fR \- weitere JS\-Dateien für dieses Skript.
+.RE
+
+.SH AUSGABEN
+.SS HTML
+Ziel: \fI~/code/bin/shellscripts/audits/audits-main.html\fR
+.IP \(bu 2
+\fC<h1>\fR enthält einen Zeitstempel: \fC"Audits – Übersicht \- DD.MM.YYYY HH:MM:SS"\fR.
+.IP \(bu 2
+Sektionen als \fC<details class="toc-section">\fR mit Tabelle (Spalten: Script\-Name, Context, Link, Kommentar, Status).
+.IP \(bu 2
+Summary beinhaltet Zähler (Kategorien, Skripte, gefunden/fehlend, Gesamt) und \fBDebug\fR (File(s) → Level → Anzahl).
+Bei Debug stehen vollständige Dateinamen; \fC/home/<user>\fR wird in der Anzeige zu \fC~\fR gekürzt.
+
+.SS JSONL (nur für _audits-main)
+Ort: \fI.../audits/_audits-main/<context>/latest.jsonl\fR
+.PP
+Eine Zeile pro Lauf, z. B.:
+.PP
+.nf
+{"ts":"2025-10-02T10:30:12+02:00","event":"summary","html_out":"/home/.../audits-main.html","context":"bin","version":"v0.44.1","total_links":"7"}
+.fi
+
+.SH LOGGING
+.IP \(bu 2
+Einspieler/Run\-Log: \fI~/code/bin/shellscripts/.einspieler.txt\fR
+.IP \(bu 2
+Debug: \fI~/code/bin/shellscripts/debugs/_audits-main/_audits-main.{dbg|trace|xtrace}.<TS>.log\fR,
+Rotation gemäß \fCdebug_keep\fR/\fCdebug_min_keep\fR.
+.IP \(bu 2
+Terminal\-Labels (Farbe): \fBCFG\fR, \fBCSS\fR, \fBJS\fR, \fBOK\fR, \fBWARN\fR, \fBERR\fR, \fBDEFAULT\fR, \fBJSONL\fR, \fBHTML\fR, \fBTHEME\fR.
+Ausrichtung mit Pfeilspalte (Konstante Pfeilkolumne).
+
+.SH UMGEBUNG
+.IP \(bu 2
+\fBHOME\fR: wird zur Tilde\-Kürzung (\fC~\fR) in Pfadangaben verwendet.
+.IP \(bu 2
+Platzhalter in CSS/JS\-Configs dürfen Umgebungsvariablen referenzieren (werden expandiert).
+
+.SH DATEIEN
+.TP
+\fI~/code/bin/shellscripts/_audits-main.sh\fR
+Kanonische Skriptdatei.
+.TP
+\fI~/code/bin/_audits-main\fR
+Symlink auf die kanonische Skriptdatei.
+.TP
+\fI~/code/bin/shellscripts/audits/_audits-main/_audits-main.css|.js\fR
+Eigene Tail\-Assets (werden angelegt, wenn nicht vorhanden).
+.TP
+\fI~/code/bin/templates/css/.css.conf.json\fR
+CSS\-Konfigurationsdatei.
+.TP
+\fI~/code/bin/templates/js/.js.conf.json\fR
+JS\-Konfigurationsdatei.
+.TP
+\fI~/code/bin/shellscripts/lib/.script-options.conf.json\fR
+Zentrale Options\-Konfiguration.
+
+.SH EXIT STATUS
+.TP
+0
+Erfolg.
+.TP
+2
+Gatekeeper verletzt (falsches Arbeitsverzeichnis) oder ungültige CLI\-Werte.
+.TP
+5
+Benötigtes Programm fehlt (z. B. \fBjq\fR, \fBpython3\fR, \fBnl\fR, \fBsed\fR).
+.TP
+8
+Options\-Konfiguration fehlt/unlesbar.
+.TP
+41
+\fB.css.conf.json\fR ist kein valides JSON.
+.TP
+42
+\fB.js.conf.json\fR ist kein valides JSON.
+.TP
+55
+Allgemeiner Konfigurationsfehler (Reservecode).
+
+.SH BEISPIELE
+.PP
+Standardlauf (ruhig):
+.PP
+.nf
+_audits-main
+.fi
+.PP
+Mit ausführlichen Logs und xtrace:
+.PP
+.nf
+_audits-main --with-noise=yes --with-options=yes --with-assets=yes --with-pages=yes --debug=xtrace
+.fi
+.PP
+Heller Modus, CSS zuerst, absolute Links:
+.PP
+.nf
+_audits-main --theme=light --asset-order=css-first --link-mode=absolute
+.fi
+
+.SH FEHLERSUCHE
+.IP \(bu 2
+Kein HTML erzeugt: Prüfe \fBERR\fR\-Zeilen im Terminal und \fI.einspieler.txt\fR; mit \fC--debug=xtrace\fR erneut laufen lassen.
+.IP \(bu 2
+Bootstrap/Theme fehlt: Pfade/Variablen in \fB.css.conf.json\fR prüfen (\fBCFG\fR/\fBCSS\fR/\fBTHEME\fR\-Logs).
+.IP \(bu 2
+Kommentare werden „literal“ angezeigt: Nur \fC<span class="no-comment">...\fR, \fC<code>\fR, \fC<tt>\fR, \fC<br/>\fR sind erlaubt; Rest wird escaped.
+.IP \(bu 2
+Doppelte Links in der TOC: Deduplizierung erfolgt per \fCreadlink \-f\fR; identische Dateien über mehrere Kontexte werden als Duplikate gezählt.
+
+.SH SICHERHEIT / GUARDRAILS
+.IP \(bu 2
+Schreibrechte: Unterordner dürfen nicht root\-owned sein (sonst \fCPermission denied\fR bei \fCcomment\-bin\-tree.txt\fR).
+.IP \(bu 2
+\-\-debug=all kann mehrere Dateien erzeugen; Rotation beachten, um Logverzeichnis klein zu halten.
+
+.SH SIEHE AUCH
+.IP \(bu 2
+\fB_bin\-no\-comment\-txt\fR(1) \- legt fehlende \fCcomment\-bin\-tree.txt\fR an (ohne Auditing).
+.IP \(bu 2
+Projektleitfäden: \fITROUBLESHOOTING\-Config\-Pathes.md\fR (HTML\-Linking aus \fC<link ...>\fR Elementen).
+
+.SH VERSION
+v0.44.1
+
+.SH AUTOR
+Maintainer/Team: Scripting\-Projekt (\fC~/code/bin\fR)
+
+.SH COPYRIGHT
+Copyright (c) 2025. Nutzung gemäß Projektlizenz.

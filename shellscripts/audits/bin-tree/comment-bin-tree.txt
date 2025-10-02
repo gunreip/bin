@@ -1,1 +1,1 @@
-Audit-Artefakte des Skripts: `bin-tree` (`MD`/`HTML`/`JSONL`).
+Audit-Artefakte des Skripts: <code>bin-tree</code> (<code>MD</code>/<code>HTML</code>/<code>JSONL</code>).

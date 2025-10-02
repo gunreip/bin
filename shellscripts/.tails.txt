@@ -1,0 +1,67 @@
+gunreip@DESKTOP-I7C75P2:~/code/bin$ cd ~/code/bin
+./_audits-main --version
+./_audits-main
+tail -n 150 shellscripts/.einspieler.txt | sed -n '/SCAN/p;/FOUND/p'
+v0.38.5
+OK: /home/gunreip/code/bin/audits/audits-main.html
+OK: /home/gunreip/code/bin/audits/_audits-main/bin/latest.jsonl
+[2025-09-30T16:25:01+0200] RUN CHECK css_cfg FOUND valid path='/home/gunreip/code/bin/templates/css/.css.conf.json'
+[2025-09-30T16:25:01+0200] RUN CHECK js_cfg FOUND valid path='/home/gunreip/code/bin/templates/js/.js.conf.json'
+[2025-09-30T16:25:01+0200] RUN SCAN roots=[/home/gunreip/code/bin/audits, /home/gunreip/code/bin/shellscripts/audits]
+[2025-09-30T16:25:01+0200] RUN SCAN root-start path='/home/gunreip/code/bin/audits'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='_audits-main' path='/home/gunreip/code/bin/audits/_audits-main'
+[2025-09-30T16:25:01+0200] RUN SCAN ctx sid='_audits-main' ctx='bin' path='/home/gunreip/code/bin/audits/_audits-main/bin'
+[2025-09-30T16:25:01+0200] RUN SCAN root-end path='/home/gunreip/code/bin/audits' found=0
+[2025-09-30T16:25:01+0200] RUN SCAN root-start path='/home/gunreip/code/bin/shellscripts/audits'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='_audits-check-css-path' path='/home/gunreip/code/bin/shellscripts/audits/_audits-check-css-path'
+[2025-09-30T16:25:01+0200] RUN SCAN ctx sid='_audits-check-css-path' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/_audits-check-css-path/bin'
+[2025-09-30T16:25:01+0200] RUN FOUND latest sid='_audits-check-css-path' ctx='bin' latest='/home/gunreip/code/bin/shellscripts/audits/_audits-check-css-path/bin/latest.html' href='../shellscripts/audits/_audits-check-css-path/bin/latest.html'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='_audits-main' path='/home/gunreip/code/bin/shellscripts/audits/_audits-main'
+[2025-09-30T16:25:01+0200] RUN SCAN ctx sid='_audits-main' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/_audits-main/bin'
+[2025-09-30T16:25:01+0200] RUN SCAN ctx sid='_audits-main' ctx='docs' path='/home/gunreip/code/bin/shellscripts/audits/_audits-main/docs'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='_lx-env' path='/home/gunreip/code/bin/shellscripts/audits/_lx-env'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='_lx-env-check' path='/home/gunreip/code/bin/shellscripts/audits/_lx-env-check'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='audit-shellscripts' path='/home/gunreip/code/bin/shellscripts/audits/audit-shellscripts'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='bin-tree' path='/home/gunreip/code/bin/shellscripts/audits/bin-tree'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='git-branch-prune-local' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-prune-local'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='git-branch-restore' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-restore'
+[2025-09-30T16:25:01+0200] RUN SCAN ctx sid='git-branch-restore' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-restore/bin'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='git-branch-rm' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-rm'
+[2025-09-30T16:25:01+0200] RUN SCAN ctx sid='git-branch-rm' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='git-feature' path='/home/gunreip/code/bin/shellscripts/audits/git-feature'
+[2025-09-30T16:25:01+0200] RUN SCAN ctx sid='git-feature' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/git-feature/bin'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='git-tag' path='/home/gunreip/code/bin/shellscripts/audits/git-tag'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='manpages-install' path='/home/gunreip/code/bin/shellscripts/audits/manpages-install'
+[2025-09-30T16:25:01+0200] RUN SCAN script sid='sh-zip-scripts' path='/home/gunreip/code/bin/shellscripts/audits/sh-zip-scripts'
+[2025-09-30T16:25:01+0200] RUN SCAN root-end path='/home/gunreip/code/bin/shellscripts/audits' found=1
+[2025-09-30T16:25:01+0200] RUN SCAN total=1
+[2025-09-30T16:28:24+0200] RUN CHECK css_cfg FOUND valid path='/home/gunreip/code/bin/templates/css/.css.conf.json'
+[2025-09-30T16:28:24+0200] RUN CHECK js_cfg FOUND valid path='/home/gunreip/code/bin/templates/js/.js.conf.json'
+[2025-09-30T16:28:25+0200] RUN SCAN roots=[/home/gunreip/code/bin/audits, /home/gunreip/code/bin/shellscripts/audits]
+[2025-09-30T16:28:25+0200] RUN SCAN root-start path='/home/gunreip/code/bin/audits'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='_audits-main' path='/home/gunreip/code/bin/audits/_audits-main'
+[2025-09-30T16:28:25+0200] RUN SCAN ctx sid='_audits-main' ctx='bin' path='/home/gunreip/code/bin/audits/_audits-main/bin'
+[2025-09-30T16:28:25+0200] RUN SCAN root-end path='/home/gunreip/code/bin/audits' found=0
+[2025-09-30T16:28:25+0200] RUN SCAN root-start path='/home/gunreip/code/bin/shellscripts/audits'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='_audits-check-css-path' path='/home/gunreip/code/bin/shellscripts/audits/_audits-check-css-path'
+[2025-09-30T16:28:25+0200] RUN SCAN ctx sid='_audits-check-css-path' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/_audits-check-css-path/bin'
+[2025-09-30T16:28:25+0200] RUN FOUND latest sid='_audits-check-css-path' ctx='bin' latest='/home/gunreip/code/bin/shellscripts/audits/_audits-check-css-path/bin/latest.html' href='../shellscripts/audits/_audits-check-css-path/bin/latest.html'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='_audits-main' path='/home/gunreip/code/bin/shellscripts/audits/_audits-main'
+[2025-09-30T16:28:25+0200] RUN SCAN ctx sid='_audits-main' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/_audits-main/bin'
+[2025-09-30T16:28:25+0200] RUN SCAN ctx sid='_audits-main' ctx='docs' path='/home/gunreip/code/bin/shellscripts/audits/_audits-main/docs'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='_lx-env' path='/home/gunreip/code/bin/shellscripts/audits/_lx-env'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='_lx-env-check' path='/home/gunreip/code/bin/shellscripts/audits/_lx-env-check'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='audit-shellscripts' path='/home/gunreip/code/bin/shellscripts/audits/audit-shellscripts'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='bin-tree' path='/home/gunreip/code/bin/shellscripts/audits/bin-tree'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='git-branch-prune-local' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-prune-local'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='git-branch-restore' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-restore'
+[2025-09-30T16:28:25+0200] RUN SCAN ctx sid='git-branch-restore' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-restore/bin'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='git-branch-rm' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-rm'
+[2025-09-30T16:28:25+0200] RUN SCAN ctx sid='git-branch-rm' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/git-branch-rm/bin'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='git-feature' path='/home/gunreip/code/bin/shellscripts/audits/git-feature'
+[2025-09-30T16:28:25+0200] RUN SCAN ctx sid='git-feature' ctx='bin' path='/home/gunreip/code/bin/shellscripts/audits/git-feature/bin'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='git-tag' path='/home/gunreip/code/bin/shellscripts/audits/git-tag'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='manpages-install' path='/home/gunreip/code/bin/shellscripts/audits/manpages-install'
+[2025-09-30T16:28:25+0200] RUN SCAN script sid='sh-zip-scripts' path='/home/gunreip/code/bin/shellscripts/audits/sh-zip-scripts'
+[2025-09-30T16:28:25+0200] RUN SCAN root-end path='/home/gunreip/code/bin/shellscripts/audits' found=1
+[2025-09-30T16:28:25+0200] RUN SCAN total=1

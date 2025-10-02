@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "vars": {
+    "HOME": "$HOME",
+    "bin_root": "$HOME/code/bin",
+    "shellscripts_root": "$HOME/code/bin/shellscripts",
+    "script_id": "<script-id>"
+  },
+  "jobs": {
+    "audits": "${shellscripts_root}/audits/${script_id}",
+    "runs": "${shellscripts_root}/runs/${script_id}",
+    "debugs": "${shellscripts_root}/debugs/${script_id}",
+    "backups": "${shellscripts_root}/backups/${script_id}",
+    "trash": "${shellscripts_root}/trash/${script_id}"
+  },
+  "html": {
+    "inline": "pure",
+    "css": {
+      "policy": "link-if-exists",
+      "filename": "${script_id}.css"
+    }
+  },
+  "time": {
+    "run_id_format": "%Y%m%d-%H%M%S",
+    "created_format": "%Y-%m-%d %H:%M:%S"
+  },
+  "trash": {
+    "retention_days": 30,
+    "staging_suffix": ".stage",
+    "manifest_name": "manifest.json"
+  }
+}

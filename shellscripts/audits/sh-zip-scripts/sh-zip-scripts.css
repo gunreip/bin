@@ -1,0 +1,117 @@
+/* code/bin/shellscripts/audits/sh-zip-scripts/sh-zip-scripts.css */
+body {
+    font-family: Figtree,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+    background-color: #030712f2;
+    margin: 2rem;
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+h1 {
+    --tw-text-opacity: 1;
+    border-bottom: 2px rgb(239 68 68 / var(--tw-text-opacity));
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+    padding-left: 3rem;
+}
+h1 code {
+    font-size: 2.08rem;
+}
+h2#_sh-zip-scripts-subheader {
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+    font-size: 1.0rem;
+    font-style: italic;
+    font-weight: 500;
+}
+h2#summary {
+    border-top: 1px solid gray;
+    padding-top: 1rem;
+}
+h2, h3 , ul, details {
+    padding-left: 3rem;
+}
+details p {
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #90A4AE;
+}
+details p code{
+    color: #FFB74D;
+    font-size: 0.8rem;
+}
+details p {
+    font-size: 0.72rem;
+    color: lime;
+}
+table {
+    overflow-x: auto;
+}
+th {
+    text-align: center;
+    color: #8b8b9b;
+    background-color: #003eaa;
+    padding: 0.3rem;
+    border-bottom: 1px solid #ddd;
+}
+td {
+    border-bottom: 1px solid #0060df;
+    padding: .2rem;
+    text-align: left;
+    vertical-align: top;
+}
+td > em {
+    color: #66BB6A;
+}
+td:nth-child(1) {
+    width: 12rem;
+    color: #0060df;
+    font-weight: normal;
+    font-size: 1.04rem;
+}
+td:nth-child(2) {
+    width: 4.5rem; 
+    --tw-text-opacity: 1;
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+    math-style: normal;
+    text-align: right;
+}
+td:nth-child(3) {
+    width: 12rem;
+    text-align: center;
+}
+td:nth-child(4) {
+    width: 15rem;
+    color: #81C784;
+    font-size: 1.04rem;
+}
+td:nth-child(5) {
+    width: 3.5rem;
+    text-align: center;
+}
+td:nth-child(6) {
+    width: 6rem;
+    text-align: right;
+}
+td:nth-child(7) {
+    width: 18rem;
+    font-size: 1.04rem;
+}
+td:nth-child(8) {
+    width: 24rem;
+    text-align: right;
+    font-size: 1.04rem;
+}
+td:nth-child(9) {
+    width: 36rem;
+    text-align: center;
+    font-size: 1.04rem;
+}
+td:nth-child(10) {
+    width: 5rem;
+    text-align: center;
+    font-size: 1.04rem;
+}
+
+
+
+
+
+

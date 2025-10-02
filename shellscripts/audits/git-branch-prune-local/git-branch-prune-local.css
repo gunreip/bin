@@ -1,0 +1,185 @@
+/* code/bin/shellscripts/audits/git-branch-prune-local/git-branch-prune-local.css */
+body {
+    font-family: Figtree,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+    background-color: #030712f2;
+    margin: 2rem;
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+h1 {
+    --tw-text-opacity: 1;
+    border-bottom: 2px rgb(239 68 68 / var(--tw-text-opacity));
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+    padding-left: 3rem;
+}
+h1 code {
+    font-size: 2.08rem;
+}
+code {
+    font-size: 1.04rem;
+}
+h2#git-branch-prune-local-subheader {
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+    font-size: 1.0rem;
+    font-style: italic;
+    font-weight: 500;
+}
+h2#summary {
+    border-top: 1px solid gray;
+    padding-top: 1rem;
+}
+h2, h3 , ul, details {
+    padding-left: 3rem;
+}
+/* details */
+details.run {
+    margin: 0.25rem;
+    padding: 0rem 0rem 0.15rem 3rem;
+    border-bottom: 1px solid #0060df;
+}
+details.run table {
+    margin: 0.5rem 0 0.5rem 0;
+}
+[inert] > * {
+  opacity: 0.5;
+}
+details.run > summary,
+details.details-list > summary {
+    /* font-weight: bold; */
+    cursor: pointer;
+}
+details.run > summary:hover,
+details.details-list > summary:hover {
+    /* font-weight: bold; */
+    color: #2196F3;
+}
+details.details-list details.relevant-would-delete > summary,
+details.details-list details.relevant-would-move-to-trash-bundles > summary,
+details.details-list details.relevant-kept-protected > summary,
+details.details-list details.relevant-kept-recent > summary,
+details.details-list details.relevant-kept-unmerged > summary,
+details.details-list details.relevant-debug > summary,
+details.details-list details.relevant-structure-config summary {
+    color:#66BB6A;
+    cursor: pointer;
+}
+details.run > details {
+    /* color:red; */
+    padding: 0.5rem;
+    --tw-text-opacity: 20%;
+    background-color: rgb(239 68 68 / var(--tw-text-opacity));
+    border-radius: 5px;
+}
+details.details-list details:last-child,
+details.details-list details:last-child summary {
+    color: #FFCA28;
+    cursor: pointer;
+}
+details > code {
+    color: #0060df;
+}
+
+/* table */
+tbody tr:nth-child(even) {
+    background: #0277BD;
+}
+/* tbody tr:nth-child(odd) {
+    background: lime;
+} */
+details p {
+    font-size: 0.72rem;
+    color: lime;
+}
+table {
+    overflow-x: auto;
+}
+th {
+    text-align: center;
+    color: #8b8b9b;
+    background-color: #003eaa;
+    padding: 0.3rem;
+    border-bottom: 1px solid #ddd;
+}
+td {
+    border-bottom: 1px solid #0060df;
+    padding: .2rem;
+    text-align: left;
+    vertical-align: top;
+}
+td > em {
+    color: #66BB6A;
+}
+td:nth-child(1) {
+    /* color: red; */
+    width: 21rem;
+    color: #0060df;
+    font-weight: normal;
+}
+td:nth-child(2) {
+    /* color: red; */
+    width: 4.5rem;
+    color: #AD1457;
+    math-style: normal;
+    text-align: right;
+}
+td:nth-child(3) {
+    /* color: red; */
+    width: 12rem;
+    text-align: center;
+}
+td:nth-child(4) {
+    /* color: red; */
+    width: 15rem;
+    color: #81C784;
+}
+td:nth-child(5) {
+    /* color: red; */
+    width: 30.5rem;
+}
+td:nth-child(6) {
+    /* color: red; */
+    color: #FF7043;
+    width: 10rem;
+    /* text-align: right; */
+}
+td:nth-child(7) {
+    /* color: red; */
+    width: 4rem;
+    text-align: right;
+}
+td:nth-child(8) {
+    /* color: red; */
+    width: 3.5rem;
+    text-align: center;
+}
+td:nth-child(9) {
+    /* color: red; */
+    width: 4rem;
+    text-align: center;
+}
+td:nth-child(10) {
+    /* color: red; */
+    width: 5rem;
+    text-align: center;
+}
+td:nth-child(11) {
+    /* color: red; */
+    width: 3.5rem;
+    text-align: center;
+}
+td:nth-child(12) {
+    /* color: red; */
+    width: 4rem;
+    text-align: center;
+}
+td:nth-child(13) {
+    /* color: red; */
+    width: 5rem;
+    text-align: center;
+}
+td:nth-child(14) {
+    /* color: red; */
+    width: 3rem;
+    text-align: center;
+}

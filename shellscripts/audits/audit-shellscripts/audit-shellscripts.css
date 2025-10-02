@@ -61,7 +61,7 @@ td:nth-child(1) {
     font-size: 1.04rem;
 }
 td:nth-child(2) {
-    width: 5rem; 
+    width: 5rem;
     --tw-text-opacity: 1;
     color: rgb(239 68 68 / var(--tw-text-opacity));
     math-style: normal;

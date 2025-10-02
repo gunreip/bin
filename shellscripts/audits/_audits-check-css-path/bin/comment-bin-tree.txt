@@ -1,0 +1,1 @@
+Ordner für die Ausgabe der Audit-Artefakte <code>latest.html|jsonl</code> die im Kontext <code>/audits/_audits-check-css-path/bin|<project></code> erstellt werden.

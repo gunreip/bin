@@ -1,0 +1,37 @@
+{
+    "version": 1,
+    "vars": {
+        "HOME": "$HOME",
+        "bin_root": "$HOME/code/bin",
+        "project_env": "$HOME/code/<project>/.env",
+        "css_root_audits": "$HOME/code/bin/templates/css/audits",
+        "css_root_local": "$HOME/code/bin/templates/css/themes",
+        "css_root_bootstrap": "$HOME/code/bin/templates/css/bootstrap-5.3.8-dist/css",
+        "css_root_wiki": "",
+        "css_default": "${css_root_bootstrap}/bootstrap.min.css",
+        "css_audits_dark": "${css_root_local}/audits-dark-electric.css"
+    },
+    "audits": {
+        "_audits-main": {
+            "bootstrap": "${css_root_bootstrap}/bootstrap.min.css"
+        },
+        "_lx-env": {
+            "bootstrap": "${css_root_bootstrap}/bootstrap.min.css"
+        },
+        "_lx-env-check": {
+            "bootstrap": "${css_root_bootstrap}/bootstrap.min.css"
+        },
+        "_lx-env-fix": {
+            "bootstrap": "${css_root_bootstrap}/bootstrap.min.css"
+        },
+        "_audits-check-css-path": {
+            "bootstrap": "${css_root_bootstrap}/bootstrap.min.css"
+        },
+        "_audits-check-js-path": {
+            "bootstrap": "${css_root_bootstrap}/bootstrap.min.css"
+        },
+        "shellscripts": {
+            "bootstrap": "${css_root_bootstrap}/bootstrap.min.css"
+        }
+    }
+}

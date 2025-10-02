@@ -1,7 +1,3 @@
-Hier eine ausführliche Markdown-Dokumentation für dein aktuelles `bin-tree`-Skript (**v0.3.2**). Ich habe den Aufbau wie bei deinen anderen Dokus gewählt: Einleitung, Zweck, Nutzung, Optionen, Ausgaben, Unterschiede zu Standard, Beispiel und zum Schluss ein Mermaid-Diagramm.
-
----
-
 # Dokumentation: `bin-tree`
 
 ## Übersicht
@@ -138,11 +134,11 @@ Das Skript erzeugt immer drei Dateien im Verzeichnis:
 
 ```mermaid
 flowchart TD
-  A["Start: bin-tree"] --> B["Setze Konstanten<br/><tt>SCRIPT_ID, VERSION</tt>"]
+  A["**Start:**<br/>bin-tree"] --> B["Setze Konstanten<br/><tt>SCRIPT_ID, VERSION</tt>"]
   B --> C["Prüfe BASE_DIR ~/code/bin"]
   C --> D["Erzeuge Audit-Ordner<br/><tt>audits/bin-tree</tt>"]
   D --> E["Schreibe Header<br/>JSONL + Markdown"]
-  E --> F["Finde alle Verzeichnisse<br/>(ohne .git/)"]
+  E --> F["Finde alle Verzeichnisse<br/>(ohne <tt>.git/</tt>)"]
   F --> G["Für jedes Verzeichnis:<br/>ermittle Dateien + Subdirs"]
   G --> H["Liste max. 2 Dateien<br/>+ zähle Rest"]
   H --> I["Schreibe JSONL-Eintrag"]
@@ -151,11 +147,11 @@ flowchart TD
   J --> K
   K --> L["Am Ende: schreibe Summary"]
   L --> M{"Pandoc verfügbar?"}
-  M -- Ja --> N["Erzeuge latest.html<br/>+ CSS-Link bin-tree.css"]
+  M -- Ja --> N["Erzeuge <tt>latest.html</tt><br/>+ CSS-Link <tt>bin-tree.css</tt>"]
   M -- Nein --> O["Melde Hinweis"]
   N --> P["Touch Dateien<br/>Editor-Refresh"]
   O --> P
-  P --> Q["Ende"]
+  P --> Q["**Ende**"]
 ```
 
 ---

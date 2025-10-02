@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "vars": {
+        "HOME": "$HOME",
+        "bin_root": "$HOME/code/bin",
+        "project_env": "$HOME/code/<project>/.env",
+        "js_root_audits": "$HOME/code/bin/templates/js/audits",
+        "js_root_bootstrap": "$HOME/code/bin/templates/js/bootstrap-5.3.8-dist/js",
+        "js_root_wiki": "",
+        "js_default": "${js_root_bootstrap}/bootstrap.min.js"
+    },
+    "audits": {
+        "_audits-main": {
+            "bootstrap": "${js_root_bootstrap}/bootstrap.min.js"
+        },
+        "_lx-env": {
+            "bootstrap": "${js_root_bootstrap}/bootstrap.min.js"
+        },
+        "_lx-env-check": {
+            "bootstrap": "${js_root_bootstrap}/bootstrap.min.js"
+        },
+        "_lx-env-fix": {
+            "bootstrap": "${js_root_bootstrap}/bootstrap.min.js"
+        },
+        "_audits-check-css-path": {
+            "bootstrap": "${js_root_bootstrap}/bootstrap.min.js"
+        },
+        "_audits-check-js-path": {
+            "bootstrap": "${js_root_bootstrap}/bootstrap.min.js"
+        },
+        "shellscripts": {
+            "bootstrap": "${js_root_bootstrap}/bootstrap.min.js"
+        }
+    }
+}

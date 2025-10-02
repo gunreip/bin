@@ -1,0 +1,160 @@
+.TH git-branch-prune-local 1 "2025-09-25" "v0.4.1" "User Commands"
+.SH NAME
+git-branch-prune-local \- lokale, gemergte Git-Branches nach Regeln aufräumen (Dry-Run, Schutzlisten, Audit)
+
+.SH SYNOPSIS
+.B git-branch-prune-local
+[\-\-dry\-run|\-\-apply]
+[\-\-only\-merged\-to=\fILIST\fR]
+[\-\-min\-age\-days=\fIN\fR]
+[\-\-protect=\fIGLOBS\fR]
+[\-\-force\-delete]
+[\-\-html\-inline=\fIkeep|pure\fR]
+[\-\-minify\-html=\fIyes|no\fR]
+[\-\-debug=\fIdbg|trace|xtrace\fR]
+[\-\-help|\-\-version]
+
+.SH DESCRIPTION
+\fIgit-branch-prune-local\fR entfernt \fBlocale\fR, bereits \fBgemergte\fR Branches anhand von Regeln:
+Ziel\-Branch(es) (\fB\-\-only\-merged\-to\fR), Mindestalter in Tagen (\fB\-\-min\-age\-days\fR),
+Schutzlisten (built\-in / Datei / \-\-protect), mit \fBDry\-Run\fR\-Vorschau.
+Vor dem Löschen wird je Branch ein Git \fIbundle\fR im Trash\-Verzeichnis erzeugt.
+Das Skript schreibt Audits (Markdown/HTML) und kann HTML minifizieren; optional Debug\-Logs.
+
+.PP
+\fBGatekeeper:\fR Ausführung nur
+(1) aus \fI$HOME/code/bin\fR (muss Git\-Repo sein) oder
+(2) aus einem Projekt\-Repo\-Root (erfordert \fI.env\fR im Repo\-Root).
+Start außerhalb des Repo\-Roots führt zum Abbruch.
+
+.SH BEHAVIOUR
+.IP "1." 3
+Branches ermitteln; Merges relativ zu Targets (Default: \fImain\fR, Fallback \fImaster\fR).
+.IP "2." 3
+Nach Mindestalter filtern (\fB\-\-min\-age\-days\fR, Default 7).
+.IP "3." 3
+Schutzlisten anwenden: eingebaute Exakt/Globs, Datei \fI.git\-prune\-protect\fR, zusätzliche \fB\-\-protect\fR.
+.IP "4." 3
+\fBDry\-Run\fR: Kandidaten als \fIWould\-Delete\fR und Vorschau der Bundle\-Pfade.
+.IP "5." 3
+\fBApply\fR: Bundles in Trash schreiben, dann \fBgit branch \-d\fR (oder \-D mit \fB\-\-force\-delete\fR).
+.IP "6." 3
+Audit (Monatssektion) aktualisieren; HTML (optional minified) erzeugen; Debug\-Pfade ausgeben.
+
+.SH OPTIONS
+.TP
+.B \-\-dry\-run
+Nur zählen und auflisten (Default). Nichts wird gelöscht.
+.TP
+.B \-\-apply
+Löschen aktivieren: pro Branch Bundle erzeugen und dann lokalen Branch löschen.
+.TP
+.B \-\-force\-delete
+Benutzt \fBgit branch \-D\fR statt \-d (nur in Kombination mit \-\-apply sinnvoll).
+.TP
+.B \-\-only\-merged\-to=\fILIST\fR
+Komma\-Liste von Target\-Branches (z. B. \fImain,develop\fR). Default \fImain\fR; Fallback \fImaster\fR, falls \fImain\fR fehlt.
+.TP
+.B \-\-min\-age\-days=\fIN\fR
+Mindestalter in Tagen seit letztem Commit (Default \fI7\fR).
+.TP
+.B \-\-protect=\fIGLOBS\fR
+Komma\-separierte zusätzliche Schutz\-Globs (z. B. \fIrelease/*,feature/*\fR).
+.TP
+.B \-\-html\-inline=\fIkeep|pure\fR
+Tabellen im HTML ohne \fIclass/id/style\fR (\fIpure\fR; benötigt \fBperl\fR) oder unverändert (\fIkeep\fR).
+.TP
+.B \-\-minify\-html=\fIyes|no\fR
+Minifiziert das HTML mit \fBhtml\-minifier\-terser\fR, sofern installiert (Default \fIyes\fR).
+.TP
+.B \-\-debug=\fIdbg|trace|xtrace\fR
+Schreibt Debug\-Logs (s. \fBFILES\fR) und listet sie im Audit (Summary \-> Debugs) auf.
+.TP
+.B \-\-help
+Kurzhilfe.
+.TP
+.B \-\-version
+Versionsausgabe.
+
+.SH PROTECTION
+Built\-in Exakt: aktueller Branch, \fBHEAD\fR, \fImain\fR, \fImaster\fR, \fIdevelop\fR.
+.PP
+Built\-in Globs: \fIrelease/*, hotfix/*, wip/*, prod*, staging*\fR.
+.PP
+Datei: \fI.git\-prune\-protect\fR (eine Glob\-Regel pro Zeile; \fI#\fR startet Kommentare) im Repo\-Root.
+
+.SH FILES
+.TP
+.I $HOME/code/bin/.structure.conf.json
+JSON\-Konfiguration für Wurzelverzeichnisse (audits/runs/debugs/backups/trash) und HTML\-Optionen.
+Platzhalter: \fI${HOME}\fR, \fI$HOME\fR, \fI${shellscripts_root}\fR, \fI${script_id}\fR.
+Das Skript hängt \fI/${script_id}\fR nur an, wenn nicht bereits vorhanden/benutzt.
+.TP
+.I $HOME/code/bin/shellscripts/audits/git-branch-prune-local/latest.md
+Monatlich gegliedertes Audit (je Run ein <details>).
+.TP
+.I $HOME/code/bin/shellscripts/audits/git-branch-prune-local/latest.html
+HTML\-Export (Pandoc); optional minified. Titel: \fIAudit git\-branch\-prune\-local \- <Datum/Zeit>\fR.
+.TP
+.I $HOME/code/bin/shellscripts/audits/git-branch-prune-local/git-branch-prune-local.css
+CSS; wird nur erzeugt, falls nicht vorhanden.
+.TP
+.I $HOME/code/bin/shellscripts/debugs/git-branch-prune-local/*.dbg.*|*.trace.*|*.xtrace.*
+Debug\-Logs zu \fB\-\-debug\fR=dbg|trace|xtrace.
+.TP
+.I $HOME/code/bin/shellscripts/trash/git-branch-prune-local/<repo>/<run-id>/*.bundle
+Bundles der gelöschten Branches (Sicherheits\-Puffer).
+.TP
+.I $HOME/code/bin/shellscripts/backups/git-branch-prune-local/*.bak
+Backups der Skriptdatei beim Reinstall.
+
+.SH EXIT STATUS
+.TP
+.B 0
+Erfolg.
+.TP
+.B 2
+Gatekeeper/Umgebung fehlerhaft (kein Repo, nicht im Repo\-Root, fehlende \fI.env\fR, o. ä.).
+.TP
+.B 3
+Ungültige Option/Syntaxfehler in Parametern.
+.TP
+.B >0
+Laufzeitfehler (z. B. Git/I\-O). Fehler werden im Audit gezählt.
+
+.SH EXAMPLES
+.TP
+Trockenlauf, Standardregeln
+.B git-branch-prune-local \-\-dry\-run
+.TP
+Löschen ab 14 Tagen, Target develop
+.B git-branch-prune-local \-\-apply \-\-only\-merged\-to=develop \-\-min\-age\-days=14
+.TP
+Zusätzliche Schutz\-Globs
+.B git-branch-prune-local \-\-dry\-run \-\-protect=release/*,feature/*
+.TP
+Forciertes Löschen (vorsicht!)
+.B git-branch-prune-local \-\-apply \-\-force\-delete
+.TP
+Debug\-Modi
+.B git-branch-prune-local \-\-dry\-run \-\-debug=dbg
+.br
+.B git-branch-prune-local \-\-dry\-run \-\-debug=trace
+.br
+.B git-branch-prune-local \-\-dry\-run \-\-debug=xtrace
+.TP
+HTML ohne Tabellen\-Styles, minified
+.B git-branch-prune-local \-\-dry\-run \-\-html\-inline=pure \-\-minify\-html=yes
+
+.SH NOTES
+Für HTML\-Sanitizing (\fI\-\-html\-inline=pure\fR) wird \fBperl\fR benötigt.
+Für Minify wird \fBhtml\-minifier\-terser\fR empfohlen; andernfalls wird minify sauber übersprungen.
+
+.SH SEE ALSO
+git-branch(1), git-bundle(1), pandoc(1)
+
+.SH AUTHOR
+Maintainer: Gunreip & Team. Dokumentation: Projekt Scripting.
+
+.SH VERSION
+v0.4.1

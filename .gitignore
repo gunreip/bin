@@ -1,6 +1,15 @@
-# bin repo ignore
-shellscripts/debugs/
+# Backups & Trash
 shellscripts/backups/
-*.bak
-*.jsonl
+trash/
+
+# Debug & Lauf-Logs
+shellscripts/debugs/
+shellscripts/.einspieler.txt
+
+# Generierte Audits (artefakte)
+shellscripts/audits/**/latest.html
+shellscripts/audits/**/latest.jsonl
+
+# OS / Editor
 .DS_Store
+*.swp

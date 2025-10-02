@@ -1,0 +1,58 @@
+{
+    "defaults": {
+        "debug": "xtrace",
+        "debug_keep": 5,
+        "debug_min_keep": 2,
+        "debug_age": "12h",
+        "minify": "no",
+        "theme": "dark",
+        "color_mode": "auto",
+        "with_scans": "no",
+        "with_pages": "yes",
+        "with_options": "yes",
+        "with_assets": "no",
+        "with_config_css": "no",
+        "with_config_js": "no",
+        "with_result": "yes",
+        "asset_order": "js-first",
+        "minifier": {
+            "bin": "html-minifier-terser",
+            "args": [
+                "--collapse-whitespace",
+                "--minify-css",
+                "--minify-js",
+                "--remove-comments=false",
+                "--ignore-custom-comments",
+                "/^\\s*CSS-LINKS (START|END)/"
+            ]
+        },
+        "link_mode": "relative"
+    },
+    "scripts": {
+        "_audits-check-css-path": {
+            "defaults": {
+                "debug": "xtrace",
+                "debug_keep": 5,
+                "debug_min_keep": 2,
+                "debug_age": "12h",
+                "minify": "no",
+                "link_mode": "relative"
+            }
+        },
+        "_audits-main": {
+            "defaults": {
+                "debug": "xtrace",
+                "debug_keep": 5,
+                "debug_min_keep": 2,
+                "debug_age": "12h",
+                "minify": "yes",
+                "link_mode": "relative",
+                "with_noise": "no",
+                "with_assets": "yes",
+                "with_scans": "yes",
+                "with_pages": "yes",
+                "with_result": "yes"
+            }
+        }
+    }
+}

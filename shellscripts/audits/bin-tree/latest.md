@@ -1,22 +1,48 @@
-# Audit `bin-tree` — 2025-09-22 22:54:13 CEST
+# Audit `bin-tree` — 2025-10-01 06:44:16 CEST
 ## /home/gunreip/code/bin/shellscripts/bin-tree.sh - v0.5.0 {#bin-tree-subheader}
-- **bin/** 📁 *(NEU! Root des bin-Repos mit Symlinks/Tools; Arbeitsbasis für alle Shell-Skripte.)*
+- **bin/** 📁 *(Root des bin-Repos mit Symlinks/Tools; Arbeitsbasis für alle Shell-Skripte.)*
+  - *.debug.conf.json*
   - *.gitignore*
-  - *_sh-chmod*
   - … 3 weitere Datei(en)
   - **docs/** 📁 *(Enthält projektbegleitende Dokumente, die nicht direkt Teil der Shellscripts sind.)*
+    - *CHECKLISTE-skript-erstellung.md*
     - *Nächste Git-Skripte (Vorschläge).md*
-    - *comment-bin-tree.txt*
-    - … 1 weitere Datei(en)
+    - … 5 weitere Datei(en)
     - **charters/** 📁 *(Projekt-Charter und Leitplanken (historisch versioniert).)*
       - *charter-scripting-2025-09-21.md*
       - *comment-bin-tree.txt*
   - **shellscripts/** 📁 *(**Hauptordner** für alle Shell-Skripte. Die zugehörigen Symlinks zum Aufruf liegen direkt in `/bin/<root>`.)*
-    - *_sh-chmod.sh*
-    - *_sh-logger-inject.sh*
-    - … 17 weitere Datei(en)
+    - *.einspieler.txt*
+    - *.tails.txt*
+    - … 28 weitere Datei(en)
     - **audits/** 📁 *(In diesem Ordner ist die Zentrale Ablage aller Audit-Artefakte, die von den Skripten erzeugt werden.)*
+      - *audits-main.html*
       - *comment-bin-tree.txt*
+      - **_audits-check-css-path/** 📁 *(Ordner im welchem die "Audits", generiert mit `_audits-check-css-path` entsprechend ihrem Kontextes gespeichert werden.)*
+        - *comment-bin-tree.txt*
+        - **bin/** 📁 *(Ordner für die Ausgabe der Audit-Artefakte <code>latest.html|jsonl</code> die im Kontext `/audits/_audits-check-css-path/bin|<project>` erstellt werden.)*
+          - *_audits-check-css-path.css*
+          - *_audits-check-css-path.js*
+          - … 3 weitere Datei(en)
+          - **2025/** 📁 *(Archiv-Ordner für das Jahr *2025* der Audit-Artefakte `latest.html|jsonl` → `YYYY-MM.html|jsonl` der vergangenen Monate.)*
+            - *2025-09.html*
+            - *2025-09.jsonl*
+            - … 1 weitere Datei(en)
+      - **_audits-main/** 📁 *(Noch kein Kommentar erfasst!)*
+        - *_audits-main.css*
+        - *_audits-main.js*
+        - … 2 weitere Datei(en)
+        - **bin/** 📁 *(Noch kein Kommentar erfasst!)*
+          - *comment-bin-tree.txt*
+          - *latest.jsonl*
+      - **_lx-env/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_lx-env.css*
+        - *comment-bin-tree.txt*
+        - … 1 weitere Datei(en)
+      - **_lx-env-check/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_lx-env-check.css*
+        - *comment-bin-tree.txt*
+        - … 1 weitere Datei(en)
       - **audit-shellscripts/** 📁 *(Audit-Artefakte des Skripts audit-shellscripts: listet alle Skripte kategorisiert auf (Ausgaben in `MD`/`HTML`/`JSONL`).)*
         - *audit-shellscripts.css*
         - *comment-bin-tree.txt*
@@ -25,6 +51,10 @@
         - *bin-tree.css*
         - *comment-bin-tree.txt*
         - … 3 weitere Datei(en)
+      - **git-branch-prune-local/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *git-branch-prune-local.css*
+        - … 2 weitere Datei(en)
       - **git-branch-restore/** 📁 *(Audit-Artefakte von `git-branch-restore` (`MD`/`HTML`/`JSONL`).)*
         - *comment-bin-tree.txt*
         - **bin/** 📁 *(Maschinell lesbare Zwischen-/Ergebnisdateien (z. B. Jahresordner).)*
@@ -41,13 +71,39 @@
           - **2025/** 📁 *(Monatsübersichten; Jahresweise → z. B. `2025` respektive Monatsweise (z. B. `2025-09.jsonl`).)*
             - *2025-09.jsonl*
             - *comment-bin-tree.txt*
+      - **git-tag/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *git-tag.css*
+        - … 2 weitere Datei(en)
+      - **manpages-install/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *latest.html*
+        - … 2 weitere Datei(en)
+      - **sh-zip-scripts/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *latest.html*
+        - … 3 weitere Datei(en)
     - **backups/** 📁 *(In diesem Zentralen Verzeichnis Ablage aller automatisch erzeugten Script-Backups: `/backups/<script-id>/<script-id>.YYYYMMDD-HHMMSS.bak`.)*
-      - *comment-bin-tree.txt*
+      - *_lx-env-check.20250926-134717.bak*
+      - *_lx-env-check.20250926-183902.bak*
+      - … 32 weitere Datei(en)
+      - **_audits-check-css-path/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_audits-check-css-path.sh.20250928-122929.bak*
+        - *_audits-check-css-path.sh.20250928-124226.bak*
+        - … 34 weitere Datei(en)
+      - **_audits-main/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_audits-main.sh.20250930-144405.bak*
+        - *_audits-main.sh.20250930-144616.bak*
+        - … 33 weitere Datei(en)
       - **_sh-chmod/** 📁 *(Backups des Skripts: `_sh-chmod.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
         - *comment-bin-tree.txt*
       - **_sh-logger-inject/** 📁 *(Backups des Skripts: `_sh-logger-inject.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
         - *comment-bin-tree.txt*
         - *git-check.sh.20250920-182329.bak*
+      - **_sh-zip-scripts/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_sh-zip-scripts.20250923-135903.bak*
+        - *_sh-zip-scripts.20250923-142230.bak*
+        - … 25 weitere Datei(en)
       - **audit-shellscripts/** 📁 *(Backups des Skripts: `audit-shellscripts.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
         - *audit-shellscripts-20250921-144024.bak*
         - *audit-shellscripts-20250922-122527.bak*
@@ -66,6 +122,12 @@
         - *comment-bin-tree.txt*
         - *git-audit-read.20250920-100220.bak*
         - … 9 weitere Datei(en)
+      - **git-branch-prune-local/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *git-branch-prune-local.20250924-132313.bak*
+        - … 18 weitere Datei(en)
+        - **git-branch-prune-local/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+          - *comment-bin-tree.txt*
       - **git-branch-restore/** 📁 *(Backups des Skripts: `git-branch-restore.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
         - *comment-bin-tree.txt*
         - *git-branch-restore.sh.20250921-085333.bak*
@@ -106,9 +168,17 @@
         - *comment-bin-tree.txt*
         - *git-sync.sh.20250918-162413.bak*
         - … 9 weitere Datei(en)
+      - **git-tag/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *git-tag.20250925-211246.bak*
+        - … 3 weitere Datei(en)
       - **logfx/** 📁 *(Backups des Skripts: `logfx.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
         - *comment-bin-tree.txt*
         - *logfx.sh.20250921-055538.bak*
+      - **manpages-install/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *manpages-install.20250925-143959.bak*
+        - … 9 weitere Datei(en)
       - **prompt-starship/** 📁 *(Backups des Skripts: `prompt-starship.sh` → `<script-id>.YYYYMMDD-HHMMSS.bak`.)*
         - *comment-bin-tree.txt*
         - *prompt-starship.sh.20250919-074529.bak*
@@ -119,10 +189,22 @@
     - **debugs/** 📁 *(Zentrale Ablage für Debug-/Trace-Dateien (`*.dbg.*|*.trace.*|*.xtrace.*`). Struktur angelehnt an `backups/`.)*
       - *comment-bin-tree.txt*
       - *shellcheck.jsonl*
+      - **_audits-check-css-path/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_audits-check-css-path.xtrace.20250928-135000*
+        - *_audits-check-css-path.xtrace.20250929-051718.jsonl*
+        - … 5 weitere Datei(en)
+      - **_audits-main/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *.force-xtrace*
+        - *_audits-main.xtrace.20250929-121605.jsonl*
+        - … 31 weitere Datei(en)
       - **git-audit-read/** 📁 *(Debug/Trace-Logs von `git-audit-read.sh` → `git-audit-read.dbg.<ts>` | `git-audit-read.trace.<ts>` | `git-audit-read.xtrace.<ts>`.)*
         - *comment-bin-tree.txt*
         - *git-audit-read.trace.20250920-131800.jsonl*
         - … 11 weitere Datei(en)
+      - **git-branch-prune-local/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *git-branch-prune-local.dbg.20250925-064401*
+        - … 12 weitere Datei(en)
       - **git-branch-restore/** 📁 *(Debug/Trace-Logs von `git-branch-restore.sh` → `git-branch-restore.dbg.<ts>` | `git-branch-restore.trace.<ts>` | `git-branch-restore.xtrace.<ts>`.)*
         - *comment-bin-tree.txt*
         - *git-branch-restore.trace.20250921-105354.jsonl*
@@ -133,12 +215,12 @@
         - … 2 weitere Datei(en)
       - **git-check/** 📁 *(Debug/Trace-Logs von `git-check.sh` → `git-check.dbg.<ts>` | `git-check.trace.<ts>` | `git-check.xtrace.<ts>`.)*
         - *comment-bin-tree.txt*
-        - *git-check.dbg.20250920-203026.jsonl*
-        - … 12 weitere Datei(en)
+        - *git-check.trace.20250923-065441.jsonl*
+        - … 1 weitere Datei(en)
       - **git-ctx/** 📁 *(Debug/Trace-Logs von `git-ctx.sh` → `git-ctx.dbg.<ts>` | `git-ctx.trace.<ts>` | `git-ctx.xtrace.<ts>`.)*
         - *comment-bin-tree.txt*
-        - *git-ctx.off.20250921-120321.jsonl*
-        - … 13 weitere Datei(en)
+        - *git-ctx.off.20250923-065414.jsonl*
+        - … 1 weitere Datei(en)
       - **git-feature/** 📁 *(Debug/Trace-Logs von `git-feature.sh` → `git-feature.dbg.<ts>` | `git-feature.trace.<ts>` | `git-feature.xtrace.<ts>`.)*
         - *comment-bin-tree.txt*
         - *git-feature.dbg.20250921-182049.jsonl*
@@ -157,8 +239,8 @@
           - … 1 weitere Datei(en)
       - **git-push/** 📁 *(Debug/Trace-Logs von `git-push.sh` → `git-push.dbg.<ts>` | `git-push.trace.<ts>` | `git-push.xtrace.<ts>`.)*
         - *comment-bin-tree.txt*
-        - *git-push.trace.20250921-102057.jsonl*
-        - … 3 weitere Datei(en)
+        - *git-push.trace.20250923-065414.jsonl*
+        - … 1 weitere Datei(en)
       - **git-state/** 📁 *(Debug/Trace-Logs von `git-state.sh` → `git-state.dbg.<ts>` | `git-state.trace.<ts>` | `git-state.xtrace.<ts>`.)*
         - *comment-bin-tree.txt*
         - *git-state.trace.20250921-125540.jsonl*
@@ -167,40 +249,99 @@
         - *comment-bin-tree.txt*
         - *git-sync.trace.20250921-103332.jsonl*
         - … 5 weitere Datei(en)
+      - **git-tag/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *git-tag.dbg.20250926-060105*
+        - … 6 weitere Datei(en)
       - **runs-prune/** 📁 *(Debug/Trace-Logs von `runs-prune.sh` → `runs-prune.dbg.<ts>` | `runs-prune.trace.<ts>` | `runs-prune.xtrace.<ts>`.)*
         - *comment-bin-tree.txt*
         - *runs-prune.trace.20250921-131107.jsonl*
         - … 3 weitere Datei(en)
+      - **sh-zip-scripts/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
     - **lib/** 📁 *(Geteilte Bibliotheken/Helper (von mehreren Skripten eingebunden).)*
+      - *.script-options.conf.json*
       - *comment-bin-tree.txt*
-      - *logfx.sh*
+      - … 1 weitere Datei(en)
+    - **man/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+      - *comment-bin-tree.txt*
+      - **man1/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_audits-check-css-path.1*
+        - *_bin-no-comment-txt.1*
+        - … 3 weitere Datei(en)
     - **runs/** 📁 *(Laufzeit-Artefakte/Run-Ergebnisse (maschinenlesbar).)*
       - *comment-bin-tree.txt*
       - **bin/** 📁 *(Run-Ergebnisse je Tool unterhalb von 'bin/' gruppiert.)*
         - *comment-bin-tree.txt*
-        - **git-feature/** 📁 *(Run-Ergebnis-Snapshots für `git-feature.sh` (z. B. `latest.json`).)*
+      - **git-branch-prune-local/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - **git-branch-prune-local/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
           - *comment-bin-tree.txt*
-          - *latest.json*
+      - **git-feature/** 📁 *(Run-Ergebnis-Snapshots für `git-feature.sh` (z. B. `latest.json`).)*
+        - *comment-bin-tree.txt*
+        - *latest.json*
+      - **git-tag/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+      - **sh-zip-scripts/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - *sh-zip-scripts-_sh.zip*
+        - … 4 weitere Datei(en)
     - **wiki/** 📁 *(Projektinterne Doku/Handbuchseiten (exportfähig).)*
-      - *bin-tree.md*
-      - *comment-bin-tree.txt*
+      - *_audits-check-css-path.md*
+      - *_bin-no-comment-txt.md*
+      - … 6 weitere Datei(en)
   - **templates/** 📁 *(Vorlagen und Skelett-Dateien für wiederkehrende Setups.)*
     - *comment-bin-tree.txt*
+    - **css/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+      - *.css.conf.json*
+      - *comment-bin-tree.txt*
+      - **bootstrap-5.3.8-dist/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - **css/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+          - *bootstrap-grid.css*
+          - *bootstrap-grid.css.map*
+          - … 63 weitere Datei(en)
+      - **themes/** 📁
+        - *audits-dark-electric.css*
+        - *audits-dark.css*
     - **gitignore/** 📁 *('.gitignore'-Vorlagen für unterschiedliche Projekt-Typen.)*
       - *bin.gitignore*
       - *comment-bin-tree.txt*
       - … 1 weitere Datei(en)
+    - **js/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+      - *.js.conf.json*
+      - *comment-bin-tree.txt*
+      - **bootstrap-5.3.8-dist/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *comment-bin-tree.txt*
+        - **js/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+          - *bootstrap.bundle.js*
+          - *bootstrap.bundle.js.map*
+          - … 23 weitere Datei(en)
   - **trash/** 📁 *(Quarantäne/temporäre Ablage für gelöschte/abgeräumte Artefakte.)*
     - *comment-bin-tree.txt*
+    - **backups/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+      - *comment-bin-tree.txt*
+      - **_audits-main/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_audits-main.sh.20250929-120220.bak*
+        - *_audits-main.sh.20250929-121556.bak*
+        - … 22 weitere Datei(en)
     - **debug/** 📁 *(Aus Debug-Rotation ausgelagerte Dateien (Kurzzeit-Aufbewahrung).)*
       - *comment-bin-tree.txt*
+      - **_audits-check-css-path/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_audits-check-css-path.xtrace.20250928-135627.jsonl*
+        - *_audits-check-css-path.xtrace.20250928-135737.jsonl*
+        - … 49 weitere Datei(en)
+      - **_audits-main/** 📁 *(<span class="no-comment">Noch kein Kommentar!</span>)*
+        - *_audits-main.xtrace.20250929-115053.jsonl*
+        - *_audits-main.xtrace.20250929-115442.jsonl*
+        - … 2 weitere Datei(en)
       - **git-audit-read/** 📁 *(Auslagerungen für git-audit-read (Debug/Trace-Altlasten).)*
         - *comment-bin-tree.txt*
         - *git-audit-read.trace.20250920-094018.jsonl*
         - … 26 weitere Datei(en)
 
 ## Summary
-- total_dirs: **59**
-- total_files: **377**
-- total_files_listed: **104**
-- total_files_more: **273**
+- total_dirs: **99**
+- total_files: **837**
+- total_files_listed: **176**
+- total_files_more: **661**

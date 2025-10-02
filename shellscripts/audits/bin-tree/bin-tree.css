@@ -87,3 +87,6 @@ em > code {
     font-size: 1.04rem;
     color: #AB47BC;
 }
+span.no-comment {
+    color: #F44336;
+}

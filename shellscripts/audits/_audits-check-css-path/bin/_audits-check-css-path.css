@@ -1,0 +1,29 @@
+/* code/bin/shellscripts/audits/_audits-check-css-path/bin/_audits-check-css-path.css */
+code {
+   font-size: 1.04rem;
+}
+table {
+    border-collapse: separate;
+}
+table.audit {
+    width: 100%;
+    table-layout: fixed;
+}
+th {
+    text-align: center;
+}
+th.th-col-1 {
+    width: 15%;
+}
+th.th-col-2 {
+    width: 10%;
+}
+th.th-col-3 {
+    /* width: auto; */
+}
+th.th-col-4 {
+    width: 5%;
+}
+td.td-col-4 {
+    text-align: center;
+}

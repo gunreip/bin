@@ -1,0 +1,163 @@
+.TH _AUDITS-CHECK-CSS-PATH 1 "September 2025" "v0.25.x" "User Commands"
+.SH NAME
+_audits-check-css-path \- prüft CSS-Pfade aus .css.conf.json und erzeugt HTML/JSONL-Audits
+.SH SYNOPSIS
+.B _audits-check-css-path
+[\-\-config=PATH] [\-\-id=SEKTION]
+[\-\-debug=off|dbg|trace|xtrace|all]
+[\-\-debug\-keep=N] [\-\-debug\-age=SPAN]
+[\-\-minify=yes|no]
+[\-\-with\-noise] [\-\-with\-options|\-\-options]
+[\-\-dump\-raw] [\-\-dump\-resolved]
+[\-\-no\-color]
+[\-\-help] [\-\-version]
+.SH DESCRIPTION
+Der Befehl liest eine CSS-Konfiguration (JSON) mit Variablenauflösung,
+prüft die Existenz der referenzierten Dateien und schreibt die Ergebnisse
+appendierend in eine HTML-Datei (Bootstrap-Dark) sowie in eine monatliche
+JSONL-Datei. Debug\-Traces werden optional erzeugt und rotiert.
+.PP
+Das Programm muss aus
+.BR ~/code/bin
+gestartet werden (Gatekeeper).
+.SH OPTIONS
+.TP
+.BR \-\-config =PATH
+Pfad zu
+.BR templates/css/.css.conf.json .
+Default ist der genannte Pfad unter
+.BR ~/code/bin .
+.TP
+.BR \-\-id =SEKTION
+Nur die angegebene Sektion verarbeiten; ohne Angabe werden alle Sektionen
+unter
+.I .audits
+verarbeitet.
+.TP
+.BR \-\-debug =off|dbg|trace|xtrace|all
+Steuert Debug-Level und Xtrace-Logs.
+.TP
+.BR \-\-debug\-keep =N
+Maximale Anzahl zu behaltender Debug-Dateien (>=2).
+.TP
+.BR \-\-debug\-age =SPAN
+Maximales Alter (z.B. 12h, 30m, 2d) vor Verschiebung in den Trash.
+.TP
+.BR \-\-minify =yes|no
+Minifiziert
+.I latest.html
+mit
+.B html-minifier-terser
+wenn verfügbar.
+.TP
+.BR \-\-with\-noise
+Ausführlichere Terminalausgabe.
+.TP
+.BR \-\-with\-options ", " \-\-options
+Zeigt effektive Optionswerte (aus Options-Config + CLI-Overrides).
+.TP
+.BR \-\-dump\-raw ", " \-\-dump\-resolved
+Zeigt zusätzliche Details (impliziert
+.BR \-\-with\-noise ).
+.TP
+.BR \-\-no\-color
+Deaktiviert Farbausgabe im Terminal.
+.TP
+.BR \-\-help ", " \-\-version
+Hilfe bzw. Versionsausgabe.
+.SH CONFIGURATION
+.SS CSS-Config (templates/css/.css.conf.json)
+JSON mit
+.I vars
+(Variablen) und
+.I audits
+(Sektionen).
+Zulässig sind einfache String-Pfade sowie Objekte mit Schlüssel
+.I files
+(String oder String-Array).
+Fehlerhafte JSON-Syntax führt zum Abbruch mit Zeile/Spalte/Snippet.
+.SS Options-Config (shellscripts/lib/.script-options.conf.json)
+Strikt validiert; enthält
+.I defaults
+und optional
+.I scripts["_audits-check-css-path"].defaults .
+Wichtige Schlüssel: \fBdebug\fR, \fBdebug_keep\fR, \fBdebug_min_keep\fR,
+\fBdebug_age\fR, \fBminify\fR, \fBlink_mode\fR, \fBminifier.bin\fR/\fBargs\fR.
+Bei Fehlern Abbruch (kein Fallback).
+.SH OUTPUT
+.SS HTML
+Pfad:
+.I shellscripts/audits/_audits-check-css-path/bin/latest.html
+(appendierend). Monatswechsel verschiebt die Datei nach
+.I YYYY/YYYY-MM.html .
+UI basiert auf Bootstrap (Dark), jede Sektion ist eine Card mit Tabelle.
+Spalten erhalten Klassen \fBth-col-1..4\fR und \fBtd-col-1..4\fR
+(Spalte 3 flexibel, Spalte 4 zentriert).
+Nur CSS-Dateien aus der eigenen Skript-Sektion sowie
+.I _audits-check-css-path.css
+werden verlinkt.
+.SS JSONL
+Monatliche Datei unter \fI.../YYYY/YYYY-MM.jsonl\fR und Spiegel
+\fIlatest.jsonl\fR mit Laufzusammenfassung und Einträgen.
+.SS DEBUG
+Xtrace-Logs in
+.I shellscripts/debugs/_audits-check-css-path/
+(Endung
+.I .jsonl
+). Rotation nach \fBdebug_keep\fR, \fBdebug_min_keep\fR, \fBdebug_age\fR;
+ältere Logs werden nach
+.I ~/code/bin/trash/debug/_audits-check-css-path
+verschoben.
+.SH EXIT STATUS
+.TP
+.B 0
+Erfolg.
+.TP
+.B 2
+Gatekeeper: falsches Arbeitsverzeichnis.
+.TP
+.B 3
+Unbekannte Option oder fehlendes Tool.
+.TP
+.B 4
+CSS-Config nicht gefunden.
+.TP
+.B 5
+Sektion via \-\-id nicht vorhanden.
+.TP
+.B 6
+Keine Sektionen unter .audits.
+.TP
+.B 7
+CSS-Config: JSON-Syntaxfehler.
+.TP
+.B 8
+Options-Config fehlt.
+.TP
+.B 10
+Options-Config fehlerhaft.
+.TP
+.B 11
+Minify fehlgeschlagen/Minifier nicht gefunden.
+.SH EXAMPLES
+.nf
+_audits-check-css-path
+_audits-check-css-path --id=_audits-check-css-path
+_audits-check-css-path --with-options --debug=xtrace
+_audits-check-css-path --with-noise --dump-resolved
+.fi
+.SH ENVIRONMENT
+Variablen aus \fI.vars\fR in der CSS-Config (z.B. \fBHOME\fR, \fBcss_root\fR)
+werden expandiert. Pfade können \fB$HOME\fR / \fB${VAR}\fR enthalten.
+.SH FILES
+\fB~/code/bin/templates/css/.css.conf.json\fR
+\fB~/code/bin/shellscripts/lib/.script-options.conf.json\fR
+\fB~/code/bin/shellscripts/audits/_audits-check-css-path/bin/latest.html\fR
+\fB~/code/bin/shellscripts/audits/_audits-check-css-path/bin/latest.jsonl\fR
+\fB~/code/bin/shellscripts/debugs/_audits-check-css-path/\fR
+.SH SEE ALSO
+manpages-install.sh (Manpages spiegeln; Standard-Quelle \fI~/code/bin/shellscripts/man\fR, Ziel \fI/usr/local/share/man\fR, optional \fB--audit\fR). :contentReference[oaicite:2]{index=2}
+.SH AUTHOR
+Gunreip & Co. (intern). Maintainer des Scripts: Projekt "Scripting".
+.SH VERSION
+v0.25.x

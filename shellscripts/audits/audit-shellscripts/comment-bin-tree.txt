@@ -1,1 +1,1 @@
-Audit-Artefakte des Skripts audit-shellscripts: listet alle Skripte kategorisiert auf (Ausgaben in `MD`/`HTML`/`JSONL`).
+Audit-Artefakte des Skripts audit-shellscripts: listet alle Skripte kategorisiert auf (Ausgaben in <code>MD</code>/<code>HTML</code>/<code>JSONL</code>).

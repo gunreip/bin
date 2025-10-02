@@ -1,0 +1,1 @@
+Archiv-Ordner für das Jahr *2025* der Audit-Artefakte `latest.html|jsonl` → `YYYY-MM.html|jsonl` der vergangenen Monate.

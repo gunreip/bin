@@ -1,0 +1,2192 @@
+{
+  "run_id": "20250928-175046",
+  "ts": "2025-09-28T17:50:46+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 10,
+    "total_err": 0,
+    "total": 10
+  },
+  "entries": [
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175046",
+      "ts": "2025-09-28T17:50:46+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-175148",
+  "ts": "2025-09-28T17:51:48+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 10,
+    "total_err": 0,
+    "total": 10
+  },
+  "entries": [
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175148",
+      "ts": "2025-09-28T17:51:48+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-175156",
+  "ts": "2025-09-28T17:51:56+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 10,
+    "total_err": 0,
+    "total": 10
+  },
+  "entries": [
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-175156",
+      "ts": "2025-09-28T17:51:56+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-183611",
+  "ts": "2025-09-28T18:36:11+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-183611",
+      "ts": "2025-09-28T18:36:11+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-184937",
+  "ts": "2025-09-28T18:49:37+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-184937",
+      "ts": "2025-09-28T18:49:37+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-190036",
+  "ts": "2025-09-28T19:00:36+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-190036",
+      "ts": "2025-09-28T19:00:36+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-193030",
+  "ts": "2025-09-28T19:30:30+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193030",
+      "ts": "2025-09-28T19:30:30+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-193122",
+  "ts": "2025-09-28T19:31:22+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-193122",
+      "ts": "2025-09-28T19:31:22+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-201558",
+  "ts": "2025-09-28T20:15:58+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201558",
+      "ts": "2025-09-28T20:15:58+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-201623",
+  "ts": "2025-09-28T20:16:23+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201623",
+      "ts": "2025-09-28T20:16:23+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-201647",
+  "ts": "2025-09-28T20:16:47+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-201647",
+      "ts": "2025-09-28T20:16:47+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-202802",
+  "ts": "2025-09-28T20:28:02+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-202802",
+      "ts": "2025-09-28T20:28:02+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-203024",
+  "ts": "2025-09-28T20:30:24+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-203024",
+      "ts": "2025-09-28T20:30:24+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-204017",
+  "ts": "2025-09-28T20:40:17+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-204017",
+      "ts": "2025-09-28T20:40:17+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-210353",
+  "ts": "2025-09-28T21:03:53+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-210353",
+      "ts": "2025-09-28T21:03:53+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-211534",
+  "ts": "2025-09-28T21:15:34+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211534",
+      "ts": "2025-09-28T21:15:34+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-211614",
+  "ts": "2025-09-28T21:16:14+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-211614",
+      "ts": "2025-09-28T21:16:14+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-213431",
+  "ts": "2025-09-28T21:34:31+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-213431",
+      "ts": "2025-09-28T21:34:31+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250928-215406",
+  "ts": "2025-09-28T21:54:06+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 11,
+    "total_err": 0,
+    "total": 11
+  },
+  "entries": [
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-check",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-check",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-check",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-check",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-check",
+      "label": "lists",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.lists.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-fix",
+      "label": "body",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.body.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-fix",
+      "label": "header",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.header.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-fix",
+      "label": "table",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.table.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250928-215406",
+      "ts": "2025-09-28T21:54:06+0200",
+      "section": "_lx-env-fix",
+      "label": "details",
+      "resolved": "/home/gunreip/code/bin/templates/css/audits/audits.details.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250929-051719",
+  "ts": "2025-09-29T05:17:19+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 5,
+    "total_err": 0,
+    "total": 5
+  },
+  "entries": [
+    {
+      "run_id": "20250929-051719",
+      "ts": "2025-09-29T05:17:19+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-051719",
+      "ts": "2025-09-29T05:17:19+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-051719",
+      "ts": "2025-09-29T05:17:19+0200",
+      "section": "_lx-env-check",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-051719",
+      "ts": "2025-09-29T05:17:19+0200",
+      "section": "_lx-env-fix",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-051719",
+      "ts": "2025-09-29T05:17:19+0200",
+      "section": "shellscripts",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250929-052452",
+  "ts": "2025-09-29T05:24:52+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 5,
+    "total_err": 0,
+    "total": 5
+  },
+  "entries": [
+    {
+      "run_id": "20250929-052452",
+      "ts": "2025-09-29T05:24:52+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-052452",
+      "ts": "2025-09-29T05:24:52+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-052452",
+      "ts": "2025-09-29T05:24:52+0200",
+      "section": "_lx-env-check",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-052452",
+      "ts": "2025-09-29T05:24:52+0200",
+      "section": "_lx-env-fix",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-052452",
+      "ts": "2025-09-29T05:24:52+0200",
+      "section": "shellscripts",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250929-065920",
+  "ts": "2025-09-29T06:59:20+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 6,
+    "total_err": 0,
+    "total": 6
+  },
+  "entries": [
+    {
+      "run_id": "20250929-065920",
+      "ts": "2025-09-29T06:59:20+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-065920",
+      "ts": "2025-09-29T06:59:20+0200",
+      "section": "_audits-check-js-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-065920",
+      "ts": "2025-09-29T06:59:20+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-065920",
+      "ts": "2025-09-29T06:59:20+0200",
+      "section": "_lx-env-check",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-065920",
+      "ts": "2025-09-29T06:59:20+0200",
+      "section": "_lx-env-fix",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-065920",
+      "ts": "2025-09-29T06:59:20+0200",
+      "section": "shellscripts",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250929-071145",
+  "ts": "2025-09-29T07:11:45+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 6,
+    "total_err": 0,
+    "total": 6
+  },
+  "entries": [
+    {
+      "run_id": "20250929-071145",
+      "ts": "2025-09-29T07:11:45+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-071145",
+      "ts": "2025-09-29T07:11:45+0200",
+      "section": "_audits-check-js-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-071145",
+      "ts": "2025-09-29T07:11:45+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-071145",
+      "ts": "2025-09-29T07:11:45+0200",
+      "section": "_lx-env-check",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-071145",
+      "ts": "2025-09-29T07:11:45+0200",
+      "section": "_lx-env-fix",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-071145",
+      "ts": "2025-09-29T07:11:45+0200",
+      "section": "shellscripts",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    }
+  ]
+}
+{
+  "run_id": "20250929-115729",
+  "ts": "2025-09-29T11:57:29+0200",
+  "config": "/home/gunreip/code/bin/templates/css/.css.conf.json",
+  "script": "/home/gunreip/code/bin/shellscripts/_audits-check-css-path.sh",
+  "summary": {
+    "total_ok": 7,
+    "total_err": 0,
+    "total": 7
+  },
+  "entries": [
+    {
+      "run_id": "20250929-115729",
+      "ts": "2025-09-29T11:57:29+0200",
+      "section": "_audits-check-css-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-115729",
+      "ts": "2025-09-29T11:57:29+0200",
+      "section": "_audits-check-js-path",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-115729",
+      "ts": "2025-09-29T11:57:29+0200",
+      "section": "_audits-main",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-115729",
+      "ts": "2025-09-29T11:57:29+0200",
+      "section": "_lx-env",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-115729",
+      "ts": "2025-09-29T11:57:29+0200",
+      "section": "_lx-env-check",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-115729",
+      "ts": "2025-09-29T11:57:29+0200",
+      "section": "_lx-env-fix",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    },
+    {
+      "run_id": "20250929-115729",
+      "ts": "2025-09-29T11:57:29+0200",
+      "section": "shellscripts",
+      "label": "bootstrap",
+      "resolved": "/home/gunreip/code/bin/templates/css/bootstrap-5.3.8-dist/css/bootstrap.min.css",
+      "status": "OK"
+    }
+  ]
+}

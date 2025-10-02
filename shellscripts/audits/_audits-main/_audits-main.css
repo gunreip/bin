@@ -1,0 +1,39 @@
+/* code/bin/shellscripts/audits/_audits-main/_audits-main.css — User-Erweiterungen */
+code {
+   font-size: 1.04rem;
+}
+a {
+    text-decoration: none;
+}
+span.no-comment {
+    color: #EF5350;
+}
+table {
+    border-collapse: separate;
+    table-layout: fixed;
+    width: 100%;
+}
+
+th:nth-child(1) { width: 12%; text-align: center; }
+td:nth-child(1) { color: #FFDA6a; }
+th:nth-child(2) { width: 6%; text-align: center; }
+th:nth-child(3) { width: 20%; text-align: center; }
+/* 4. Spalte soll strecken */
+.audit-toc thead th:nth-child(4) { flex: auto; }
+th:nth-child(5) { width: 3%; }
+
+li.list-group-item {
+    color: #FF8A65;
+}
+td code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 1.04em;
+  padding: .05rem .3rem;
+  border-radius: .25rem;
+  color: #AB47BC;
+  background: color-mix(in oklab, var(--bs-body-color) 10%, transparent);
+}
+span.debug-txt-files {
+    color: #4CAF50;
+    margin: 0 .5rem;
+}

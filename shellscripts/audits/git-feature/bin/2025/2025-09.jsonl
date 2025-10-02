@@ -1,0 +1,103 @@
+{
+  "ts":"2025-09-21T20:39:32+0200",
+  "script":"git-feature",
+  "version":"v0.2.7",
+  "repo":"bin",
+  "repo_path":"/home/gunreip/code/bin",
+  "origin":"https://github.com/gunreip/bin",
+  "base":"main",
+  "new_branch":"feat/tw-42-gunreip",
+  "mode":"bin",
+  "name":"gunreip",
+  "ticket":"tw-42",
+  "status":"plan",
+  "wt_dirty":1,
+  "auto_push":0,
+  "reuse":0,
+  "dry_run":"yes",
+  "debug_level":"dbg"
+}
+{
+  "ts":"2025-09-21T20:40:21+0200",
+  "script":"git-feature",
+  "version":"v0.2.7",
+  "repo":"bin",
+  "repo_path":"/home/gunreip/code/bin",
+  "origin":"https://github.com/gunreip/bin",
+  "base":"main",
+  "new_branch":"feat/tw-42-gunreip",
+  "mode":"bin",
+  "name":"gunreip",
+  "ticket":"tw-42",
+  "status":"plan",
+  "wt_dirty":1,
+  "auto_push":0,
+  "reuse":0,
+  "dry_run":"yes",
+  "debug_level":"xtrace"
+}
+{
+  "ts":"2025-09-21T20:40:56+0200",
+  "script":"git-feature",
+  "version":"v0.2.7",
+  "repo":"bin",
+  "repo_path":"/home/gunreip/code/bin",
+  "origin":"https://github.com/gunreip/bin",
+  "base":"main",
+  "new_branch":"feat/tw-42-gunreip",
+  "mode":"bin",
+  "name":"gunreip",
+  "ticket":"tw-42",
+  "status":"plan",
+  "wt_dirty":1,
+  "auto_push":0,
+  "reuse":0,
+  "dry_run":"yes",
+  "debug_level":"dbg"
+}
+{
+  "ts":"2025-09-21T20:41:24+0200",
+  "script":"git-feature",
+  "version":"v0.2.7",
+  "repo":"bin",
+  "repo_path":"/home/gunreip/code/bin",
+  "origin":"https://github.com/gunreip/bin",
+  "base":"main",
+  "new_branch":"feat/tw-42-gunreip",
+  "mode":"bin",
+  "name":"gunreip",
+  "ticket":"tw-42",
+  "status":"plan",
+  "wt_dirty":1,
+  "auto_push":0,
+  "reuse":0,
+  "dry_run":"yes",
+  "debug_level":"dbg"
+}
+{
+  "ts":"2025-09-21T20:51:14+0200",
+  "script":"git-feature",
+  "version":"v0.2.7",
+  "repo":"bin",
+  "repo_path":"/home/gunreip/code/bin",
+  "origin":"https://github.com/gunreip/bin",
+  "base":"main",
+  "new_branch":"feat/tw-42-gunreip",
+  "mode":"bin",
+  "name":"gunreip",
+  "ticket":"tw-42",
+  "status":"plan",
+  "wt_dirty":1,
+  "auto_push":0,
+  "reuse":0,
+  "dry_run":"yes",
+  "debug_level":"dbg"
+}
+{"ts":"2025-09-21T20:56:42+0200","script":"git-feature","version":"v0.2.8","repo":"bin","repo_path":"/home/gunreip/code/bin","origin":"https://github.com/gunreip/bin","base":"main","new_branch":"feat/tw-42-gunreip","mode":"bin","name":"gunreip","ticket":"tw-42","status":"plan","wt_dirty":1,"auto_push":0,"reuse":0,"dry_run":"yes","debug_level":"dbg"}
+{"ts":"2025-09-21T20:57:06+0200","script":"git-feature","version":"v0.2.8","repo":"bin","repo_path":"/home/gunreip/code/bin","origin":"https://github.com/gunreip/bin","base":"main","new_branch":"feat/tw-42-gunreip","mode":"bin","name":"gunreip","ticket":"tw-42","status":"plan","wt_dirty":1,"auto_push":0,"reuse":0,"dry_run":"yes","debug_level":"dbg"}
+{"ts":"2025-09-21T20:58:01+0200","script":"git-feature","version":"v0.2.8","repo":"bin","repo_path":"/home/gunreip/code/bin","origin":"https://github.com/gunreip/bin","base":"main","new_branch":"feat/tw-42-gunreip","mode":"bin","name":"gunreip","ticket":"tw-42","status":"plan","wt_dirty":1,"auto_push":0,"reuse":0,"dry_run":"yes","debug_level":"dbg"}
+{"ts":"2025-09-21T20:59:00+0200","script":"git-feature","version":"v0.2.8","repo":"bin","repo_path":"/home/gunreip/code/bin","origin":"https://github.com/gunreip/bin","base":"main","new_branch":"feat/tw-42-gunreip","mode":"bin","name":"gunreip","ticket":"tw-42","status":"plan","wt_dirty":1,"auto_push":0,"reuse":0,"dry_run":"yes","debug_level":"dbg"}
+{"ts":"2025-09-21T20:59:21+0200","script":"git-feature","version":"v0.2.8","repo":"bin","repo_path":"/home/gunreip/code/bin","origin":"https://github.com/gunreip/bin","base":"main","new_branch":"feat/tw-42-gunreip","mode":"bin","name":"gunreip","ticket":"tw-42","status":"plan","wt_dirty":1,"auto_push":0,"reuse":0,"dry_run":"yes","debug_level":"dbg"}
+{"ts":"2025-09-21T21:05:30+0200","script":"git-feature","version":"v0.2.8","repo":"bin","repo_path":"/home/gunreip/code/bin","origin":"https://github.com/gunreip/bin","base":"main","new_branch":"feat/tw-42-gunreip","mode":"bin","name":"gunreip","ticket":"tw-42","status":"plan","wt_dirty":1,"auto_push":0,"reuse":0,"dry_run":"yes","debug_level":"dbg"}
+{"ts":"2025-09-21T21:11:45+0200","script":"git-feature","version":"v0.2.8","repo":"bin","repo_path":"/home/gunreip/code/bin","origin":"https://github.com/gunreip/bin","base":"main","new_branch":"feat/tw-42-gunreip","mode":"bin","name":"gunreip","ticket":"tw-42","status":"plan","wt_dirty":1,"auto_push":0,"reuse":0,"dry_run":"yes","debug_level":"trace"}
+{"ts":"2025-09-21T21:15:54+0200","script":"git-feature","version":"v0.2.9","repo":"bin","repo_path":"/home/gunreip/code/bin","origin":"https://github.com/gunreip/bin","base":"main","new_branch":"feat/tw-42-gunreip","mode":"bin","name":"gunreip","ticket":"tw-42","status":"plan","wt_dirty":1,"auto_push":0,"reuse":0,"dry_run":"yes","debug_level":"trace"}
